@@ -7,8 +7,8 @@
 -debug:full
 -nostdlib
 -nologo
-"C:\Users\Linksonder\Documents\Visual Studio 2015\Projects\Webdictaat\Webdictaat\src\Webdictaat\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
--out:"C:\Users\Linksonder\Documents\Visual Studio 2015\Projects\Webdictaat\Webdictaat\src\Webdictaat\bin\Debug\netcoreapp1.0\Webdictaat.dll"
+"C:\Users\Linksonder\Documents\Visual Studio 2015\Projects\Webdictaat\src\Webdictaat\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
+-out:"C:\Users\Linksonder\Documents\Visual Studio 2015\Projects\Webdictaat\src\Webdictaat\bin\Debug\netcoreapp1.0\Webdictaat.dll"
 -r:"C:\Users\Linksonder\.nuget\packages\Microsoft.AspNetCore.Antiforgery\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Antiforgery.dll"
 -r:"C:\Users\Linksonder\.nuget\packages\Microsoft.AspNetCore.Authorization\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Authorization.dll"
 -r:"C:\Users\Linksonder\.nuget\packages\Microsoft.AspNetCore.Cors\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Cors.dll"
@@ -186,10 +186,13 @@
 -r:"C:\Users\Linksonder\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll"
 -r:"C:\Users\Linksonder\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll"
 -r:"C:\Users\Linksonder\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll"
--resource:"C:\Users\Linksonder\Documents\Visual Studio 2015\Projects\Webdictaat\Webdictaat\src\Webdictaat\obj\Debug\netcoreapp1.0\Webdictaatdotnet-compile.deps.json",Webdictaat.deps.json
-"C:\Users\Linksonder\Documents\Visual Studio 2015\Projects\Webdictaat\Webdictaat\src\Webdictaat\Program.cs"
-"C:\Users\Linksonder\Documents\Visual Studio 2015\Projects\Webdictaat\Webdictaat\src\Webdictaat\Startup.cs"
-"C:\Users\Linksonder\Documents\Visual Studio 2015\Projects\Webdictaat\Webdictaat\src\Webdictaat\Controllers\DictaatController.cs"
-"C:\Users\Linksonder\Documents\Visual Studio 2015\Projects\Webdictaat\Webdictaat\src\Webdictaat\Model\DictaatVM.cs"
-"C:\Users\Linksonder\Documents\Visual Studio 2015\Projects\Webdictaat\Webdictaat\src\Webdictaat\Model\Repository\DictaatRepo.cs"
-"C:\Users\Linksonder\Documents\Visual Studio 2015\Projects\Webdictaat\Webdictaat\src\Webdictaat\Model\Repository\IDictaatRepo.cs"
+-resource:"C:\Users\Linksonder\Documents\Visual Studio 2015\Projects\Webdictaat\src\Webdictaat\obj\Debug\netcoreapp1.0\Webdictaatdotnet-compile.deps.json",Webdictaat.deps.json
+"C:\Users\Linksonder\Documents\Visual Studio 2015\Projects\Webdictaat\src\Webdictaat\Program.cs"
+"C:\Users\Linksonder\Documents\Visual Studio 2015\Projects\Webdictaat\src\Webdictaat\Startup.cs"
+"C:\Users\Linksonder\Documents\Visual Studio 2015\Projects\Webdictaat\src\Webdictaat\Controllers\DictaatController.cs"
+"C:\Users\Linksonder\Documents\Visual Studio 2015\Projects\Webdictaat\src\Webdictaat\Model\DictaatEntryVM.cs"
+"C:\Users\Linksonder\Documents\Visual Studio 2015\Projects\Webdictaat\src\Webdictaat\Model\DictaatVM.cs"
+"C:\Users\Linksonder\Documents\Visual Studio 2015\Projects\Webdictaat\src\Webdictaat\Model\Factory\DictaatFactory.cs"
+"C:\Users\Linksonder\Documents\Visual Studio 2015\Projects\Webdictaat\src\Webdictaat\Model\Factory\IDictaatFactory.cs"
+"C:\Users\Linksonder\Documents\Visual Studio 2015\Projects\Webdictaat\src\Webdictaat\Model\Repository\DictaatRepo.cs"
+"C:\Users\Linksonder\Documents\Visual Studio 2015\Projects\Webdictaat\src\Webdictaat\Model\Repository\IDictaatRepo.cs"

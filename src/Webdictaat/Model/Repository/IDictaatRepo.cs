@@ -10,6 +10,6 @@ namespace Webdictaat.Model.Repository
         string[] GetDictaten();
         void CreateDictaat(string name);
         void DeleteDictaat(string name);
-        object GetDictaat(string name);
+        DictaatVM GetDictaat(string name);
     }
 }

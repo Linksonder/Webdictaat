@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Webdictaat.Model.Factory;
 
 namespace Webdictaat.Model.Repository
 {
     public class DictaatRepo : IDictaatRepo
     {
-        public string ROOT = "C:/webdictaat/";
+        public static string ROOT = "C:/webdictaat/";
+        private IDictaatFactory _dictaatFactory;
+
+        public DictaatRepo(IDictaatFactory dictaatFactory)
+        {
+            _dictaatFactory = dictaatFactory;
+        }
 
         public void CreateDictaat(string name)
         {
@@ -23,10 +29,7 @@ namespace Webdictaat.Model.Repository
 
         public DictaatVM GetDictaat(string name)
         {
-            var vm = new Model.DictaatVM();
-            vm.Files = Directory.GetFiles(name);
-            vm.Directories = Directory.GetDirectories(name);
-            vm.Name = name;
+            var vm = _dictaatFactory.FillDictaat(name);
             return vm;
         }
 

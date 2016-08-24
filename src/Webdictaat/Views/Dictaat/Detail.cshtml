@@ -1,41 +1,82 @@
 ﻿@model Webdictaat.Model.DictaatVM
 
 
-<h2>Dictaat @Model.Name</h2>
-
-
-<form asp-controller="Dictaat" asp-action="Create">
-    <input type="text" name="name" value="" />
-    <button type="submit" class="btn-default" >Create</button>
-</form>
-
+<h2>Dictaat - @Model.Name</h2>
+<p><i>Last edited on @Model.LastEdit</i></p>
 
 <h3>Content</h3>
 
-<table class="table table-striped">
-@foreach (string dictaat in Model.Directories)
-{
-    <tr>
-        <td>@dictaat</td>
-        <td>
-            <form asp-controller="Dictaat" asp-action="Delete">
-                <input type="text" name="name" value="@dictaat" hidden />
-                <button class="btn-danger">Delete</button>
-            </form>
-        </td>
-    </tr>
-}
-@foreach (string dictaat in Model.Files)
-{
-    <tr>
-        <td>@dictaat</td>
-        <td>
-            <form asp-controller="Dictaat" asp-action="Delete">
-                <input type="text" name="name" value="@dictaat" hidden />
-                <button class="btn-danger">Delete</button>
-            </form>
-        </td>
-    </tr>
-}
-</table>
+<ul id="directoryStructure" class="directory">
+    @{Html.RenderPartial("_DictaatEntry", Model.RootEntry);}
+</ul>
 
+<section class="menuContainer" oncontextmenu="return false;">
+    <section class="menu">
+        <button class="btn btn-default" id="add_folder">+ Add folder</button>
+        <button class="btn btn-default" id="add_file">+ Add file</button>
+    </section>
+</section>
+
+
+    <script>
+
+        var currentDirectory = null;
+
+        $('#add_folder').on('click', function () {
+            $.post('/Dictaat/Directory', { location: currentDirectory.id })
+                .done(function (data) {
+                    location.reload();
+                });
+        });
+
+        $('#add_file').on('click', function () {
+            console.log('adding file to ' + currentDirectory);
+
+
+        });
+
+        function closeEntry(element) {
+            element.find('> .subEntries').slideUp();
+            element.find('> .entry .glyphicon')
+                .removeClass('glyphicon-folder-open')
+                .addClass('glyphicon-folder-close');
+        }
+
+        function openEntry(element) {
+            element.find('> .subEntries').slideDown();
+            element.find('> .entry .glyphicon')
+                .removeClass('glyphicon-folder-close')
+                .addClass('glyphicon-folder-open');
+        }
+
+        function showMenu(e) {
+            $('.menuContainer').show();
+            $('.menu')
+                .css({top: e.pageY, left: e.pageX})
+
+        }
+
+        function toggleEntry(){
+            var element = $(currentDirectory).parent();
+            if (element.hasClass('open')) {
+                closeEntry(element);
+            }
+            else {
+                openEntry(element);
+            }
+            element.toggleClass('open');
+        }
+
+        $('.menuContainer').on('click', function () {
+            $('.menuContainer').hide();
+        })
+
+        $('#directoryStructure .entry').mousedown(function (e) {
+            currentDirectory = $(this)[0];
+            switch (e.button) {
+                case 0: toggleEntry(e); break;
+                case 2: showMenu(e); break;
+            }
+        });
+
+    </script>

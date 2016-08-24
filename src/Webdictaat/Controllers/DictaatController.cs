@@ -45,5 +45,13 @@ namespace Webdictaat.Controllers
             var vm = _dictaatRepo.GetDictaat(name);
             return View(vm);
         }
+
+        [HttpPost]
+        public IActionResult Directory(string location)
+        {
+
+            System.IO.Directory.CreateDirectory(location + "/new directory");
+            return Json("success");
+        }
     }
 }
