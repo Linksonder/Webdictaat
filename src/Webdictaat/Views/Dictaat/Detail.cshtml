@@ -1,0 +1,41 @@
+﻿@model Webdictaat.Model.DictaatVM
+
+
+<h2>Dictaat @Model.Name</h2>
+
+
+<form asp-controller="Dictaat" asp-action="Create">
+    <input type="text" name="name" value="" />
+    <button type="submit" class="btn-default" >Create</button>
+</form>
+
+
+<h3>Content</h3>
+
+<table class="table table-striped">
+@foreach (string dictaat in Model.Directories)
+{
+    <tr>
+        <td>@dictaat</td>
+        <td>
+            <form asp-controller="Dictaat" asp-action="Delete">
+                <input type="text" name="name" value="@dictaat" hidden />
+                <button class="btn-danger">Delete</button>
+            </form>
+        </td>
+    </tr>
+}
+@foreach (string dictaat in Model.Files)
+{
+    <tr>
+        <td>@dictaat</td>
+        <td>
+            <form asp-controller="Dictaat" asp-action="Delete">
+                <input type="text" name="name" value="@dictaat" hidden />
+                <button class="btn-danger">Delete</button>
+            </form>
+        </td>
+    </tr>
+}
+</table>
+
