@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Webdictaat</title>
 
+
+    <!-- 1. Load libraries -->
+    <!-- Polyfill(s) for older browsers -->
+    <script src="~/lib/angular_dependencies/shim.min.js"></script>
+    <script src="~/lib/angular_dependencies/zone.js"></script>
+    <script src="~/lib/angular_dependencies/Reflect.js"></script>
+    <script src="~/lib/angular_dependencies/system.src.js"></script>
+    <!-- 2. Configure SystemJS -->
+    <script src="~/js/systemjs.config.js"></script>
+    <script>
+      System.import('app').catch(function(err){ console.error(err); });
+    </script>
+
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/style.css" />
@@ -21,7 +34,6 @@
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
 
     <environment names="Staging,Production">
@@ -38,31 +50,10 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Dictaat" asp-action="Index" class="navbar-brand">Webdictaat</a>
-            </div>
-            <div class="navbar-collapse collapse">
 
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2016 - Webdictaat</p>
-        </footer>
-    </div>
+    @{ IgnoreBody(); }
+    <my-app>Loading...</my-app>
 
-    
 
     @RenderSection("scripts", required: false)
 </body>

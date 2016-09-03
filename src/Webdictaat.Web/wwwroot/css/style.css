@@ -1,5 +1,16 @@
-body span {
-  color: red; }
+body {
+  margin: 2em; }
+  body span {
+    color: red; }
+  body h2 {
+    border-bottom: 1px solid gray; }
 
-body h2 {
-  border-bottom: 1px solid gray; }
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%; }
+
+h2, h3 {
+  color: #444;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter; }
