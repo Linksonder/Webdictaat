@@ -527,8 +527,8 @@ var Reflect;
     Reflect.deleteMetadata = deleteMetadata;
     function DecorateConstructor(decorators, target) {
         for (var i = decorators.length - 1; i >= 0; --i) {
-            var decorator = decorators[i];
-            var decorated = decorator(target);
+            var decorator_1 = decorators[i];
+            var decorated = decorator_1(target);
             if (!IsUndefined(decorated)) {
                 if (!IsConstructor(decorated))
                     throw new TypeError();
@@ -539,8 +539,8 @@ var Reflect;
     }
     function DecoratePropertyWithDescriptor(decorators, target, propertyKey, descriptor) {
         for (var i = decorators.length - 1; i >= 0; --i) {
-            var decorator = decorators[i];
-            var decorated = decorator(target, propertyKey, descriptor);
+            var decorator_2 = decorators[i];
+            var decorated = decorator_2(target, propertyKey, descriptor);
             if (!IsUndefined(decorated)) {
                 if (!IsObject(decorated))
                     throw new TypeError();
@@ -551,8 +551,8 @@ var Reflect;
     }
     function DecoratePropertyWithoutDescriptor(decorators, target, propertyKey) {
         for (var i = decorators.length - 1; i >= 0; --i) {
-            var decorator = decorators[i];
-            decorator(target, propertyKey);
+            var decorator_3 = decorators[i];
+            decorator_3(target, propertyKey);
         }
     }
     // https://github.com/rbuckton/ReflectDecorators/blob/master/spec/metadata.md#getorcreatemetadatamap--o-p-create-
@@ -931,9 +931,9 @@ var Reflect;
     (function (__global) {
         if (typeof __global.Reflect !== "undefined") {
             if (__global.Reflect !== Reflect) {
-                for (var p in Reflect) {
-                    if (hasOwn.call(Reflect, p)) {
-                        __global.Reflect[p] = Reflect[p];
+                for (var p_1 in Reflect) {
+                    if (hasOwn.call(Reflect, p_1)) {
+                        __global.Reflect[p_1] = Reflect[p_1];
                     }
                 }
             }

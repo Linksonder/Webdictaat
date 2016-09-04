@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "rootDir": "wwwroot/app",
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
@@ -9,5 +8,9 @@
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": false
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "wwwroot/node_modules"
+  ]
 }

@@ -6,7 +6,6 @@ Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
 
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var typescript = require('gulp-tsc');
 
 var paths = {
     webroot: "./wwwroot/",
