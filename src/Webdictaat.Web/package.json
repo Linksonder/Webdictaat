@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "postinstall": "typings install",
-    "typings": "typings"
+    "typings": "tsc -w"
   },
   "license": "ISC",
   "devDependencies": {

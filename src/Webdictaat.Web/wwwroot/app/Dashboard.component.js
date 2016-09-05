@@ -37,4 +37,4 @@ var DashboardComponent = (function () {
     return DashboardComponent;
 }());
 exports.DashboardComponent = DashboardComponent;
-//# sourceMappingURL=Dashboard.component.js.map
+//# sourceMappingURL=dashboard.component.js.map

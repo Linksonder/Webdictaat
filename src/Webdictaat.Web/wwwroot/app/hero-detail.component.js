@@ -27,10 +27,6 @@ var HeroDetailComponent = (function () {
     HeroDetailComponent.prototype.goBack = function () {
         window.history.back();
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], HeroDetailComponent.prototype, "", void 0);
     HeroDetailComponent = __decorate([
         core_1.Component({
             selector: 'my-hero-detail',
