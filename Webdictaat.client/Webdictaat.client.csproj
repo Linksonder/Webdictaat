@@ -25,11 +25,16 @@
     <Content Include="app.css" />
     <TypeScriptCompile Include="app\app.component.ts" />
     <Content Include="app\app.component.html" />
+    <Content Include="app\dictaten\dictaten.component.css" />
+    <Content Include="app\dictaten\dictaten.component.html" />
     <Content Include="css\style.css" />
     <Content Include="index.html" />
     <Content Include="js\systemjs.config.js" />
     <Content Include="web.config" />
+    <TypeScriptCompile Include="app\dictaten\dictaten.component.ts" />
+    <TypeScriptCompile Include="app\dictaten\dictaten.service.ts" />
     <TypeScriptCompile Include="app\main.ts" />
+    <TypeScriptCompile Include="app\models\dictaat.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="package.json" />
