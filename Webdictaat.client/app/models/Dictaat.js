@@ -5,4 +5,4 @@ var Dictaat = (function () {
     return Dictaat;
 }());
 exports.Dictaat = Dictaat;
-//# sourceMappingURL=Dictaat.js.map
+//# sourceMappingURL=dictaat.js.map
