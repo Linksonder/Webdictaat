@@ -1,19 +1,23 @@
 ﻿import { Component } from '@angular/core';
-import { Dictaat } from '../models/dictaat';
+import { OnInit } from '@angular/core';
+import { DictatenService } from './dictaten.service';
 
 
 @Component({
     selector: "wd-dictaten",
     templateUrl: "./app/dictaten/dictaten.component.html",
-    styleUrls: [ "./app/dictaten/dictaten.component.css" ]
+    styleUrls: ["./app/dictaten/dictaten.component.css"],
+    providers: [DictatenService]
 })
-export class DictatenComponent {
+export class DictatenComponent implements OnInit {
 
-    public dictaten: Dictaat[] = [
-        { name: "PROG1", location: "root/change/prog1", lastChange: new Date("9/5/2016") },
-        { name: "PROG2", location: "root/change/prog2", lastChange: new Date("12/6/2016") },
-        { name: "PROG3", location: "root/change/prog3", lastChange: new Date("10/6/2016") },
+    public dictaten = [];
 
-    ];
-
+    constructor(private dictatenService: DictatenService) { }
+    
+    ngOnInit(): void {
+        this.dictatenService.getDictaten()
+            .then(dictaten => this.dictaten = dictaten);
+    } 
 }
+    

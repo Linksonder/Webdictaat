@@ -9,21 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var dictaten_service_1 = require('./dictaten.service');
 var DictatenComponent = (function () {
-    function DictatenComponent() {
-        this.dictaten = [
-            { name: "PROG1", location: "root/change/prog1", lastChange: new Date("9/5/2016") },
-            { name: "PROG2", location: "root/change/prog2", lastChange: new Date("12/6/2016") },
-            { name: "PROG3", location: "root/change/prog3", lastChange: new Date("10/6/2016") },
-        ];
+    function DictatenComponent(dictatenService) {
+        this.dictatenService = dictatenService;
+        this.dictaten = [];
     }
+    DictatenComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.dictatenService.getDictaten()
+            .then(function (dictaten) { return _this.dictaten = dictaten; });
+    };
     DictatenComponent = __decorate([
         core_1.Component({
             selector: "wd-dictaten",
             templateUrl: "./app/dictaten/dictaten.component.html",
-            styleUrls: ["./app/dictaten/dictaten.component.css"]
+            styleUrls: ["./app/dictaten/dictaten.component.css"],
+            providers: [dictaten_service_1.DictatenService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [dictaten_service_1.DictatenService])
     ], DictatenComponent);
     return DictatenComponent;
 }());
