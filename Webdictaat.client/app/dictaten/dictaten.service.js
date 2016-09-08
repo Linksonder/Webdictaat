@@ -9,19 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+require('rxjs/add/operator/toPromise');
+require('rxjs/add/operator/map');
 var DictatenService = (function () {
-    function DictatenService() {
+    function DictatenService(http) {
+        this.http = http;
+        this.root = "http://localhost:65418/api/dictaten";
+        this.dictatenUrl = 'http://localhost:65418/api/dictaten';
     }
     DictatenService.prototype.getDictaten = function () {
-        return Promise.resolve([
-            { name: "PROG1", location: "root/change/prog1", lastChange: new Date("9/5/2016") },
-            { name: "PROG4", location: "root/change/prog2", lastChange: new Date("12/6/2016") },
-            { name: "PROG3", location: "root/change/prog3", lastChange: new Date("10/6/2016") },
-        ]);
+        return this.http.get(this.dictatenUrl)
+            .toPromise()
+            .then(function (response) {
+            return response.json();
+        }).catch(this.handleError);
+    };
+    DictatenService.prototype.handleError = function (error) {
+        console.error('An error occurred', error); // for demo purposes only
+        return Promise.reject(error.message || error);
     };
     DictatenService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], DictatenService);
     return DictatenService;
 }());

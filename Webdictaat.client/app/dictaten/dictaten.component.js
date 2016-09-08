@@ -18,7 +18,9 @@ var DictatenComponent = (function () {
     DictatenComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.dictatenService.getDictaten()
-            .then(function (dictaten) { return _this.dictaten = dictaten; });
+            .then(function (dictaten) {
+            return _this.dictaten = dictaten;
+        });
     };
     DictatenComponent = __decorate([
         core_1.Component({

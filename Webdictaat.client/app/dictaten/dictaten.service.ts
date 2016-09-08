@@ -1,15 +1,33 @@
 ﻿import { Injectable } from '@angular/core';
+import { Headers, Http } from '@angular/http';
+//Nodig om een object om te toveren in een promise.
+
 import { Dictaat } from '../models/dictaat';
+
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
+
 
 @Injectable()
 export class DictatenService {
 
+    private root = "http://localhost:65418/api/dictaten";
+
+    constructor(private http: Http) { }
+
+    private dictatenUrl = 'http://localhost:65418/api/dictaten';
+
     public getDictaten(): Promise<Dictaat[]> {
-        return Promise.resolve([
-            { name: "PROG1", location: "root/change/prog1", lastChange: new Date("9/5/2016") },
-            { name: "PROG4", location: "root/change/prog2", lastChange: new Date("12/6/2016") },
-            { name: "PROG3", location: "root/change/prog3", lastChange: new Date("10/6/2016") },
-        ]);
+        return this.http.get(this.dictatenUrl)
+            .toPromise()
+            .then(response => 
+                response.json() as Dictaat[]
+            ).catch(this.handleError);
+    }
+
+    private handleError(error: any): Promise<any> {
+        console.error('An error occurred', error); // for demo purposes only
+        return Promise.reject(error.message || error);
     }
 
 }
