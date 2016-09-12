@@ -6,6 +6,7 @@ using Webdictaat.Core;
 using Webdictaat.CMS.Models.Resources;
 using Microsoft.Extensions.Options;
 
+
 namespace Webdictaat.CMS.Models
 {
     public class DirectoryDictaatRepository : IDictaatRepository
@@ -19,9 +20,17 @@ namespace Webdictaat.CMS.Models
             _directory = directory;
         }
 
-        public IEnumerable<ViewModels.Dictaat> GetDictaten()
+        public IEnumerable<ViewModels.DictaatSummary> GetDictaten()
         {
-            return _directory.GetDirectories(_directoryRoot).Select(s => new ViewModels.Dictaat(_directory, s));
+            return _directory.GetDirectoriesSummary(_directoryRoot)
+                .Select(s => new ViewModels.DictaatSummary(s));
+        }
+
+        public ViewModels.Dictaat getDictaat(string name)
+        {
+            DirectoryDetails directoryDetails = _directory.GetDirectoryDetails(_directoryRoot, name);
+            return new ViewModels.Dictaat(directoryDetails);
+                
         }
     }
 }

@@ -7,34 +7,45 @@ namespace Webdictaat.Core
 {
     public interface IDirectory
     {
-        string[] GetDirectories(string path);
-
-        DirectorySummary GetDirectorySummary(string path);
-    }
-
-    public class DirectorySummary
-    {
-        public DateTime LastChange { get; set; }
-        public string Location { get; internal set; }
-        public string Name { get; internal set; }
+        IEnumerable<DirectorySummary> GetDirectoriesSummary(string _directoryRoot);
+        DirectoryDetails GetDirectoryDetails(string _directoryRoot, string name);
     }
 
     public class Directory : IDirectory
     {
-        public string[] GetDirectories(string path)
+
+        public IEnumerable<DirectorySummary> GetDirectoriesSummary(string _directoryRoot)
         {
-            return System.IO.Directory.GetDirectories(path);
+            string[] directories = System.IO.Directory.GetDirectories(_directoryRoot);
+
+            return directories.Select(d => new DirectorySummary()
+            {
+                LastChange = System.IO.Directory.GetLastWriteTime(d),
+                Location = d.Split(new string[] { _directoryRoot }, StringSplitOptions.None).Last(),
+                Name = d.Split('\\').Last()
+            });
         }
 
-        public DirectorySummary GetDirectorySummary(string path)
+        public DirectoryDetails GetDirectoryDetails(string _directoryRoot, string name)
         {
-            return new DirectorySummary()
+            string path = _directoryRoot + name;
+
+            return new DirectoryDetails()
             {
-                LastChange = System.IO.Directory.GetLastWriteTime(path),
-                Name = path.Split('/').Last(),
-                Location = path,
+                Name = name,
+                RootEntry = GetDirectoryEntry(path)
             };
         }
-            
+
+        private DirectoryEntry GetDirectoryEntry(string path)
+        {
+            return new DirectoryEntry()
+            {
+                Name = path.Split('\\').Last(),
+                ChildDirectories = System.IO.Directory.GetDirectories(path).Select(p => GetDirectoryEntry(p)),
+                ChildFiles = System.IO.Directory.GetFiles(path),
+            };
+
+        }
     }
 }

@@ -10,23 +10,22 @@ using Webdictaat.CMS.Models;
 namespace Webdictaat.CMS.Controllers
 {
     [Route("api/[controller]")]
-    public class DictatenController : Controller
+    public class DictaatController : Controller
     {
         private IDictaatRepository _dictaatRepo;
 
-        public DictatenController(IDictaatRepository dictaatRepo)
+        public DictaatController(IDictaatRepository dictaatRepo)
         {
             _dictaatRepo = dictaatRepo;
         }
 
-
         // GET: api/values
         [HttpGet]
-        public IEnumerable<ViewModels.DictaatSummary> Get()
+        public ViewModels.Dictaat Get(string name)
         {
-            var dictaten = _dictaatRepo.GetDictaten();
-            return dictaten;
+            return _dictaatRepo.getDictaat(name);
         }
-      
+
+   
     }
 }
