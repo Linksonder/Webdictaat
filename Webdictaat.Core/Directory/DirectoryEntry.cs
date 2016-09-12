@@ -9,8 +9,10 @@ namespace Webdictaat.Core
     {
         public string Name { get; set; }
 
+        public string Location { get; set; }
+
         public IEnumerable<DirectoryEntry> ChildDirectories { get; set; }
 
-        public string[] ChildFiles { get; set; }
+        public IEnumerable<FileEntry> ChildFiles { get; set; }
     }
 }

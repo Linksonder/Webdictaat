@@ -7,9 +7,12 @@ namespace Webdictaat.CMS.ViewModels
 {
     public class DictaatFile : DictaatEntry
     {
-        public string Name { get; set; }
-
-        public string Location { get; set; }
+        public DictaatFile(Core.FileEntry file)
+        {
+            this.Location = file.Location;
+            this.Name = file.Name;
+            this.LastChange = file.LastChanged;
+        }
 
         public DateTime LastChange { get; set; }
     }

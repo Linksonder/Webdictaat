@@ -9,14 +9,16 @@ namespace Webdictaat.CMS.ViewModels
 {
     public class Dictaat
     {
-        private DirectoryDetails directoryDetails;
-        private DirectoryDetails directoryDetails1;
+        public string Name { get; set; }
 
-        public Dictaat(DirectoryDetails directoryDetails1)
+        public DictaatEntry RootEntry { get; set; }
+
+        public Dictaat(DirectoryDetails details)
         {
-            this.directoryDetails1 = directoryDetails1;
+            this.Name = details.Name;
+
+            this.RootEntry = new DictaatDirectory(details.RootEntry);
         }
 
-        public IEnumerable<DictaatEntry> DictaatEntries { get; set; }
     }
 }
