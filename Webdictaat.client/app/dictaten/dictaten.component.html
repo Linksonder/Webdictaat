@@ -1,0 +1,18 @@
+﻿<h3>Dictaten</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>LastChange</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let  dictaat of dictaten">
+            <td>{{dictaat.name}}</td>
+            <td>{{dictaat.location}}</td>
+            <td>{{dictaat.lastChange | date}}</td>
+        </tr>
+    </tbody>
+</table>
