@@ -15,7 +15,6 @@ require('rxjs/add/operator/map');
 var DictatenService = (function () {
     function DictatenService(http) {
         this.http = http;
-        this.root = "http://localhost:65418/api/dictaten";
         this.dictatenUrl = 'http://localhost:65418/api/dictaten';
     }
     DictatenService.prototype.getDictaten = function () {

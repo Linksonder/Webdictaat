@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Webdictaat.CMS.Models;
+using Webdictaat;
+using Webdictaat.CMS.Models.Resources;
 
 namespace Webdictaat.CMS
 {
@@ -17,9 +19,10 @@ namespace Webdictaat.CMS
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: false)
                 .AddEnvironmentVariables();
+
             Configuration = builder.Build();
         }
 
@@ -31,7 +34,12 @@ namespace Webdictaat.CMS
             // Add framework services.
             services.AddMvc();
             services.AddCors();
-            services.AddSingleton<IDictaatRepository, DummyDictaatRepository>();
+            services.AddOptions();
+
+            services.AddSingleton<IDictaatRepository, DirectoryDictaatRepository>();
+            services.AddSingleton<Core.IDirectory, Core.Directory>();
+
+            services.Configure<ConfigVariables>(Configuration.GetSection("ConfigVariables"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

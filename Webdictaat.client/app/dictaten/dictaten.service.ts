@@ -11,7 +11,6 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DictatenService {
 
-    private root = "http://localhost:65418/api/dictaten";
 
     constructor(private http: Http) { }
 
