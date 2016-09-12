@@ -14,13 +14,14 @@ var http_1 = require('@angular/http');
 var app_component_1 = require('./app.component');
 var dictaten_component_1 = require('./dictaten/dictaten.component');
 var dictaat_component_1 = require('./dictaat/dictaat.component');
+var dictaat_entry_component_1 = require('./dictaat/dictaat-entry.component');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, http_1.HttpModule],
-            declarations: [app_component_1.AppComponent, dictaten_component_1.DictatenComponent, dictaat_component_1.DictaatComponent],
+            declarations: [app_component_1.AppComponent, dictaten_component_1.DictatenComponent, dictaat_component_1.DictaatComponent, dictaat_entry_component_1.DictaatEntryComponent],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

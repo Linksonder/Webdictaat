@@ -1,5 +1,5 @@
 ﻿<div class="row">
-    <div class="col-md-6">
+    <div class="col-md-3">
         <div class="panel panel-default">
             <div class="panel-heading">Dictaten</div>
             <div class="panel-body">
@@ -7,26 +7,21 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Location</th>
-                            <th>LastChange</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let  dictaat of dictaten">
+                        <tr *ngFor="let  dictaat of dictaten"  (click)="onSelect(dictaat)">
                             <td>{{dictaat.name}}</td>
-                            <td>{{dictaat.location}}</td>
-                            <td>{{dictaat.lastChange | date}}</td>
-                            <td>
-                                <button type="button" (click)="onSelect(dictaat)" class="btn btn-default">Details</button>
-                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+    <div class="col-md-3">
+        <wd-dictaat [dictaatName]="selectedDictaat.name" *ngIf="selectedDictaat">Loading dictaat...</wd-dictaat>
+    </div>
     <div class="col-md-6">
-        <wd-dictaat [dictaat]="selectedDictaat">Loading dictaat...</wd-dictaat>
+       <h2>File preview</h2>
     </div>
 </div>

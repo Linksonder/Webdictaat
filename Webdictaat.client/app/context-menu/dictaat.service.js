@@ -9,30 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-require('rxjs/add/operator/toPromise');
-require('rxjs/add/operator/map');
-var DictaatService = (function () {
-    function DictaatService(http) {
-        this.http = http;
-        this.dictatenUrl = 'http://localhost:65418/api/dictaten/';
+var ContextMenuService = (function () {
+    function ContextMenuService() {
     }
-    DictaatService.prototype.getDictaat = function (dictaatName) {
-        return this.http.get(this.dictatenUrl + dictaatName)
-            .toPromise()
-            .then(function (response) {
-            return response.json();
-        }).catch(this.handleError);
+    ContextMenuService.prototype.showContextMenu = function () {
     };
-    DictaatService.prototype.handleError = function (error) {
+    ContextMenuService.prototype.handleError = function (error) {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
     };
-    DictaatService = __decorate([
+    ContextMenuService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
-    ], DictaatService);
-    return DictaatService;
+        __metadata('design:paramtypes', [])
+    ], ContextMenuService);
+    return ContextMenuService;
 }());
-exports.DictaatService = DictaatService;
+exports.ContextMenuService = ContextMenuService;
 //# sourceMappingURL=dictaat.service.js.map

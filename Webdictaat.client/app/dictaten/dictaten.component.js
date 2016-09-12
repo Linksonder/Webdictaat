@@ -13,7 +13,6 @@ var dictaten_service_1 = require('./dictaten.service');
 var DictatenComponent = (function () {
     function DictatenComponent(dictatenService) {
         this.dictatenService = dictatenService;
-        this.dictaten = [];
     }
     DictatenComponent.prototype.ngOnInit = function () {
         var _this = this;

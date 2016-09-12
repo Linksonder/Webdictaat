@@ -33,11 +33,15 @@
     <Content Include="index.html" />
     <Content Include="js\systemjs.config.js" />
     <Content Include="web.config" />
+    <TypeScriptCompile Include="app\context-menu\context-menu.component.ts" />
+    <TypeScriptCompile Include="app\context-menu\context-menu.service.ts" />
+    <TypeScriptCompile Include="app\dictaat\dictaat-entry.component.ts" />
     <TypeScriptCompile Include="app\dictaat\dictaat.component.ts" />
     <TypeScriptCompile Include="app\dictaat\dictaat.service.ts" />
     <TypeScriptCompile Include="app\dictaten\dictaten.component.ts" />
     <TypeScriptCompile Include="app\dictaten\dictaten.service.ts" />
     <TypeScriptCompile Include="app\main.ts" />
+    <TypeScriptCompile Include="app\models\dictaat-summary.ts" />
     <TypeScriptCompile Include="app\models\dictaat.ts" />
   </ItemGroup>
   <ItemGroup>

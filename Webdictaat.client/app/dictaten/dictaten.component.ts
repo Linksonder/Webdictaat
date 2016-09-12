@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { DictatenService } from './dictaten.service';
-import { Dictaat } from '../models/dictaat';
+import { DictaatSummary } from '../models/dictaat-summary';
 
 
 @Component({
@@ -11,9 +11,9 @@ import { Dictaat } from '../models/dictaat';
 })
 export class DictatenComponent implements OnInit {
 
-    public dictaten = [];
+    public dictaten: DictaatSummary[];
 
-    public selectedDictaat: Dictaat;
+    public selectedDictaat: DictaatSummary;
 
     constructor(private dictatenService: DictatenService) { }
 
@@ -24,7 +24,7 @@ export class DictatenComponent implements OnInit {
             );
     }
 
-    public onSelect(dictaat: Dictaat): void {
+    public onSelect(dictaat: DictaatSummary): void {
         this.selectedDictaat = dictaat;
     }
 
