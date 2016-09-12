@@ -22,9 +22,6 @@ var DictatenComponent = (function () {
             return _this.dictaten = dictaten;
         });
     };
-    DictatenComponent.prototype.onSelect = function (dictaat) {
-        this.selectedDictaat = dictaat;
-    };
     DictatenComponent = __decorate([
         core_1.Component({
             selector: "wd-dictaten",
@@ -32,9 +29,10 @@ var DictatenComponent = (function () {
             styleUrls: ["./app/dictaten/dictaten.component.css"],
             providers: [dictaten_service_1.DictatenService]
         }), 
-        __metadata('design:paramtypes', [dictaten_service_1.DictatenService])
+        __metadata('design:paramtypes', [(typeof (_a = typeof dictaten_service_1.DictatenService !== 'undefined' && dictaten_service_1.DictatenService) === 'function' && _a) || Object])
     ], DictatenComponent);
     return DictatenComponent;
+    var _a;
 }());
 exports.DictatenComponent = DictatenComponent;
 //# sourceMappingURL=dictaten.component.js.map

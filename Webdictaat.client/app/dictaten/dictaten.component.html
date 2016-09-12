@@ -1,18 +1,32 @@
-﻿<h3>Dictaten</h3>
-
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Location</th>
-            <th>LastChange</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let  dictaat of dictaten">
-            <td>{{dictaat.name}}</td>
-            <td>{{dictaat.location}}</td>
-            <td>{{dictaat.lastChange | date}}</td>
-        </tr>
-    </tbody>
-</table>
+﻿<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">Dictaten</div>
+            <div class="panel-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Location</th>
+                            <th>LastChange</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let  dictaat of dictaten">
+                            <td>{{dictaat.name}}</td>
+                            <td>{{dictaat.location}}</td>
+                            <td>{{dictaat.lastChange | date}}</td>
+                            <td>
+                                <button type="button" (click)="onSelect(dictaat)" class="btn btn-default">Details</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <wd-dictaat [dictaat]="selectedDictaat">Loading dictaat...</wd-dictaat>
+    </div>
+</div>

@@ -9,23 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
 var http_1 = require('@angular/http');
-var app_component_1 = require('./app.component');
-var dictaten_component_1 = require('./dictaten/dictaten.component');
-var dictaat_component_1 = require('./dictaat/dictaat.component');
-var AppModule = (function () {
-    function AppModule() {
+require('rxjs/add/operator/toPromise');
+require('rxjs/add/operator/map');
+var DictaatService = (function () {
+    function DictaatService(http) {
+        this.http = http;
+        this.dictatenUrl = 'http://localhost:65418/api/dictaten';
     }
-    AppModule = __decorate([
-        core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, http_1.HttpModule],
-            declarations: [app_component_1.AppComponent, dictaten_component_1.DictatenComponent, dictaat_component_1.DictaatComponent],
-            bootstrap: [app_component_1.AppComponent]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    DictaatService.prototype.handleError = function (error) {
+        console.error('An error occurred', error); // for demo purposes only
+        return Promise.reject(error.message || error);
+    };
+    DictaatService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], DictaatService);
+    return DictaatService;
 }());
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+exports.DictaatService = DictaatService;
+//# sourceMappingURL=dictaat.service.js.map
