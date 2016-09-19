@@ -1,0 +1,16 @@
+﻿<div class="entry" (click)="showSub = !showSub">
+    <span class="glyphicon glyphicon-folder-open" aria-hidden="true" *ngIf="showSub"></span>
+    <span class="glyphicon glyphicon-folder-close" aria-hidden="true" *ngIf="!showSub"></span>
+    <span class='title'>{{entry.name}}</span>
+</div>
+<ul *ngIf="showSub">
+    <li class="directory" (onSelect)="onSelect($event)" *ngFor="let subEntry of entry.entries">
+
+        <wd-dictaat-entry [entry]="subEntry"></wd-dictaat-entry>
+
+    </li>
+    <li class="file" *ngFor="let file of entry.files" (click)="select(file)" >
+        <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+        <span class='title'>{{file.name}}</span>
+    </li>
+</ul>

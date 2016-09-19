@@ -11,26 +11,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var http_1 = require('@angular/http');
-//Modules
-var dictaat_module_1 = require('./dictaat/dictaat.module');
-//components
-var app_component_1 = require('./app.component');
-var dictaten_component_1 = require('./dictaten/dictaten.component');
-var file_preview_component_1 = require('./file-preview/file-preview.component');
-var file_preview_service_1 = require('./services/file-preview.service');
-var AppModule = (function () {
-    function AppModule() {
+var dictaat_component_1 = require('./dictaat.component');
+var dictaat_entry_component_1 = require('./dictaat-entry.component');
+var DictaatModule = (function () {
+    function DictaatModule() {
     }
-    AppModule = __decorate([
+    DictaatModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, http_1.HttpModule, dictaat_module_1.DictaatModule],
-            declarations: [app_component_1.AppComponent, dictaten_component_1.DictatenComponent, file_preview_component_1.FilePreviewComponent],
-            providers: [file_preview_service_1.FilePreviewService],
-            bootstrap: [app_component_1.AppComponent]
+            imports: [platform_browser_1.BrowserModule, http_1.HttpModule],
+            declarations: [dictaat_component_1.DictaatComponent, dictaat_entry_component_1.DictaatEntryComponent],
+            exports: [dictaat_component_1.DictaatComponent, dictaat_entry_component_1.DictaatEntryComponent]
         }), 
         __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    ], DictaatModule);
+    return DictaatModule;
 }());
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+exports.DictaatModule = DictaatModule;
+//# sourceMappingURL=dictaat.module.js.map

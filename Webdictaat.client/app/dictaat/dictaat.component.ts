@@ -1,6 +1,8 @@
 import { Component,  OnChanges, Input } from '@angular/core';
 import { DictaatService } from './dictaat.service';
 import { Dictaat } from '../models/dictaat';
+import { DictaatEntryComponent } from './dictaat-entry.component';
+
 
 
 @Component({
@@ -13,6 +15,8 @@ export class DictaatComponent implements OnChanges {
 
     public dictaten = [];
 
+    public selectedFile;
+
     @Input()
     public dictaatName: String;
 
@@ -20,10 +24,11 @@ export class DictaatComponent implements OnChanges {
 
     constructor(private dictaatService: DictaatService) { }
     
-    ngOnChanges(): void {
+    public ngOnChanges(): void {
         this.dictaatService.getDictaat(this.dictaatName)
             .then(dictaat => 
                 this.dictaat = dictaat);
     }
+
 }
-    
+

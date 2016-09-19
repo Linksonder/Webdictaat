@@ -10,9 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var dictaten_service_1 = require('./dictaten.service');
+var http_1 = require('@angular/http');
 var DictatenComponent = (function () {
-    function DictatenComponent(dictatenService) {
+    function DictatenComponent(dictatenService, httpService) {
         this.dictatenService = dictatenService;
+        this.httpService = httpService;
     }
     DictatenComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -31,7 +33,7 @@ var DictatenComponent = (function () {
             styleUrls: ["./app/dictaten/dictaten.component.css"],
             providers: [dictaten_service_1.DictatenService]
         }), 
-        __metadata('design:paramtypes', [dictaten_service_1.DictatenService])
+        __metadata('design:paramtypes', [dictaten_service_1.DictatenService, http_1.Http])
     ], DictatenComponent);
     return DictatenComponent;
 }());
