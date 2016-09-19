@@ -1,0 +1,12 @@
+﻿<div class="panel panel-default" >
+    <div class="panel-heading">Dictaat - {{dictaatName}}</div>
+    <div class="panel-body">
+
+       <div *ngIf="dictaat" class="dictaatEntries">
+
+           <wd-dictaat-entry [entry]="dictaat.rootEntry"></wd-dictaat-entry>
+
+       </div>
+
+    </div>
+</div>

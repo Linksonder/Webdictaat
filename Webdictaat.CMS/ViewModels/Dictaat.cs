@@ -2,26 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Webdictaat;
+using Webdictaat.CMS.Models;
+using Webdictaat.Core;
 
 namespace Webdictaat.CMS.ViewModels
 {
     public class Dictaat
     {
-        public Dictaat(Core.IDirectory directory, string path)
-        {
-            var summary = directory.GetDirectorySummary(path);
-
-            this.LastChange = summary.LastChange;
-            this.Location = summary.Location;
-            this.Name = summary.Name;
-
-        }
-
         public string Name { get; set; }
 
-        public string Location { get; set; }
+        public DictaatEntry RootEntry { get; set; }
 
-        public DateTime LastChange { get; set; }
+        public Dictaat(DirectoryDetails details)
+        {
+            this.Name = details.Name;
+
+            this.RootEntry = new DictaatDirectory(details.RootEntry);
+        }
+
     }
 }
