@@ -2,7 +2,7 @@
 import { Headers, Http } from '@angular/http';
 //Nodig om een object om te toveren in een promise.
 
-import { Dictaat } from '../models/dictaat';
+import { DictaatSummary } from '../models/dictaat-summary';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -16,11 +16,11 @@ export class DictatenService {
 
     private dictatenUrl = 'http://localhost:65418/api/dictaten';
 
-    public getDictaten(): Promise<Dictaat[]> {
+    public getDictaten(): Promise<DictaatSummary[]> {
         return this.http.get(this.dictatenUrl)
             .toPromise()
             .then(response => 
-                response.json() as Dictaat[]
+                response.json() as DictaatSummary[]
             ).catch(this.handleError);
     }
 

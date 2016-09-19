@@ -19,14 +19,27 @@ namespace Webdictaat.CMS.Controllers
             _dictaatRepo = dictaatRepo;
         }
 
-
-        // GET: api/values
+        /// <summary>
+        /// Returns a list of small summaries of webdictaten 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public IEnumerable<ViewModels.Dictaat> Get()
+        public IEnumerable<ViewModels.DictaatSummary> Get()
         {
             var dictaten = _dictaatRepo.GetDictaten();
             return dictaten;
         }
-      
+    
+        /// <summary>
+        /// Returns a detailed summary of 1 webdictaat
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        [HttpGet("{name}")]
+        public ViewModels.Dictaat Get(string name)
+        {
+            return _dictaatRepo.getDictaat(name);
+        }
+
     }
 }
