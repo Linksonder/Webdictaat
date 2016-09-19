@@ -7,6 +7,7 @@ namespace Webdictaat.CMS.Models
 {
     public interface IDictaatRepository
     {
-        IEnumerable<ViewModels.Dictaat> GetDictaten();
+        IEnumerable<ViewModels.DictaatSummary> GetDictaten();
+        ViewModels.Dictaat getDictaat(string name);
     }
 }
