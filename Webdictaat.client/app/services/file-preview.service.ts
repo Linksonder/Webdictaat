@@ -16,10 +16,10 @@ export class FilePreviewService {
     // Observable string streams
     public selectedFile$ = this.selectedFileSource.asObservable();
 
-    private dictatenUrl = 'http://localhost:65418/file/';
+    private dictatenUrl = 'http://localhost:65418/api/dictaat/prog5/file/';
 
     public selectFile(dictaatEntry: DictaatEntry): void {
-        this.http.get(this.dictatenUrl + dictaatEntry.location)
+        this.http.get(this.dictatenUrl + dictaatEntry.name)
             .toPromise()
             .then(response => {
 

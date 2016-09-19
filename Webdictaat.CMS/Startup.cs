@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Webdictaat.CMS.Models;
-using Microsoft.Extensions.Options;
+
 using Webdictaat.CMS.Models.Resources;
 
 namespace Webdictaat.CMS

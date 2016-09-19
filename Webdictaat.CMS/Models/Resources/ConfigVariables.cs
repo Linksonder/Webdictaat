@@ -9,5 +9,7 @@ namespace Webdictaat.CMS.Models.Resources
     public class ConfigVariables 
     {
         public string DictaatRoot { get; set; }
+
+        public string FilesDirectory { get; set; }
     }
 }

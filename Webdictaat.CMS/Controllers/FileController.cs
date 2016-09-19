@@ -9,7 +9,7 @@ using Webdictaat.CMS.Models;
 
 namespace Webdictaat.CMS.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Dictaat/{repo}/[controller]")]
     public class FileController : Controller
     {
         private IFileRepository _fileRepo;
@@ -20,10 +20,10 @@ namespace Webdictaat.CMS.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public ViewModels.File Get(string path)
+        [HttpGet("{fileName}")]
+        public ViewModels.File Get(string repo, string fileName)
         {
-            return _fileRepo.GetFile(path);
+            return _fileRepo.GetFile(repo, fileName);
         }
     }
 }
