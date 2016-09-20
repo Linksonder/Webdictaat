@@ -15,15 +15,31 @@ namespace Webdictaat.CMS.Models
         ViewModels.Dictaat getDictaat(string name);
     }
 
-    public class DirectoryDictaatRepository : IDictaatRepository
+    public class DictaatRepository : IDictaatRepository
     {
         private string _directoryRoot;
+        private string _pagesDirectory;
         private IDirectory _directory;
+        private IDictaatFactory _dictaatFactory;
 
-        public DirectoryDictaatRepository(IOptions<ConfigVariables> appSettings, IDirectory directory)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="appSettings"></param>
+        /// <param name="directory"></param>
+        /// <param name="dictaatFactory"></param>
+        public DictaatRepository(
+            IOptions<ConfigVariables> appSettings, 
+            IDirectory directory)
         {
             _directoryRoot = appSettings.Value.DictaatRoot;
+            _pagesDirectory = appSettings.Value.PagesDirectory;
             _directory = directory;
+
+            //best place to build the factory
+            _dictaatFactory = new DictaatFactory(_directoryRoot, _pagesDirectory,  directory);
+
         }
 
         public IEnumerable<ViewModels.DictaatSummary> GetDictaten()
@@ -34,8 +50,9 @@ namespace Webdictaat.CMS.Models
 
         public ViewModels.Dictaat getDictaat(string name)
         {
-            DirectoryDetails directoryDetails = _directory.GetDirectoryDetails(_directoryRoot, name);
-            return new ViewModels.Dictaat(directoryDetails);
+            string pagesPath = name + _pagesDirectory;
+            Domain.Dictaat dictaat = _dictaatFactory.GetDictaat(name);
+            return new ViewModels.Dictaat(dictaat);
                 
         }
     }

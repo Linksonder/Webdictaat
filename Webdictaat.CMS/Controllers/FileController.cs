@@ -12,18 +12,18 @@ namespace Webdictaat.CMS.Controllers
     [Route("api/Dictaat/{repo}/[controller]")]
     public class FileController : Controller
     {
-        private IFileRepository _fileRepo;
+        private IPageRepository _fileRepo;
 
-        public FileController(IFileRepository fileRepo)
+        public FileController(IPageRepository fileRepo)
         {
             _fileRepo = fileRepo;
         }
 
         // GET api/values/5
         [HttpGet("{fileName}")]
-        public ViewModels.File Get(string repo, string fileName)
+        public ViewModels.DictaatPage Get(string repo, string fileName)
         {
-            return _fileRepo.GetFile(repo, fileName);
+            return _fileRepo.GetDictaatPage(repo, fileName);
         }
     }
 }

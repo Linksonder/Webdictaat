@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Webdictaat.Core
+namespace Webdictaat.Domain
 {
-    public class File : FileEntry
+    public class DictaatPage : FileSummary
     {
         public string Source { get; set; }
     }

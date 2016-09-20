@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Webdictaat.Core;
 
 namespace Webdictaat.CMS.ViewModels
 {
-    public class DictaatEntry
+    public class DictaatPage
     {
+        public string Dictaat { get; set; }
+
         public string Name { get; set; }
 
-        public string Location { get; set; }
+        public DateTime LastChanged { get; set; }
 
+        public string Source { get; set; }
     }
 }

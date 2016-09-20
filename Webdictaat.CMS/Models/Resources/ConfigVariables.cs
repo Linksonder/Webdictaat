@@ -10,6 +10,6 @@ namespace Webdictaat.CMS.Models.Resources
     {
         public string DictaatRoot { get; set; }
 
-        public string FilesDirectory { get; set; }
+        public string PagesDirectory { get; set; }
     }
 }

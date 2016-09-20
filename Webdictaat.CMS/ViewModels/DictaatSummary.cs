@@ -11,14 +11,11 @@ namespace Webdictaat.CMS.ViewModels
     {
         public string Name { get; set; }
 
-        public string Location { get; set; }
-
         public DateTime LastChange { get; set; }
 
-        public DictaatSummary(DirectorySummary directorySummary)
+        public DictaatSummary(Domain.DirectorySummary directorySummary)
         {
             this.LastChange = directorySummary.LastChange;
-            this.Location = directorySummary.Location;
             this.Name = directorySummary.Name;
         }
     }

@@ -32,8 +32,8 @@ namespace Webdictaat.CMS
             services.AddCors();
             services.AddOptions();
 
-            services.AddSingleton<IDictaatRepository, DirectoryDictaatRepository>();
-            services.AddSingleton<IFileRepository, FileRepository>();
+            services.AddSingleton<IDictaatRepository, DictaatRepository>();
+            services.AddSingleton<IPageRepository, PageRepository>();
 
             services.AddSingleton<Core.IDirectory, Core.Directory>();
             services.AddSingleton<Core.IFileReader, Core.FileReader>();
