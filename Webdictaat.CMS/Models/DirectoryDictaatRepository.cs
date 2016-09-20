@@ -9,6 +9,12 @@ using Microsoft.Extensions.Options;
 
 namespace Webdictaat.CMS.Models
 {
+    public interface IDictaatRepository
+    {
+        IEnumerable<ViewModels.DictaatSummary> GetDictaten();
+        ViewModels.Dictaat getDictaat(string name);
+    }
+
     public class DirectoryDictaatRepository : IDictaatRepository
     {
         private string _directoryRoot;

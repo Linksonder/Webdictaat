@@ -28,7 +28,7 @@ namespace Webdictaat.Core
 
         public DirectoryDetails GetDirectoryDetails(string directoryRoot, string name)
         {
-            var path = directoryRoot + name;
+            string path = String.Format("{0}\\{1}", directoryRoot, name);
 
             return new DirectoryDetails()
             {

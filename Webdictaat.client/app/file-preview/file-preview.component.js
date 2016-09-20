@@ -10,27 +10,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var file_preview_service_1 = require('../services/file-preview.service');
-var DictaatEntryComponent = (function () {
-    function DictaatEntryComponent(filePreviewService) {
+var FilePreviewComponent = (function () {
+    function FilePreviewComponent(filePreviewService) {
+        var _this = this;
         this.filePreviewService = filePreviewService;
-        this.showSub = false;
+        filePreviewService.selectedFile$.subscribe(function (file) { return _this.GetFilePreview(file); });
     }
-    DictaatEntryComponent.prototype.select = function (file) {
-        this.filePreviewService.selectFile(file);
+    FilePreviewComponent.prototype.GetFilePreview = function (file) {
+        this.selectedFile = file;
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], DictaatEntryComponent.prototype, "entry", void 0);
-    DictaatEntryComponent = __decorate([
+    FilePreviewComponent = __decorate([
         core_1.Component({
-            selector: "wd-dictaat-entry",
-            templateUrl: './app/dictaat/dictaat-entry.component.html',
-            styleUrls: ["./app/dictaat/dictaat-entry.component.css"],
+            selector: "wd-file-preview",
+            templateUrl: './app/file-preview/file-preview.component.html',
+            styleUrls: ["./app/file-preview/file-preview.component.css"],
         }), 
         __metadata('design:paramtypes', [file_preview_service_1.FilePreviewService])
-    ], DictaatEntryComponent);
-    return DictaatEntryComponent;
+    ], FilePreviewComponent);
+    return FilePreviewComponent;
 }());
-exports.DictaatEntryComponent = DictaatEntryComponent;
-//# sourceMappingURL=dictaat-entry.component.js.map
+exports.FilePreviewComponent = FilePreviewComponent;
+//# sourceMappingURL=file-preview.component.js.map

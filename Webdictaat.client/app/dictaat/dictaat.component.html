@@ -4,7 +4,7 @@
 
        <div *ngIf="dictaat" class="dictaatEntries">
 
-           <wd-dictaat-entry [entry]="dictaat.rootEntry"></wd-dictaat-entry>
+           <wd-dictaat-entry (onSelect)="onSelect($event)" [entry]="dictaat.rootEntry"></wd-dictaat-entry>
 
        </div>
 

@@ -10,16 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var dictaat_service_1 = require('./dictaat.service');
+var file_preview_service_1 = require('../services/file-preview.service');
 var DictaatComponent = (function () {
-    function DictaatComponent(dictaatService) {
+    function DictaatComponent(dictaatService, filePreviewService) {
         this.dictaatService = dictaatService;
+        this.filePreviewService = filePreviewService;
         this.dictaten = [];
     }
     DictaatComponent.prototype.ngOnChanges = function () {
         var _this = this;
         this.dictaatService.getDictaat(this.dictaatName)
             .then(function (dictaat) {
-            return _this.dictaat = dictaat;
+            _this.dictaat = dictaat;
+            _this.filePreviewService.selectDictaat(dictaat);
         });
     };
     __decorate([
@@ -33,7 +36,7 @@ var DictaatComponent = (function () {
             styleUrls: ["./app/dictaat/dictaat.component.css"],
             providers: [dictaat_service_1.DictaatService]
         }), 
-        __metadata('design:paramtypes', [dictaat_service_1.DictaatService])
+        __metadata('design:paramtypes', [dictaat_service_1.DictaatService, file_preview_service_1.FilePreviewService])
     ], DictaatComponent);
     return DictaatComponent;
 }());

@@ -25,10 +25,14 @@
     <Content Include="app.css" />
     <TypeScriptCompile Include="app\app.component.ts" />
     <Content Include="app\app.component.html" />
+    <Content Include="app\dictaat\dictaat-entry.component.css" />
+    <Content Include="app\dictaat\dictaat-entry.component.html" />
     <Content Include="app\dictaat\dictaat.component.css" />
     <Content Include="app\dictaat\dictaat.component.html" />
     <Content Include="app\dictaten\dictaten.component.css" />
     <Content Include="app\dictaten\dictaten.component.html" />
+    <Content Include="app\file-preview\file-preview.component.css" />
+    <Content Include="app\file-preview\file-preview.component.html" />
     <Content Include="css\style.css" />
     <Content Include="index.html" />
     <Content Include="js\systemjs.config.js" />
@@ -37,10 +41,15 @@
     <TypeScriptCompile Include="app\context-menu\context-menu.service.ts" />
     <TypeScriptCompile Include="app\dictaat\dictaat-entry.component.ts" />
     <TypeScriptCompile Include="app\dictaat\dictaat.component.ts" />
+    <TypeScriptCompile Include="app\dictaat\dictaat.module.ts" />
     <TypeScriptCompile Include="app\dictaat\dictaat.service.ts" />
     <TypeScriptCompile Include="app\dictaten\dictaten.component.ts" />
     <TypeScriptCompile Include="app\dictaten\dictaten.service.ts" />
+    <TypeScriptCompile Include="app\file-preview\file-preview.component.ts" />
+    <TypeScriptCompile Include="app\models\file-entry.ts" />
+    <TypeScriptCompile Include="app\services\file-preview.service.ts" />
     <TypeScriptCompile Include="app\main.ts" />
+    <TypeScriptCompile Include="app\models\dictaat-entry.ts" />
     <TypeScriptCompile Include="app\models\dictaat-summary.ts" />
     <TypeScriptCompile Include="app\models\dictaat.ts" />
   </ItemGroup>
@@ -61,6 +70,9 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\app.module.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="app\App_LocalResources\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>

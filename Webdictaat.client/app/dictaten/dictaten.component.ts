@@ -1,6 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { DictatenService } from './dictaten.service';
 import { DictaatSummary } from '../models/dictaat-summary';
+import { Headers, Http } from '@angular/http';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class DictatenComponent implements OnInit {
 
     public selectedDictaat: DictaatSummary;
 
-    constructor(private dictatenService: DictatenService) { }
+    constructor(private dictatenService: DictatenService, private httpService : Http) { }
 
     ngOnInit(): void {
         this.dictatenService.getDictaten()

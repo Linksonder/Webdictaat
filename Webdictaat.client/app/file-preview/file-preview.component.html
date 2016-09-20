@@ -1,0 +1,17 @@
+﻿<div class="panel panel-default" *ngIf="selectedFile">
+    <div class="panel-heading">
+        {{selectedFile.name}} 
+        <button class="btn btn-default pull-right" (click)="showSource = !showSource">Source</button>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+
+        <div *ngIf="!showSource" [innerHTML]="selectedFile.source">
+        </div>
+
+        <div *ngIf="showSource">
+            {{selectedFile.source}}
+        </div>
+
+    </div>
+</div>

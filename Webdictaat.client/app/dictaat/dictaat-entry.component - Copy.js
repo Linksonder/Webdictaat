@@ -9,28 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var file_preview_service_1 = require('../services/file-preview.service');
 var DictaatEntryComponent = (function () {
-    function DictaatEntryComponent(filePreviewService) {
-        this.filePreviewService = filePreviewService;
+    function DictaatEntryComponent() {
+        this.onSelect = new core_1.EventEmitter();
         this.showSub = false;
     }
     DictaatEntryComponent.prototype.select = function (file) {
-        this.filePreviewService.selectFile(file);
+        this.onSelect.emit(file.location);
     };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
     ], DictaatEntryComponent.prototype, "entry", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], DictaatEntryComponent.prototype, "onSelect", void 0);
     DictaatEntryComponent = __decorate([
         core_1.Component({
             selector: "wd-dictaat-entry",
             templateUrl: './app/dictaat/dictaat-entry.component.html',
-            styleUrls: ["./app/dictaat/dictaat-entry.component.css"],
+            styles: ["\n        ul{\n            padding-left:20px;\n        }\n\n        li{\n            padding:0px;\n            list-style-type:none;\n        }\n\n        .entry{\n            cursor: pointer;\n        }\n\n        .glyphicon{\n            margin-right:5px;\n        }\n\n\n        "],
         }), 
-        __metadata('design:paramtypes', [file_preview_service_1.FilePreviewService])
+        __metadata('design:paramtypes', [])
     ], DictaatEntryComponent);
     return DictaatEntryComponent;
 }());
 exports.DictaatEntryComponent = DictaatEntryComponent;
-//# sourceMappingURL=dictaat-entry.component.js.map
+//# sourceMappingURL=dictaat-entry.component - Copy.js.map

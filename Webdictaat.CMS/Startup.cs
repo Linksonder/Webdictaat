@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Webdictaat.CMS.Models;
-using Webdictaat;
+
 using Webdictaat.CMS.Models.Resources;
 
 namespace Webdictaat.CMS
@@ -29,7 +25,7 @@ namespace Webdictaat.CMS
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection services)
         {
             // Add framework services.
             services.AddMvc();
@@ -37,7 +33,10 @@ namespace Webdictaat.CMS
             services.AddOptions();
 
             services.AddSingleton<IDictaatRepository, DirectoryDictaatRepository>();
+            services.AddSingleton<IFileRepository, FileRepository>();
+
             services.AddSingleton<Core.IDirectory, Core.Directory>();
+            services.AddSingleton<Core.IFileReader, Core.FileReader>();
             services.Configure<ConfigVariables>(Configuration.GetSection("ConfigVariables"));
         }
 
