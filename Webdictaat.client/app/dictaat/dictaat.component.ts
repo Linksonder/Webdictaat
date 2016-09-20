@@ -1,8 +1,10 @@
-import { Component,  OnChanges, Input } from '@angular/core';
+import { Component,  OnInit, Input } from '@angular/core';
 import { DictaatService } from './dictaat.service';
 import { Dictaat } from '../models/dictaat';
 import { DictaatEntryComponent } from './dictaat-entry.component';
 import { FilePreviewService } from '../services/file-preview.service';
+
+import { ActivatedRoute, Params } from '@angular/router';
 
 
 @Component({
@@ -11,7 +13,7 @@ import { FilePreviewService } from '../services/file-preview.service';
     styleUrls: ["./app/dictaat/dictaat.component.css"],
     providers: [DictaatService    ]
 })
-export class DictaatComponent implements OnChanges {
+export class DictaatComponent implements OnInit {
 
     public dictaten = [];
 
@@ -22,15 +24,21 @@ export class DictaatComponent implements OnChanges {
 
     public dictaat: Dictaat;
 
-    constructor(private dictaatService: DictaatService, private filePreviewService: FilePreviewService){ }
-    
-    public ngOnChanges(): void {
-        this.dictaatService.getDictaat(this.dictaatName)
-            .then(dictaat => {
-                this.dictaat = dictaat;
-                this.filePreviewService.selectDictaat(dictaat);
-            });
+    constructor(
+        private dictaatService: DictaatService,
+        private route: ActivatedRoute) { }
+
+    //event
+    public ngOnInit(): void {
+        this.route.params.forEach((params: Params) => {
+            let name = params['dictaatName'];
+            this.dictaatService.getDictaat(name)
+                .then(dictaat => this.dictaat = dictaat);
+        });
     }
 
+    public goBack(): void {
+        window.history.back();
+    }
 }
 

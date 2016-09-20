@@ -2,6 +2,7 @@
 import { DictatenService } from './dictaten.service';
 import { DictaatSummary } from '../models/dictaat-summary';
 import { Headers, Http } from '@angular/http';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,11 @@ export class DictatenComponent implements OnInit {
 
     public selectedDictaat: DictaatSummary;
 
-    constructor(private dictatenService: DictatenService, private httpService : Http) { }
+    constructor(
+        private dictatenService: DictatenService,
+        private httpService: Http,
+        private router: Router
+    ) { }
 
     ngOnInit(): void {
         this.dictatenService.getDictaten()
@@ -25,8 +30,9 @@ export class DictatenComponent implements OnInit {
             );
     }
 
-    public onSelect(dictaat: DictaatSummary): void {
-        this.selectedDictaat = dictaat;
+    public gotoDetail(dictaat: DictaatSummary): void {
+        let link = ['/dictaten', dictaat.name];
+        this.router.navigate(link);
     }
 
 }

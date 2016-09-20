@@ -10,13 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var file_preview_service_1 = require('../services/file-preview.service');
+var router_1 = require('@angular/router');
 var DictaatEntryComponent = (function () {
-    function DictaatEntryComponent(filePreviewService) {
+    function DictaatEntryComponent(filePreviewService, route) {
         this.filePreviewService = filePreviewService;
+        this.route = route;
         this.showSub = false;
     }
     DictaatEntryComponent.prototype.select = function (file) {
-        this.filePreviewService.selectFile(file);
+        var _this = this;
+        this.route.params.forEach(function (params) {
+            _this.filePreviewService.selectFile(params['dictaatName'], file);
+        });
     };
     __decorate([
         core_1.Input(), 
@@ -28,7 +33,7 @@ var DictaatEntryComponent = (function () {
             templateUrl: './app/dictaat/dictaat-entry.component.html',
             styleUrls: ["./app/dictaat/dictaat-entry.component.css"],
         }), 
-        __metadata('design:paramtypes', [file_preview_service_1.FilePreviewService])
+        __metadata('design:paramtypes', [file_preview_service_1.FilePreviewService, router_1.ActivatedRoute])
     ], DictaatEntryComponent);
     return DictaatEntryComponent;
 }());

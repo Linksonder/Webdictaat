@@ -12,8 +12,11 @@ import { FilePreviewComponent } from './file-preview/file-preview.component';
 
 import { FilePreviewService } from './services/file-preview.service';
 
+import { routing } from './app.routing';
+
+
 @NgModule({
-    imports: [BrowserModule, HttpModule, DictaatModule],
+    imports: [BrowserModule, HttpModule, DictaatModule, routing],
     declarations: [AppComponent, DictatenComponent, FilePreviewComponent],
     providers: [FilePreviewService],
     bootstrap: [AppComponent]

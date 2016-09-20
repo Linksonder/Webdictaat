@@ -1,27 +1,32 @@
-﻿<div class="row">
-    <div class="col-md-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">Dictaten</div>
-            <div class="panel-body">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let  dictaat of dictaten"  (click)="onSelect(dictaat)">
-                            <td>{{dictaat.name}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+﻿
+
+<div class="panel panel-default">
+    <div class="panel-heading">Welcome</div>
+    <div class="panel-body">
+        <h2>Welcome</h2>
+
+        <p>Hier zie je een lijst van dictaten</p>
     </div>
-    <div class="col-md-3">
-        <wd-dictaat [dictaatName]="selectedDictaat.name" *ngIf="selectedDictaat">Loading dictaat...</wd-dictaat>
-    </div>
-    <div class="col-md-3">
-       <wd-file-preview></wd-file-preview>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Dictaten</div>
+    <div class="panel-body">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let  dictaat of dictaten">
+                    <td>{{dictaat.name}}</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" class="btn btn-default" (click)="gotoDetail(dictaat)">Details</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

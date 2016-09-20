@@ -24,6 +24,7 @@
   <ItemGroup>
     <Content Include="app.css" />
     <TypeScriptCompile Include="app\app.component.ts" />
+    <Content Include="app\app.component.css" />
     <Content Include="app\app.component.html" />
     <Content Include="app\dictaat\dictaat-entry.component.css" />
     <Content Include="app\dictaat\dictaat-entry.component.html" />
@@ -37,6 +38,7 @@
     <Content Include="index.html" />
     <Content Include="js\systemjs.config.js" />
     <Content Include="web.config" />
+    <TypeScriptCompile Include="app\app.routing.ts" />
     <TypeScriptCompile Include="app\context-menu\context-menu.component.ts" />
     <TypeScriptCompile Include="app\context-menu\context-menu.service.ts" />
     <TypeScriptCompile Include="app\dictaat\dictaat-entry.component.ts" />

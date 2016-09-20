@@ -19,6 +19,9 @@ var FilePreviewComponent = (function () {
     FilePreviewComponent.prototype.GetFilePreview = function (file) {
         this.selectedFile = file;
     };
+    FilePreviewComponent.prototype.closeFile = function () {
+        this.filePreviewService.clearSelection();
+    };
     FilePreviewComponent = __decorate([
         core_1.Component({
             selector: "wd-file-preview",

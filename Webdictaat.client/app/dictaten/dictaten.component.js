@@ -11,10 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var dictaten_service_1 = require('./dictaten.service');
 var http_1 = require('@angular/http');
+var router_1 = require('@angular/router');
 var DictatenComponent = (function () {
-    function DictatenComponent(dictatenService, httpService) {
+    function DictatenComponent(dictatenService, httpService, router) {
         this.dictatenService = dictatenService;
         this.httpService = httpService;
+        this.router = router;
     }
     DictatenComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -23,8 +25,9 @@ var DictatenComponent = (function () {
             return _this.dictaten = dictaten;
         });
     };
-    DictatenComponent.prototype.onSelect = function (dictaat) {
-        this.selectedDictaat = dictaat;
+    DictatenComponent.prototype.gotoDetail = function (dictaat) {
+        var link = ['/dictaten', dictaat.name];
+        this.router.navigate(link);
     };
     DictatenComponent = __decorate([
         core_1.Component({
@@ -33,7 +36,7 @@ var DictatenComponent = (function () {
             styleUrls: ["./app/dictaten/dictaten.component.css"],
             providers: [dictaten_service_1.DictatenService]
         }), 
-        __metadata('design:paramtypes', [dictaten_service_1.DictatenService, http_1.Http])
+        __metadata('design:paramtypes', [dictaten_service_1.DictatenService, http_1.Http, router_1.Router])
     ], DictatenComponent);
     return DictatenComponent;
 }());
