@@ -1,7 +1,7 @@
 ﻿import { DictaatSummary } from './dictaat-summary';
 
 export class Dictaat {
-    name: String;
-    location: String;
+    name: string;
+    location: string;
     lastChange: Date;
 }

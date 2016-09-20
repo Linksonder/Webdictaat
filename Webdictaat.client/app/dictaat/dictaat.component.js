@@ -10,12 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var dictaat_service_1 = require('./dictaat.service');
+var file_preview_service_1 = require('../services/file-preview.service');
 var router_1 = require('@angular/router');
 var DictaatComponent = (function () {
-    function DictaatComponent(dictaatService, route) {
+    function DictaatComponent(dictaatService, route, filePreviewService) {
         this.dictaatService = dictaatService;
         this.route = route;
-        this.dictaten = [];
+        this.filePreviewService = filePreviewService;
     }
     //event
     DictaatComponent.prototype.ngOnInit = function () {
@@ -25,6 +26,9 @@ var DictaatComponent = (function () {
             _this.dictaatService.getDictaat(name)
                 .then(function (dictaat) { return _this.dictaat = dictaat; });
         });
+    };
+    DictaatComponent.prototype.selectPage = function (page) {
+        this.filePreviewService.selectFile(this.dictaat.name, page);
     };
     DictaatComponent.prototype.goBack = function () {
         window.history.back();
@@ -40,7 +44,7 @@ var DictaatComponent = (function () {
             styleUrls: ["./app/dictaat/dictaat.component.css"],
             providers: [dictaat_service_1.DictaatService]
         }), 
-        __metadata('design:paramtypes', [dictaat_service_1.DictaatService, router_1.ActivatedRoute])
+        __metadata('design:paramtypes', [dictaat_service_1.DictaatService, router_1.ActivatedRoute, file_preview_service_1.FilePreviewService])
     ], DictaatComponent);
     return DictaatComponent;
 }());

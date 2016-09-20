@@ -43,7 +43,7 @@ namespace Webdictaat.CMS.Models
             {
                 Dictaat = dictaat,
                 Name = fileName,
-                Source = fileName
+                Source = content
             };
         }
     }
