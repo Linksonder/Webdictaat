@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Webdictaat.Domain;
 
 namespace Webdictaat.Core
 {
     public interface IDirectory
     {
-        IEnumerable<DirectorySummary> GetDirectoriesSummary(string _directoryRoot);
-        DirectoryDetails GetDirectoryDetails(string _directoryRoot, string name);
+        IEnumerable<DirectorySummary> GetDirectoriesSummary(string path);
+        DirectoryDetails GetDirectoryDetails(string path);
+        IEnumerable<FileSummary> GetFilesSummary(string path);
     }
 
     public class Directory : IDirectory
@@ -20,41 +22,45 @@ namespace Webdictaat.Core
 
             return directories.Select(d => new DirectorySummary()
             {
+                Name = d.Split('\\').Last(),
                 LastChange = System.IO.Directory.GetLastWriteTime(d),
-                Location = d.Split(new string[] { directoryRoot }, StringSplitOptions.None).Last(),
-                Name = d.Split('\\').Last()
             });
         }
 
-        public DirectoryDetails GetDirectoryDetails(string directoryRoot, string name)
+        public DirectoryDetails GetDirectoryDetails(string path)
         {
-            string path = String.Format("{0}\\{1}", directoryRoot, name);
-
             return new DirectoryDetails()
             {
-                Name = name,
-                RootEntry = GetDirectoryEntry(directoryRoot, path)
+                Name = path.Split('\\').Last(),
+                RootEntry = GetDirectoryEntry(path)
             };
         }
 
-        private DirectoryEntry GetDirectoryEntry(string directoryRoot, string path)
+        public IEnumerable<FileSummary> GetFilesSummary(string path)
+        {
+            return System.IO.Directory.GetFiles(path).Select(f => GetFileEntry(f));
+        }
+
+        /// <summary>
+        /// Returns a object of DirectoryEntry containing details of a directory and a list of sub directories and files
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        private DirectoryEntry GetDirectoryEntry(string path)
         {
             return new DirectoryEntry()
             {
                 Name = path.Split('\\').Last(),
-                Location = path.Split(new string[] { directoryRoot }, StringSplitOptions.None).Last(),
-                ChildDirectories = System.IO.Directory.GetDirectories(path).Select(p => GetDirectoryEntry(directoryRoot, p)),
-                ChildFiles = System.IO.Directory.GetFiles(path).Select(f => GetFileEntry(directoryRoot, f))
+                ChildDirectories = System.IO.Directory.GetDirectories(path).Select(p => GetDirectoryEntry(p)),
+                ChildFiles = System.IO.Directory.GetFiles(path).Select(f => GetFileEntry(f))
             };
-
         }
 
-        private FileEntry GetFileEntry(string directoryRoot, string path)
+        private FileSummary GetFileEntry(string path)
         {
-            return new FileEntry()
+            return new FileSummary()
             {
                 Name = path.Split('\\').Last(),
-                Location = path.Split(new string[] { directoryRoot }, StringSplitOptions.None).Last(),
                 LastChanged = System.IO.Directory.GetLastWriteTime(path),
             };
         }

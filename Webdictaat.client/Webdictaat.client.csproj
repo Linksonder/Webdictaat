@@ -26,8 +26,6 @@
     <TypeScriptCompile Include="app\app.component.ts" />
     <Content Include="app\app.component.css" />
     <Content Include="app\app.component.html" />
-    <Content Include="app\dictaat\dictaat-entry.component.css" />
-    <Content Include="app\dictaat\dictaat-entry.component.html" />
     <Content Include="app\dictaat\dictaat.component.css" />
     <Content Include="app\dictaat\dictaat.component.html" />
     <Content Include="app\dictaten\dictaten.component.css" />
@@ -41,9 +39,7 @@
     <TypeScriptCompile Include="app\app.routing.ts" />
     <TypeScriptCompile Include="app\context-menu\context-menu.component.ts" />
     <TypeScriptCompile Include="app\context-menu\context-menu.service.ts" />
-    <TypeScriptCompile Include="app\dictaat\dictaat-entry.component.ts" />
     <TypeScriptCompile Include="app\dictaat\dictaat.component.ts" />
-    <TypeScriptCompile Include="app\dictaat\dictaat.module.ts" />
     <TypeScriptCompile Include="app\dictaat\dictaat.service.ts" />
     <TypeScriptCompile Include="app\dictaten\dictaten.component.ts" />
     <TypeScriptCompile Include="app\dictaten\dictaten.service.ts" />

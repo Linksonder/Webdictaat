@@ -21,12 +21,12 @@ namespace Webdictaat.Core.Test
         public void DirectoryTest_GetDirectoryDetails_Success()
         {
             //1. 2. arrange and act
-            DirectoryDetails result = _dir.GetDirectoryDetails("C:/Webdictaat/", "Prog5");
+            DirectoryDetails result = _dir.GetDirectoryDetails("C:/Webdictaat/Prog5");
 
             //3. assert
             Assert.AreEqual("Prog5", result.Name);
-            Assert.AreEqual(2, result.RootEntry.ChildDirectories.Count());
-            Assert.AreEqual(2, result.RootEntry.ChildDirectories.Last().ChildDirectories.Count());
+            Assert.AreEqual(1, result.RootEntry.ChildDirectories.Count());
+            Assert.AreEqual(1, result.RootEntry.ChildDirectories.Last().ChildDirectories.Count());
             Assert.AreEqual(1, result.RootEntry.ChildFiles.Count());
 
         }

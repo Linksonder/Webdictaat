@@ -1,9 +1,8 @@
 import { Component,  OnInit, Input } from '@angular/core';
 import { DictaatService } from './dictaat.service';
 import { Dictaat } from '../models/dictaat';
-import { DictaatEntryComponent } from './dictaat-entry.component';
-import { FilePreviewService } from '../services/file-preview.service';
 
+import { FilePreviewService } from '../services/file-preview.service';
 import { ActivatedRoute, Params } from '@angular/router';
 
 
@@ -15,8 +14,6 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class DictaatComponent implements OnInit {
 
-    public dictaten = [];
-
     public selectedFile;
 
     @Input()
@@ -26,7 +23,8 @@ export class DictaatComponent implements OnInit {
 
     constructor(
         private dictaatService: DictaatService,
-        private route: ActivatedRoute) { }
+        private route: ActivatedRoute,
+        private filePreviewService: FilePreviewService) { }
 
     //event
     public ngOnInit(): void {
@@ -35,6 +33,10 @@ export class DictaatComponent implements OnInit {
             this.dictaatService.getDictaat(name)
                 .then(dictaat => this.dictaat = dictaat);
         });
+    }
+
+    public selectPage(page): void {
+        this.filePreviewService.selectFile(this.dictaat.name, page);
     }
 
     public goBack(): void {

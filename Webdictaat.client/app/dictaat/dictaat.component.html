@@ -2,16 +2,22 @@
     <div class="panel-heading">Dictaat - {{dictaat.name}}</div>
     <div class="panel-body">
 
-       <div *ngIf="dictaat" class="dictaatEntries">
-
-           <wd-dictaat-entry (onSelect)="onSelect($event)" [entry]="dictaat.rootEntry"></wd-dictaat-entry>
-
-       </div>
+        <ul class="list-group" >
+            <li class="list-group-item clearfix"  *ngFor="let  page of dictaat.pages">
+                <span class="glyphicon glyphicon-file"></span>
+                {{page.name}}
+                <div class="btn-group pull-right" role="group" aria-label="...">
+                    <button class="btn btn-xs btn-warning" (click)="selectPage(page)">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </button>
+                </div>
+            </li>
+        </ul>
 
     </div>
     <div class="panel-footer">
         <div class="btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-default" (click)="goBack()">Cancel</button>
+            <button type="button" class="btn btn-default" (click)="goBack()">Back</button>
         </div>
     </div>
 </div>

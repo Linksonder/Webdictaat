@@ -20,29 +20,29 @@ namespace Webdictaat.Core.Test
         public void DirectoryTest_TryReadFile_Success()
         {
             //1. 
-            File resultFile = null;
+            string content = null;
 
             //2. act
-            bool result = _fileReader.TryReadFile("C:/Webdictaat/Prog5/helloworld.txt", out resultFile);
+            bool result = _fileReader.TryReadFile("C:/Webdictaat.test/Prog5/index.html", out content);
 
             //3. assert
             Assert.IsTrue(result);
-            Assert.AreEqual("abcdefg", resultFile.Source);
+            Assert.AreEqual("abcdefg", content);
         }
 
         [Test]
         public void DirectoryTest_TryReadFile_Fail()
         {
             //1. 
-            File resultFile = null;
+            string content = null;
 
             //2. act
             //Wrong file name!
-            bool result = _fileReader.TryReadFile("C:/Webdictaat/Prog5/helloworldd.txt", out resultFile);
+            bool result = _fileReader.TryReadFile("C:/Webdictaat/Prog5/helloworldd.txt", out content);
 
             //3. assert
             Assert.IsFalse(result);
-            Assert.IsNull(resultFile);
+            Assert.IsNull(content);
         }
     }
 }

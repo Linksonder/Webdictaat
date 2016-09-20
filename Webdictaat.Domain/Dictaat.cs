@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Webdictaat.CMS.Models;
-using Webdictaat.Core;
-using Webdictaat.Domain;
 
-namespace Webdictaat.CMS.ViewModels
+namespace Webdictaat.Domain
 {
     public class Dictaat
     {
@@ -14,11 +11,9 @@ namespace Webdictaat.CMS.ViewModels
 
         public IEnumerable<FileSummary> Pages { get; set; }
 
-
-        public Dictaat(Domain.Dictaat dictaat)
+        public Dictaat()
         {
-            this.Name = dictaat.Name;
-            this.Pages = dictaat.Pages;
+            Pages = new List<FileSummary>();
         }
     }
 }
