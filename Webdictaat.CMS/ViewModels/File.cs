@@ -8,11 +8,9 @@ namespace Webdictaat.CMS.ViewModels
 {
     public class File
     {
-        private Core.File result;
-
-        public File(Core.File result)
+        public File(Core.File file)
         {
-            this.result = result;
+            this.Source = file.Source;
         }
 
         public string Source { get; set; }

@@ -19,19 +19,22 @@ var FilePreviewService = (function () {
         this.selectedFileSource = new Subject_1.Subject();
         // Observable string streams
         this.selectedFile$ = this.selectedFileSource.asObservable();
-        this.dictatenUrl = 'http://localhost:65418/api/dictaat/prog5/file/';
+        this.dictatenUrl = 'http://localhost:65418/api/dictaat/';
     }
     FilePreviewService.prototype.selectFile = function (dictaatEntry) {
         var _this = this;
-        this.http.get(this.dictatenUrl + dictaatEntry.name)
+        this.http.get(this.dictatenUrl + this.selectedDictaat.name + "/file/" + dictaatEntry.name)
             .toPromise()
             .then(function (response) {
             var file = new file_entry_1.FileEntry();
             file.location = dictaatEntry.location;
             file.name = dictaatEntry.name;
-            file.source = response.text();
+            file.source = response.json().source;
             _this.selectedFileSource.next(file);
         }).catch(this.handleError);
+    };
+    FilePreviewService.prototype.selectDictaat = function (dictaat) {
+        this.selectedDictaat = dictaat;
     };
     FilePreviewService.prototype.handleError = function (error) {
         console.error('An error occurred', error); // for demo purposes only
