@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 var Subject_1 = require('rxjs/Subject');
-var file_entry_1 = require('../models/file-entry');
 var FilePreviewService = (function () {
     function FilePreviewService(http) {
         this.http = http;
@@ -21,24 +20,21 @@ var FilePreviewService = (function () {
         this.selectedFile$ = this.selectedFileSource.asObservable();
         this.dictatenUrl = 'http://localhost:65418/api/dictaat/';
     }
-    FilePreviewService.prototype.selectFile = function (dictaatEntry) {
+    FilePreviewService.prototype.selectFile = function (dictaatName, fileEntry) {
         var _this = this;
-        this.http.get(this.dictatenUrl + this.selectedDictaat.name + "/file/" + dictaatEntry.name)
+        this.http.get(this.dictatenUrl + dictaatName + "/file/" + fileEntry.name)
             .toPromise()
             .then(function (response) {
-            var file = new file_entry_1.FileEntry();
-            file.location = dictaatEntry.location;
-            file.name = dictaatEntry.name;
-            file.source = response.json().source;
-            _this.selectedFileSource.next(file);
+            fileEntry.source = response.json().source;
+            _this.selectedFileSource.next(fileEntry);
         }).catch(this.handleError);
-    };
-    FilePreviewService.prototype.selectDictaat = function (dictaat) {
-        this.selectedDictaat = dictaat;
     };
     FilePreviewService.prototype.handleError = function (error) {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
+    };
+    FilePreviewService.prototype.clearSelection = function () {
+        this.selectedFileSource.next(null);
     };
     FilePreviewService = __decorate([
         core_1.Injectable(), 

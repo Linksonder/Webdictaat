@@ -20,5 +20,9 @@ export class FilePreviewComponent {
     private GetFilePreview(file: FileEntry): void {
         this.selectedFile = file;
     }
+
+    public closeFile(): void {
+        this.filePreviewService.clearSelection();
+    }
 }
 
