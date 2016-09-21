@@ -2,6 +2,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
 
+//modules
+import { PagesModule } from './pages/pages.module';
+
 //components
 import { AppComponent } from './app.component';
 import { DictatenComponent } from './dictaten/dictaten.component';
@@ -14,8 +17,10 @@ import { routing } from './app.routing';
 
 
 @NgModule({
-    imports: [BrowserModule, HttpModule, routing],
-    declarations: [AppComponent, DictatenComponent, FilePreviewComponent, DictaatComponent],
+    imports: [BrowserModule, HttpModule, routing, PagesModule],
+    declarations: [
+        AppComponent, DictatenComponent, FilePreviewComponent, DictaatComponent
+    ],
     providers: [FilePreviewService],
     bootstrap: [AppComponent]
 })

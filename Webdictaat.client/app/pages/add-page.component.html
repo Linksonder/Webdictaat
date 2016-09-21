@@ -1,0 +1,21 @@
+﻿<div class="modal" *ngIf="page">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add new page</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="input-group">
+                    <span class="input-group-addon">Name</span>
+                    <input type="text" class="form-control" placeholder="Name of the page">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary pull-left" (click)="page = null">Cancel</button>
+                <button type="button" class="btn btn-success pull-right" (click)="add()">Add</button>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>

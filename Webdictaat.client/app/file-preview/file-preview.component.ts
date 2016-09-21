@@ -1,7 +1,7 @@
 ﻿import { Component, EventEmitter } from '@angular/core';
 
 import { FilePreviewService } from '../services/file-preview.service';
-import { FileEntry } from '../models/file-entry';
+import { Page } from '../models/page';
 
 @Component({
     selector: "wd-file-preview",
@@ -10,16 +10,12 @@ import { FileEntry } from '../models/file-entry';
 })
 export class FilePreviewComponent {
 
-    public selectedFile: FileEntry;
+    public selectedFile: Page;
 
     constructor(private filePreviewService: FilePreviewService) {
-        filePreviewService.selectedFile$.subscribe(
-            file => this.GetFilePreview(file));
+        filePreviewService.selectedFile$.subscribe(file => this.selectedFile = file);
     }
 
-    private GetFilePreview(file: FileEntry): void {
-        this.selectedFile = file;
-    }
 
     public closeFile(): void {
         this.filePreviewService.clearSelection();

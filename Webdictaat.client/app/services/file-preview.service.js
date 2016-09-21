@@ -25,8 +25,7 @@ var FilePreviewService = (function () {
         this.http.get(this.dictatenUrl + dictaatName + "/file/" + fileEntry.name)
             .toPromise()
             .then(function (response) {
-            fileEntry.source = response.json().source;
-            _this.selectedFileSource.next(fileEntry);
+            _this.selectedFileSource.next(response.json());
         }).catch(this.handleError);
     };
     FilePreviewService.prototype.handleError = function (error) {

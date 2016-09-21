@@ -14,11 +14,8 @@ var FilePreviewComponent = (function () {
     function FilePreviewComponent(filePreviewService) {
         var _this = this;
         this.filePreviewService = filePreviewService;
-        filePreviewService.selectedFile$.subscribe(function (file) { return _this.GetFilePreview(file); });
+        filePreviewService.selectedFile$.subscribe(function (file) { return _this.selectedFile = file; });
     }
-    FilePreviewComponent.prototype.GetFilePreview = function (file) {
-        this.selectedFile = file;
-    };
     FilePreviewComponent.prototype.closeFile = function () {
         this.filePreviewService.clearSelection();
     };

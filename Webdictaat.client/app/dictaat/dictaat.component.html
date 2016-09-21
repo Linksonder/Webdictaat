@@ -1,18 +1,10 @@
 ﻿<div class="panel panel-default" *ngIf="dictaat">
-    <div class="panel-heading">Dictaat - {{dictaat.name}}</div>
+    <div class="panel-heading">
+        Dictaat - {{dictaat.name}}
+    </div>
     <div class="panel-body">
 
-        <ul class="list-group" >
-            <li class="list-group-item clearfix"  *ngFor="let  page of dictaat.pages">
-                <span class="glyphicon glyphicon-file"></span>
-                {{page.name}}
-                <div class="btn-group pull-right" role="group" aria-label="...">
-                    <button class="btn btn-xs btn-warning" (click)="selectPage(page)">
-                        <span class="glyphicon glyphicon-edit"></span>
-                    </button>
-                </div>
-            </li>
-        </ul>
+       <wd-pages [dictaat]="dictaat"></wd-pages>
 
     </div>
     <div class="panel-footer">
@@ -21,4 +13,3 @@
         </div>
     </div>
 </div>
-

@@ -39,6 +39,10 @@ export class DictaatComponent implements OnInit {
         this.filePreviewService.selectFile(this.dictaat.name, page);
     }
 
+    public addPage(): void {
+
+    }
+
     public goBack(): void {
         window.history.back();
     }

@@ -2,9 +2,8 @@
 import { Headers, Http } from '@angular/http';
 import { Subject }    from 'rxjs/Subject';
 
-import { DictaatEntry  } from '../models/dictaat-entry';
-import { FileEntry } from '../models/file-entry';
-
+import { Page } from '../models/page';
+import { FileSummary } from '../models/file-summary';
 import { Dictaat } from '../models/dictaat';
 
 
@@ -12,7 +11,7 @@ import { Dictaat } from '../models/dictaat';
 export class FilePreviewService {
 
     // Observable string sources
-    private selectedFileSource = new Subject<FileEntry>();
+    private selectedFileSource = new Subject<Page>();
 
     constructor(private http: Http) { }
 
@@ -21,15 +20,11 @@ export class FilePreviewService {
 
     private dictatenUrl = 'http://localhost:65418/api/dictaat/';
 
-    public selectFile(dictaatName: string, fileEntry: FileEntry): void {
+    public selectFile(dictaatName: string, fileEntry: FileSummary): void {
         this.http.get(this.dictatenUrl + dictaatName + "/file/" + fileEntry.name)
             .toPromise()
             .then(response => {
-
-               
-                fileEntry.source = response.json().source;
-
-                this.selectedFileSource.next(fileEntry);
+                this.selectedFileSource.next(response.json());
             }).catch(this.handleError);
     }
 

@@ -1,4 +1,4 @@
-﻿export class DictaatSummary {
+﻿export class FileSummary {
     name: String;
     lastChange: Date;
 }
