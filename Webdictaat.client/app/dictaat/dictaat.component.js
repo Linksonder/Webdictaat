@@ -30,6 +30,8 @@ var DictaatComponent = (function () {
     DictaatComponent.prototype.selectPage = function (page) {
         this.filePreviewService.selectFile(this.dictaat.name, page);
     };
+    DictaatComponent.prototype.addPage = function () {
+    };
     DictaatComponent.prototype.goBack = function () {
         window.history.back();
     };

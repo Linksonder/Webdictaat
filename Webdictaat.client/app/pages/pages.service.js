@@ -10,36 +10,45 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-var Subject_1 = require('rxjs/Subject');
-var FilePreviewService = (function () {
-    function FilePreviewService(http) {
+require('rxjs/add/operator/toPromise');
+require('rxjs/add/operator/map');
+var PagesService = (function () {
+    function PagesService(http) {
         this.http = http;
-        // Observable string sources
-        this.selectedFileSource = new Subject_1.Subject();
-        // Observable string streams
-        this.selectedFile$ = this.selectedFileSource.asObservable();
         this.dictatenUrl = 'http://localhost:65418/api/dictaten/';
     }
-    FilePreviewService.prototype.selectFile = function (dictaatName, fileEntry) {
-        var _this = this;
-        this.http.get(this.dictatenUrl + dictaatName + "/pages/" + fileEntry.name)
+    PagesService.prototype.getPages = function (dictaatName) {
+        var url = this.dictatenUrl + dictaatName + '/pages';
+        return this.http.get(url)
             .toPromise()
             .then(function (response) {
-            _this.selectedFileSource.next(response.json());
+            return response.json();
         }).catch(this.handleError);
     };
-    FilePreviewService.prototype.handleError = function (error) {
+    PagesService.prototype.addPage = function (dictaatName, page) {
+        var url = this.dictatenUrl + dictaatName + '/pages';
+        return this.http.post(url, page)
+            .toPromise()
+            .then(function (response) {
+            return response.json();
+        }).catch(this.handleError);
+    };
+    PagesService.prototype.deletePage = function (dictaatName, pageName) {
+        var url = this.dictatenUrl + dictaatName + '/pages/' + pageName;
+        return this.http.delete(url)
+            .toPromise()
+            .then(function (response) { return response; })
+            .catch(this.handleError);
+    };
+    PagesService.prototype.handleError = function (error) {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
     };
-    FilePreviewService.prototype.clearSelection = function () {
-        this.selectedFileSource.next(null);
-    };
-    FilePreviewService = __decorate([
+    PagesService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], FilePreviewService);
-    return FilePreviewService;
+    ], PagesService);
+    return PagesService;
 }());
-exports.FilePreviewService = FilePreviewService;
-//# sourceMappingURL=file-preview.service.js.map
+exports.PagesService = PagesService;
+//# sourceMappingURL=pages.service.js.map

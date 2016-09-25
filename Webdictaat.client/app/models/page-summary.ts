@@ -1,4 +1,4 @@
-﻿export class DictaatSummary {
+﻿export class PageSummary {
     name: String;
     lastChange: Date;
 }

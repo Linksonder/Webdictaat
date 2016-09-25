@@ -36,7 +36,7 @@ namespace Webdictaat.CMS
             services.AddSingleton<IPageRepository, PageRepository>();
 
             services.AddSingleton<Core.IDirectory, Core.Directory>();
-            services.AddSingleton<Core.IFileReader, Core.FileReader>();
+            services.AddSingleton<Core.IFile, Core.File>();
             services.Configure<ConfigVariables>(Configuration.GetSection("ConfigVariables"));
         }
 
