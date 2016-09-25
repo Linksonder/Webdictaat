@@ -12,7 +12,7 @@ import { ActivatedRoute, Params } from '@angular/router';
     templateUrl: "./app/pages/pages.component.html",
     providers: [PagesService]
 })
-export class PagesComponent implements OnInit {
+export class PagesComponent {
 
     public selectedFile;
 
@@ -26,23 +26,20 @@ export class PagesComponent implements OnInit {
         private filePreviewService: FilePreviewService
      ) { }
 
-    //event
-    public ngOnInit(): void {
-        
-    }
-
-    public createNewPage(): void {
-        this.newPage = new Page();
-    }
-
     public selectPage(page): void {
         this.filePreviewService.selectFile(this.dictaat.name, page);
     }
 
-    public addPage(page): void {
-        this.pagesSevice.addPage(page);
+    public getPages(): void {
+        console.log('page added, getting new pages');
+        this.pagesSevice.getPages(this.dictaat.name)
+            .then(pages => this.dictaat.pages = pages);
+    }
 
-        this.newPage = null;
+    public deletePage(page: Page): void {
+        console.log('page added, getting new pages');
+        this.pagesSevice.deletePage(this.dictaat.name, page.name)
+            .then(() => this.getPages());
     }
 
 }

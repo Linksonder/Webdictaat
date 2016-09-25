@@ -9,11 +9,11 @@ namespace Webdictaat.Core.Test
     public class FileReaderTest
     {
 
-        private Webdictaat.Core.FileReader _fileReader;
+        private Webdictaat.Core.File _fileReader;
 
         public FileReaderTest()
         {
-            _fileReader = new Webdictaat.Core.FileReader();
+            _fileReader = new Webdictaat.Core.File();
         }
 
         [Test]

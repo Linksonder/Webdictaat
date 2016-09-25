@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Webdictaat.Core;
 using Webdictaat.CMS.Models.Resources;
 using Microsoft.Extensions.Options;
-
+using Webdictaat.CMS.ViewModels;
 
 namespace Webdictaat.CMS.Models
 {

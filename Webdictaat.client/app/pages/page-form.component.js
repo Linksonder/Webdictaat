@@ -9,24 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
-var http_1 = require('@angular/http');
-var forms_1 = require('@angular/forms');
-//components
-var pages_component_1 = require('./pages.component');
-var add_page_component_1 = require('./add-page.component');
-var PagesModule = (function () {
-    function PagesModule() {
+var AppComponent = (function () {
+    function AppComponent() {
     }
-    PagesModule = __decorate([
-        core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, http_1.HttpModule, forms_1.FormsModule],
-            declarations: [pages_component_1.PagesComponent, add_page_component_1.AddPageComponent],
-            exports: [pages_component_1.PagesComponent]
+    AppComponent = __decorate([
+        core_1.Component({
+            selector: 'my-app',
+            template: '<hero-form></hero-form>'
         }), 
         __metadata('design:paramtypes', [])
-    ], PagesModule);
-    return PagesModule;
+    ], AppComponent);
+    return AppComponent;
 }());
-exports.PagesModule = PagesModule;
-//# sourceMappingURL=pages.module.js.map
+exports.AppComponent = AppComponent;
+//# sourceMappingURL=page-form.component.js.map

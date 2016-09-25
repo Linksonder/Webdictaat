@@ -1,4 +1,8 @@
-﻿<div class="modal" *ngIf="page">
+﻿<button class="btn btn-xs btn-success" (click)="showModal = true">
+    <span class="glyphicon glyphicon-plus"></span>
+</button>
+
+<div class="modal" *ngIf="showModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,15 +11,21 @@
             <div class="modal-body">
 
                 <div class="input-group">
-                    <span class="input-group-addon">Name</span>
-                    <input type="text" class="form-control" placeholder="Name of the page">
-                </div>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Name of the page"
+                           [(ngModel)]="page.name"  #name="ngModel" required>
+                    <div [hidden]="name.valid || name.pristine"
+                         class="alert alert-danger">
+                        Name is required
+                    </div>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary pull-left" (click)="page = null">Cancel</button>
-                <button type="button" class="btn btn-success pull-right" (click)="add()">Add</button>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary pull-left" (click)="showModal = false">Cancel</button>
+                    <button type="button" class="btn btn-success pull-right" 
+                            (click)="add()" 
+                            [disabled]="!page.name || page.name.length < 3" >Add</button>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
 </div>

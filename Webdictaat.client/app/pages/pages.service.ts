@@ -1,8 +1,9 @@
 ﻿import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, Response } from '@angular/http';
 //Nodig om een object om te toveren in een promise.
 
 import { Page } from '../models/page';
+import { PageSummary } from '../models/page-summary';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -15,9 +16,30 @@ export class PagesService {
 
     private dictatenUrl = 'http://localhost:65418/api/dictaten/';
 
-    public addPage(page: Page): void {
+    public getPages(dictaatName: String): Promise<PageSummary[]> {
+        let url: string = this.dictatenUrl + dictaatName + '/pages';
+        return this.http.get(url)
+            .toPromise()
+            .then(response =>
+                response.json() as PageSummary[]
+            ).catch(this.handleError);
+    }
 
-        console.log('adding new page!');
+    public addPage(dictaatName: String, page: Page): Promise<Page> {
+        let url: string = this.dictatenUrl + dictaatName + '/pages';
+        return this.http.post(url, page)
+            .toPromise()
+            .then(response =>
+                response.json() as Page
+            ).catch(this.handleError);
+    }
+
+    public deletePage(dictaatName: String, pageName: String): Promise<Response>{
+        let url: string = this.dictatenUrl + dictaatName + '/pages/' + pageName;
+        return this.http.delete(url)
+            .toPromise()
+            .then(response => response)
+            .catch(this.handleError);
     }
 
     private handleError(error: any): Promise<any> {

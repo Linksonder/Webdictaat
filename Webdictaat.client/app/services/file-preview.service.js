@@ -18,11 +18,11 @@ var FilePreviewService = (function () {
         this.selectedFileSource = new Subject_1.Subject();
         // Observable string streams
         this.selectedFile$ = this.selectedFileSource.asObservable();
-        this.dictatenUrl = 'http://localhost:65418/api/dictaat/';
+        this.dictatenUrl = 'http://localhost:65418/api/dictaten/';
     }
     FilePreviewService.prototype.selectFile = function (dictaatName, fileEntry) {
         var _this = this;
-        this.http.get(this.dictatenUrl + dictaatName + "/file/" + fileEntry.name)
+        this.http.get(this.dictatenUrl + dictaatName + "/pages/" + fileEntry.name)
             .toPromise()
             .then(function (response) {
             _this.selectedFileSource.next(response.json());

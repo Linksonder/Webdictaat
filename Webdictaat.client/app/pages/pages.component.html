@@ -1,8 +1,6 @@
 ﻿
-    <button class="btn btn-xs btn-success" (click)="createNewPage()">
-        <span class="glyphicon glyphicon-plus"></span>
-    </button>
 
+<wd-add-page (pageAdded)="getPages($event)"></wd-add-page>
 
 <ul class="list-group">
     <li class="list-group-item clearfix" *ngFor="let  page of dictaat.pages">
@@ -12,8 +10,10 @@
             <button class="btn btn-xs btn-warning" (click)="selectPage(page)">
                 <span class="glyphicon glyphicon-edit"></span>
             </button>
+            <button class="btn btn-xs btn-danger" (click)="deletePage(page)">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
         </div>
     </li>
 </ul>
 
-<wd-add-page [page]="newPage"  (pageReady)="addPage($event)"></wd-add-page>

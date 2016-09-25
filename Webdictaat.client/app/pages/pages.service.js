@@ -17,8 +17,28 @@ var PagesService = (function () {
         this.http = http;
         this.dictatenUrl = 'http://localhost:65418/api/dictaten/';
     }
-    PagesService.prototype.addPage = function (page) {
-        console.log('adding new page!');
+    PagesService.prototype.getPages = function (dictaatName) {
+        var url = this.dictatenUrl + dictaatName + '/pages';
+        return this.http.get(url)
+            .toPromise()
+            .then(function (response) {
+            return response.json();
+        }).catch(this.handleError);
+    };
+    PagesService.prototype.addPage = function (dictaatName, page) {
+        var url = this.dictatenUrl + dictaatName + '/pages';
+        return this.http.post(url, page)
+            .toPromise()
+            .then(function (response) {
+            return response.json();
+        }).catch(this.handleError);
+    };
+    PagesService.prototype.deletePage = function (dictaatName, pageName) {
+        var url = this.dictatenUrl + dictaatName + '/pages/' + pageName;
+        return this.http.delete(url)
+            .toPromise()
+            .then(function (response) { return response; })
+            .catch(this.handleError);
     };
     PagesService.prototype.handleError = function (error) {
         console.error('An error occurred', error); // for demo purposes only

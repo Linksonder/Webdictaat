@@ -1,4 +1,4 @@
-﻿export class FileSummary {
+﻿export class PageSummary {
     name: String;
     lastChange: Date;
 }
