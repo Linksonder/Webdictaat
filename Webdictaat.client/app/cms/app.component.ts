@@ -2,7 +2,7 @@
 
 @Component({
     selector: "wd-app",
-    styleUrls: ['./app/app.component.css'],
-    templateUrl: "./app/app.component.html",
+    styleUrls: ['./app/cms/app.component.css'],
+    templateUrl: "./app/cms/app.component.html",
 })
 export class AppComponent { }

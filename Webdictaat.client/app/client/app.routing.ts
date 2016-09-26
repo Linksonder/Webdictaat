@@ -1,8 +1,8 @@
 ﻿import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DictatenComponent }  from './dictaten/dictaten.component';
-import { DictaatComponent }  from './dictaat/dictaat.component';
+import { DictatenComponent }  from '../dictaten/dictaten.component';
+import { DictaatComponent }  from '../dictaat/dictaat.component';
 
 
 const appRoutes: Routes = [
