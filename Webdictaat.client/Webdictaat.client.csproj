@@ -23,8 +23,14 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\cms\app.component.ts" />
+    <TypeScriptCompile Include="app\cms\app.module.ts" />
+    <TypeScriptCompile Include="app\cms\app.routing.ts" />
+    <TypeScriptCompile Include="app\cms\main.ts" />
+    <TypeScriptCompile Include="app\client\app.component.ts" />
     <Content Include="app\cms\app.component.css" />
     <Content Include="app\cms\app.component.html" />
+    <Content Include="app\client\app.component.css" />
+    <Content Include="app\client\app.component.html" />
     <Content Include="app\dictaat\dictaat.component.css" />
     <Content Include="app\dictaat\dictaat.component.html" />
     <Content Include="app\dictaten\dictaten.component.css" />
@@ -34,11 +40,12 @@
     <Content Include="app\pages\add-page.component.css" />
     <Content Include="app\pages\add-page.component.html" />
     <Content Include="app\pages\pages.component.html" />
+    <Content Include="app\page\page.component.html" />
     <Content Include="css\style.css" />
     <Content Include="index.html" />
-    <Content Include="js\systemjs.config.js" />
+    <Content Include="js\dictaat.systemjs.config.js" />
     <Content Include="web.config" />
-    <TypeScriptCompile Include="app\cms\app.routing.ts" />
+    <TypeScriptCompile Include="app\client\app.routing.ts" />
     <TypeScriptCompile Include="app\context-menu\context-menu.component.ts" />
     <TypeScriptCompile Include="app\context-menu\context-menu.service.ts" />
     <TypeScriptCompile Include="app\models\page-summary.ts" />
@@ -52,8 +59,9 @@
     <TypeScriptCompile Include="app\pages\pages.component.ts" />
     <TypeScriptCompile Include="app\pages\pages.module.ts" />
     <TypeScriptCompile Include="app\pages\pages.service.ts" />
+    <TypeScriptCompile Include="app\page\page.component.ts" />
     <TypeScriptCompile Include="app\services\file-preview.service.ts" />
-    <TypeScriptCompile Include="app\cms\main.ts" />
+    <TypeScriptCompile Include="app\client\main.ts" />
     <TypeScriptCompile Include="app\models\dictaat-summary.ts" />
     <TypeScriptCompile Include="app\models\dictaat.ts" />
   </ItemGroup>
@@ -73,7 +81,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app\cms\app.module.ts" />
+    <TypeScriptCompile Include="app\client\app.module.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\App_LocalResources\" />

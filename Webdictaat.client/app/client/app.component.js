@@ -15,8 +15,8 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: "wd-app",
-            styleUrls: ['/app/cms/app.component.css'],
-            templateUrl: "./app/cms/app.component.html",
+            styleUrls: ['http://localhost:3000/app/client/app.component.css'],
+            templateUrl: "http://localhost:3000/app/client/app.component.html",
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
