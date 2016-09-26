@@ -3,7 +3,7 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <ProjectGuid>{35105AA9-C0BC-4505-95B3-CF91B8B6F5C9}</ProjectGuid>
+    <ProjectGuid>{05ABDB0B-4775-49E3-A0E2-F1F40C4BC415}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <OutputPath>bin</OutputPath>
@@ -22,46 +22,53 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app\cms\app.component.ts" />
-    <Content Include="app\cms\app.component.css" />
-    <Content Include="app\cms\app.component.html" />
-    <Content Include="app\dictaat\dictaat.component.css" />
-    <Content Include="app\dictaat\dictaat.component.html" />
-    <Content Include="app\dictaten\dictaten.component.css" />
-    <Content Include="app\dictaten\dictaten.component.html" />
-    <Content Include="app\file-preview\file-preview.component.css" />
-    <Content Include="app\file-preview\file-preview.component.html" />
-    <Content Include="app\pages\add-page.component.css" />
-    <Content Include="app\pages\add-page.component.html" />
-    <Content Include="app\pages\pages.component.html" />
+    <TypeScriptCompile Include="apps\client\app.component.ts" />
+    <TypeScriptCompile Include="apps\client\app.module.ts" />
+    <TypeScriptCompile Include="apps\client\app.routing.ts" />
+    <TypeScriptCompile Include="apps\client\main.ts" />
+    <TypeScriptCompile Include="apps\cms\app.component.ts" />
+    <Content Include="apps\client\app.component.css" />
+    <Content Include="apps\client\app.component.html" />
+    <Content Include="apps\cms\app.component.css" />
+    <Content Include="apps\cms\app.component.html" />
+    <Content Include="apps\dictaat\dictaat.component.css" />
+    <Content Include="apps\dictaat\dictaat.component.html" />
+    <Content Include="apps\dictaten\dictaten.component.css" />
+    <Content Include="apps\dictaten\dictaten.component.html" />
+    <Content Include="apps\file-preview\file-preview.component.css" />
+    <Content Include="apps\file-preview\file-preview.component.html" />
+    <Content Include="apps\pages\add-page.component.css" />
+    <Content Include="apps\pages\add-page.component.html" />
+    <Content Include="apps\pages\pages.component.html" />
     <Content Include="css\style.css" />
     <Content Include="index.html" />
     <Content Include="js\systemjs.config.js" />
     <Content Include="web.config" />
-    <TypeScriptCompile Include="app\cms\app.routing.ts" />
-    <TypeScriptCompile Include="app\context-menu\context-menu.component.ts" />
-    <TypeScriptCompile Include="app\context-menu\context-menu.service.ts" />
-    <TypeScriptCompile Include="app\models\page-summary.ts" />
-    <TypeScriptCompile Include="app\models\page.ts" />
-    <TypeScriptCompile Include="app\pages\add-page.component.ts" />
-    <TypeScriptCompile Include="app\dictaat\dictaat.component.ts" />
-    <TypeScriptCompile Include="app\dictaat\dictaat.service.ts" />
-    <TypeScriptCompile Include="app\dictaten\dictaten.component.ts" />
-    <TypeScriptCompile Include="app\dictaten\dictaten.service.ts" />
-    <TypeScriptCompile Include="app\file-preview\file-preview.component.ts" />
-    <TypeScriptCompile Include="app\pages\pages.component.ts" />
-    <TypeScriptCompile Include="app\pages\pages.module.ts" />
-    <TypeScriptCompile Include="app\pages\pages.service.ts" />
-    <TypeScriptCompile Include="app\services\file-preview.service.ts" />
-    <TypeScriptCompile Include="app\cms\main.ts" />
-    <TypeScriptCompile Include="app\models\dictaat-summary.ts" />
-    <TypeScriptCompile Include="app\models\dictaat.ts" />
+    <TypeScriptCompile Include="apps\cms\app.routing.ts" />
+    <TypeScriptCompile Include="apps\context-menu\context-menu.component.ts" />
+    <TypeScriptCompile Include="apps\context-menu\context-menu.service.ts" />
+    <TypeScriptCompile Include="apps\models\page-summary.ts" />
+    <TypeScriptCompile Include="apps\models\page.ts" />
+    <TypeScriptCompile Include="apps\pages\add-page.component.ts" />
+    <TypeScriptCompile Include="apps\dictaat\dictaat.component.ts" />
+    <TypeScriptCompile Include="apps\dictaat\dictaat.service.ts" />
+    <TypeScriptCompile Include="apps\dictaten\dictaten.component.ts" />
+    <TypeScriptCompile Include="apps\dictaten\dictaten.service.ts" />
+    <TypeScriptCompile Include="apps\file-preview\file-preview.component.ts" />
+    <TypeScriptCompile Include="apps\pages\pages.component.ts" />
+    <TypeScriptCompile Include="apps\pages\pages.module.ts" />
+    <TypeScriptCompile Include="apps\pages\pages.service.ts" />
+    <TypeScriptCompile Include="apps\services\file-preview.service.ts" />
+    <TypeScriptCompile Include="apps\cms\main.ts" />
+    <TypeScriptCompile Include="apps\models\dictaat-summary.ts" />
+    <TypeScriptCompile Include="apps\models\dictaat.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="package.json" />
     <Content Include="typings.json" />
     <Content Include="tsconfig.json" />
     <Content Include="js\cms.systemjs.config.js" />
+    <Content Include="js\client.system.config.js" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -73,10 +80,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app\cms\app.module.ts" />
+    <TypeScriptCompile Include="apps\cms\app.module.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\App_LocalResources\" />
+    <Folder Include="apps\App_LocalResources\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
