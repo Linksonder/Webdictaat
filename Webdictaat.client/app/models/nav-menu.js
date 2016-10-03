@@ -3,6 +3,7 @@ var NavMenu = (function () {
     function NavMenu() {
         this.subMenus = [];
         this.items = [];
+        this.show = false;
     }
     return NavMenu;
 }());

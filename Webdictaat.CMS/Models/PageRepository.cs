@@ -15,6 +15,7 @@ namespace Webdictaat.CMS.Models
         IEnumerable<ViewModels.DictaatPageSummary> GetDictaatPages(string dictaatName);
         DictaatPageSummary CreateDictaatPage(string dictaatName, DictaatPageSummary page);
         void DeleteDictaatPage(string dictaatName, string page);
+        DictaatPage EditDictaatPage(string dictaatName, DictaatPage page);
     }
 
     public class PageRepository : IPageRepository
@@ -48,7 +49,7 @@ namespace Webdictaat.CMS.Models
         public ViewModels.DictaatPage GetDictaatPage(string dictaatName, string fileName)
         {
             string content = null;
-            string path = String.Format("{0}\\{1}\\{2}\\{3}", _directoryRoot, dictaatName, _pagesDirectory, fileName);
+            string path = String.Format("{0}\\{1}\\{2}\\{3}.html", _directoryRoot, dictaatName, _pagesDirectory, fileName);
 
             if (!_file.TryReadFile(path, out content))
             {
@@ -65,9 +66,8 @@ namespace Webdictaat.CMS.Models
 
         public DictaatPageSummary CreateDictaatPage(string dictaatName, DictaatPageSummary page)
         {
-            var extension = ".html";
-            string path = String.Format("{0}\\{1}\\{2}\\{3}{4}", 
-                _directoryRoot, dictaatName, _pagesDirectory, page.Name, extension);
+            string path = String.Format("{0}\\{1}\\{2}\\{3}.html", 
+                _directoryRoot, dictaatName, _pagesDirectory, page.Name);
 
             if (!_file.TryCreateFile(path))
             {
@@ -80,7 +80,7 @@ namespace Webdictaat.CMS.Models
 
         public void DeleteDictaatPage(string dictaatName, string pageName)
         {
-            string path = String.Format("{0}\\{1}\\{2}\\{3}",
+            string path = String.Format("{0}\\{1}\\{2}\\{3}.html",
               _directoryRoot, dictaatName, _pagesDirectory, pageName);
 
             if (!_file.TryDeleteFile(path))
@@ -88,6 +88,20 @@ namespace Webdictaat.CMS.Models
                 //wellicht in de toekomst 404 terug sturen? File not found?
                 throw new Exceptions.PageNotFoundException();
             }
+        }
+
+        public DictaatPage EditDictaatPage(string dictaatName, DictaatPage page)
+        {
+            string path = String.Format("{0}\\{1}\\{2}\\{3}.html",
+               _directoryRoot, dictaatName, _pagesDirectory, page.Name);
+
+            if (!_file.TryEditFile(path, page.Source))
+            {
+                //wellicht in de toekomst 404 terug sturen? File not found?
+                throw new Exceptions.PageNotFoundException();
+            }
+
+            return GetDictaatPage(dictaatName, page.Name); 
         }
     }
 }

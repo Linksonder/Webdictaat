@@ -60,7 +60,7 @@ namespace Webdictaat.Core
         {
             return new FileSummary()
             {
-                Name = path.Split('\\').Last(),
+                Name = path.Split('\\').Last().Split('.').FirstOrDefault(),
                 LastChanged = System.IO.Directory.GetLastWriteTime(path),
             };
         }

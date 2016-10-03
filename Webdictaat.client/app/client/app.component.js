@@ -15,8 +15,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: "wd-app",
-            styleUrls: ['localhost:3000/app/shared/layout.html'],
-            templateUrl: "http://localhost:3000/app/client/app.component.html",
+            templateUrl: "pages/shared/layout.html",
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

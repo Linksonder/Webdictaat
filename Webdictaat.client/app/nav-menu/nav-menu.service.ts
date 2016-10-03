@@ -12,7 +12,9 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class NavMenuService {
 
-    constructor(private http: Http, private router: Router) { }
+    constructor(
+        private http: Http,
+        private router: Router) { }
 
     private routes: NavMenu; 
 
@@ -43,6 +45,9 @@ export class NavMenuService {
                 let item = new NavMenuItem();
                 item.name = key;
                 item.url = json[key].url ? json[key].url : key;
+                //Kijken of het menu al open moet staan, kan netteer
+                if (("/" + item.url) == this.router.url)
+                    navMenu.show = true;
                 navMenu.items.push(item);
             }
         }

@@ -4,6 +4,7 @@ export class NavMenu {
     title: string;
     subMenus: NavMenu[] = [];
     items: NavMenuItem[] = [];
+    show: boolean = false;
 }
 
 export class NavMenuItem {

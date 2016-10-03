@@ -1,0 +1,16 @@
+﻿<div *ngIf="page">
+    <h2>Edit page - {{page.name}}</h2>
+
+    <ckeditor [(ngModel)]="page.source"
+              [config]="ckEditorConfig"
+              debounce="500">
+    </ckeditor>
+
+    <div class="margin-top">
+        <button class="btn btn-default">Cancel</button>
+        <div class="btn-group pull-right">
+            <button class="btn btn-success" (click)="savePage()">Save</button>
+        </div>
+    </div>
+
+</div>

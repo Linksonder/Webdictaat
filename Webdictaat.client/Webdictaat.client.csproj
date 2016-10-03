@@ -29,15 +29,13 @@
     <TypeScriptCompile Include="app\client\app.component.ts" />
     <Content Include="app\cms\app.component.css" />
     <Content Include="app\cms\app.component.html" />
-    <Content Include="app\client\app.component.css" />
-    <Content Include="app\client\app.component.html" />
     <Content Include="app\dictaat\dictaat.component.css" />
     <Content Include="app\dictaat\dictaat.component.html" />
     <Content Include="app\dictaten\dictaten.component.css" />
     <Content Include="app\dictaten\dictaten.component.html" />
+    <Content Include="app\pages\edit-page.component.html" />
     <Content Include="app\file-preview\file-preview.component.css" />
     <Content Include="app\file-preview\file-preview.component.html" />
-    <Content Include="app\nav-menu\nav-menu-entry.component.html" />
     <Content Include="app\nav-menu\nav-menu.component.html" />
     <Content Include="app\pages\add-page.component.css" />
     <Content Include="app\pages\add-page.component.html" />
@@ -50,6 +48,7 @@
     <TypeScriptCompile Include="app\client\app.routing.ts" />
     <TypeScriptCompile Include="app\context-menu\context-menu.component.ts" />
     <TypeScriptCompile Include="app\context-menu\context-menu.service.ts" />
+    <TypeScriptCompile Include="app\pages\edit-page.component.ts" />
     <TypeScriptCompile Include="app\models\nav-menu.ts" />
     <TypeScriptCompile Include="app\models\page-summary.ts" />
     <TypeScriptCompile Include="app\models\page.ts" />

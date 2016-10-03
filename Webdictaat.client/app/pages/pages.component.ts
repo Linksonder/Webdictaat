@@ -4,7 +4,7 @@ import { PagesService} from './pages.service';
 import { Dictaat } from '../models/dictaat';
 import { Page } from '../models/page';
 import { FilePreviewService } from '../services/file-preview.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,7 +23,8 @@ export class PagesComponent {
 
     constructor(
         private pagesSevice: PagesService,
-        private filePreviewService: FilePreviewService
+        private filePreviewService: FilePreviewService,
+        private router : Router
      ) { }
 
     public selectPage(page): void {
@@ -31,16 +32,19 @@ export class PagesComponent {
     }
 
     public getPages(): void {
-        console.log('page added, getting new pages');
         this.pagesSevice.getPages(this.dictaat.name)
             .then(pages => this.dictaat.pages = pages);
     }
 
     public deletePage(page: Page): void {
-        console.log('page added, getting new pages');
         this.pagesSevice.deletePage(this.dictaat.name, page.name)
             .then(() => this.getPages());
     }
+
+    public editPage(page: Page): void {
+        this.router.navigateByUrl("/dictaten/" + this.dictaat.name + "/pages/" + page.name); 
+    }
+
 
 }
 
