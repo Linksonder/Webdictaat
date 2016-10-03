@@ -7,7 +7,10 @@
         <span class="glyphicon glyphicon-file"></span>
         {{page.name}}
         <div class="btn-group pull-right" role="group" aria-label="...">
-            <button class="btn btn-xs btn-warning" (click)="selectPage(page)">
+            <button class="btn btn-xs btn-default" (click)="selectPage(page)">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+            <button class="btn btn-xs btn-warning" (click)="editPage(page)">
                 <span class="glyphicon glyphicon-edit"></span>
             </button>
             <button class="btn btn-xs btn-danger" (click)="deletePage(page)">

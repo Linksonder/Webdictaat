@@ -33,6 +33,14 @@ var PagesService = (function () {
             return response.json();
         }).catch(this.handleError);
     };
+    PagesService.prototype.getPage = function (dictaatName, pageName) {
+        var url = this.dictatenUrl + dictaatName + '/pages/' + pageName;
+        return this.http.get(url)
+            .toPromise()
+            .then(function (response) {
+            return response.json();
+        }).catch(this.handleError);
+    };
     PagesService.prototype.deletePage = function (dictaatName, pageName) {
         var url = this.dictatenUrl + dictaatName + '/pages/' + pageName;
         return this.http.delete(url)

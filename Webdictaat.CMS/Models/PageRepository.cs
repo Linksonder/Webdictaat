@@ -48,7 +48,7 @@ namespace Webdictaat.CMS.Models
         public ViewModels.DictaatPage GetDictaatPage(string dictaatName, string fileName)
         {
             string content = null;
-            string path = String.Format("{0}\\{1}\\{2}\\{3}", _directoryRoot, dictaatName, _pagesDirectory, fileName);
+            string path = String.Format("{0}\\{1}\\{2}\\{3}.html", _directoryRoot, dictaatName, _pagesDirectory, fileName);
 
             if (!_file.TryReadFile(path, out content))
             {

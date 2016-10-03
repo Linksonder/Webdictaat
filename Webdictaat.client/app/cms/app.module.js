@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var http_1 = require('@angular/http');
+var forms_1 = require('@angular/forms');
 //modules
 var pages_module_1 = require('../pages/pages.module');
 //components
@@ -18,18 +19,20 @@ var app_component_1 = require('./app.component');
 var dictaten_component_1 = require('../dictaten/dictaten.component');
 var file_preview_component_1 = require('../file-preview/file-preview.component');
 var dictaat_component_1 = require('../dictaat/dictaat.component');
+var common_1 = require('@angular/common');
 var file_preview_service_1 = require('../services/file-preview.service');
+var edit_page_component_1 = require('../pages/edit-page.component');
 var app_routing_1 = require('./app.routing');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, http_1.HttpModule, app_routing_1.routing, pages_module_1.PagesModule],
+            imports: [platform_browser_1.BrowserModule, http_1.HttpModule, app_routing_1.routing, pages_module_1.PagesModule, forms_1.FormsModule],
             declarations: [
-                app_component_1.AppComponent, dictaten_component_1.DictatenComponent, file_preview_component_1.FilePreviewComponent, dictaat_component_1.DictaatComponent
+                app_component_1.AppComponent, dictaten_component_1.DictatenComponent, file_preview_component_1.FilePreviewComponent, dictaat_component_1.DictaatComponent, edit_page_component_1.EditPageComponent
             ],
-            providers: [file_preview_service_1.FilePreviewService],
+            providers: [file_preview_service_1.FilePreviewService, { provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])
