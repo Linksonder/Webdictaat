@@ -2,6 +2,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
 import { FormsModule } from '@angular/forms';
+
+//wysiwyg editor
+import {CKEditorModule} from 'ng2-ckeditor';
+
 //modules
 import { PagesModule } from '../pages/pages.module';
 
@@ -22,7 +26,7 @@ import { routing } from './app.routing';
 
 
 @NgModule({
-    imports: [BrowserModule, HttpModule, routing, PagesModule, FormsModule],
+    imports: [BrowserModule, HttpModule, routing, PagesModule, FormsModule, CKEditorModule],
     declarations: [
         AppComponent, DictatenComponent, FilePreviewComponent, DictaatComponent, EditPageComponent
     ],

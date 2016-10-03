@@ -34,6 +34,15 @@ export class PagesService {
             ).catch(this.handleError);
     }
 
+    public editPage(dictaatName: String, page: Page): Promise<Page> {
+        let url: string = this.dictatenUrl + dictaatName + '/pages/' + page.name;
+        return this.http.put(url, page)
+            .toPromise()
+            .then(response =>
+                response.json() as Page
+            ).catch(this.handleError);
+    }
+
     public getPage(dictaatName: String, pageName: string): Promise<Page> {
         let url: string = this.dictatenUrl + dictaatName + '/pages/' + pageName;
         return this.http.get(url)
