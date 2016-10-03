@@ -59,6 +59,6 @@ var editorConfig = {
         { name: 'colors', items: ['TextColor', 'BGColor'] },
         { name: 'tools', items: ['Maximize', 'ShowBlocks'] },
         { name: 'others', items: ['-'] },
-        { name: 'about', items: ['About'] }]
+    ]
 };
 //# sourceMappingURL=edit-page.component.js.map

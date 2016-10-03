@@ -42,6 +42,15 @@ namespace Webdictaat.CMS.Controllers
 
 
         // POST api/values
+        [HttpPut("{pageName}")]
+        public ViewModels.DictaatPage Put(string dictaatName, string pageName, [FromBody]ViewModels.DictaatPage page)
+        {
+            return _pageRepo.EditDictaatPage(dictaatName, page);
+        }
+
+
+
+        // POST api/values
         [HttpDelete("{pageName}")]
         public void Delete(string dictaatName, string pageName)
         {

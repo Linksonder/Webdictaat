@@ -10,6 +10,7 @@ namespace Webdictaat.Core
         bool TryReadFile(string path, out string content);
         bool TryCreateFile(string path);
         bool TryDeleteFile(string path);
+        bool TryEditFile(string path, string source);
     }
 
     public class File : IFile
@@ -21,8 +22,8 @@ namespace Webdictaat.Core
                 return false;
             }
 
-            System.IO.FileStream stream =  System.IO.File.Create(path);
-            stream.Dispose(); //We moeten de file meteen vrij geven!
+            //We moeten de file meteen vrij geven!
+            System.IO.File.Create(path).Dispose();
             return true;
         }
 
@@ -36,6 +37,17 @@ namespace Webdictaat.Core
             System.IO.File.Delete(path);
             return true;
 
+        }
+
+        public bool TryEditFile(string path, string source)
+        {
+            if (!System.IO.File.Exists(path))
+            {
+                return false;
+            }
+
+            System.IO.File.WriteAllText(path, source);
+            return true;
         }
 
         public bool TryReadFile(string path, out string content)
