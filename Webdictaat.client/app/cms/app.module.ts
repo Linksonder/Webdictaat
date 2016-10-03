@@ -3,15 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
 
 //modules
-import { PagesModule } from './pages/pages.module';
+import { PagesModule } from '../pages/pages.module';
 
 //components
 import { AppComponent } from './app.component';
-import { DictatenComponent } from './dictaten/dictaten.component';
-import { FilePreviewComponent } from './file-preview/file-preview.component';
-import { DictaatComponent } from './dictaat/dictaat.component';
 
-import { FilePreviewService } from './services/file-preview.service';
+import { DictatenComponent } from '../dictaten/dictaten.component';
+import { FilePreviewComponent } from '../file-preview/file-preview.component';
+import { DictaatComponent } from '../dictaat/dictaat.component';
+
+import { FilePreviewService } from '../services/file-preview.service';
 
 import { routing } from './app.routing';
 

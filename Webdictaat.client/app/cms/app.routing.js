@@ -1,7 +1,7 @@
 "use strict";
 var router_1 = require('@angular/router');
-var dictaten_component_1 = require('./dictaten/dictaten.component');
-var dictaat_component_1 = require('./dictaat/dictaat.component');
+var dictaten_component_1 = require('../dictaten/dictaten.component');
+var dictaat_component_1 = require('../dictaat/dictaat.component');
 var appRoutes = [
     { path: '', redirectTo: '/dictaten', pathMatch: 'full' },
     {
