@@ -9,15 +9,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var page_service_1 = require('./page.service');
 var PageComponent = (function () {
-    function PageComponent() {
+    function PageComponent(route, pageService) {
+        this.route = route;
+        this.pageService = pageService;
     }
+    PageComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.forEach(function (params) {
+            var name = params['pageName'];
+            _this.pageService.getPage(name)
+                .then(function (page) {
+                return _this.page = page;
+            });
+        });
+    };
     PageComponent = __decorate([
         core_1.Component({
             selector: "wd-page",
             templateUrl: "http://localhost:3000/app/page/page.component.html",
+            providers: [page_service_1.PageService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, page_service_1.PageService])
     ], PageComponent);
     return PageComponent;
 }());

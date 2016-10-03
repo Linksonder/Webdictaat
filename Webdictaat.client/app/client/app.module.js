@@ -11,17 +11,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var http_1 = require('@angular/http');
+var common_1 = require('@angular/common');
 //components
 var app_component_1 = require('./app.component');
 var app_routing_1 = require('./app.routing');
 var page_component_1 = require('../page/page.component');
+var nav_menu_component_1 = require('../nav-menu/nav-menu.component');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, http_1.HttpModule, app_routing_1.routing],
-            declarations: [app_component_1.AppComponent, page_component_1.PageComponent],
+            declarations: [app_component_1.AppComponent, page_component_1.PageComponent, nav_menu_component_1.NavMenuComponent],
+            providers: [{ provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])
