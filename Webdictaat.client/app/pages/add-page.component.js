@@ -10,12 +10,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var pages_service_1 = require('./pages.service');
+var nav_menu_service_1 = require('../services/nav-menu.service');
 var page_1 = require('../models/page');
 var router_1 = require('@angular/router');
 var AddPageComponent = (function () {
-    function AddPageComponent(pageService, route) {
+    function AddPageComponent(pageService, route, navMenuService) {
         this.pageService = pageService;
         this.route = route;
+        this.navMenuService = navMenuService;
         this.page = new page_1.Page();
         this.showModal = false;
         this.pageAdded = new core_1.EventEmitter();
@@ -23,6 +25,10 @@ var AddPageComponent = (function () {
     //event
     AddPageComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.navMenuService.getNavMenu()
+            .then(function (navMenu) {
+            _this.menus = ["a", "b"];
+        });
         this.route.params.forEach(function (params) {
             _this.dictaatName = params['dictaatName'];
         });
@@ -45,11 +51,12 @@ var AddPageComponent = (function () {
             selector: "wd-add-page",
             styleUrls: ['./app/pages/add-page.component.css'],
             templateUrl: "./app/pages/add-page.component.html",
-            providers: [pages_service_1.PagesService]
+            providers: [pages_service_1.PagesService, nav_menu_service_1.NavMenuService]
         }), 
-        __metadata('design:paramtypes', [pages_service_1.PagesService, router_1.ActivatedRoute])
+        __metadata('design:paramtypes', [pages_service_1.PagesService, router_1.ActivatedRoute, (typeof (_a = typeof nav_menu_service_1.NavMenuService !== 'undefined' && nav_menu_service_1.NavMenuService) === 'function' && _a) || Object])
     ], AddPageComponent);
     return AddPageComponent;
+    var _a;
 }());
 exports.AddPageComponent = AddPageComponent;
 //# sourceMappingURL=add-page.component.js.map

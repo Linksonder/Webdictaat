@@ -12,20 +12,33 @@
 
                 <div class="input-group">
                     <input type="text" class="form-control" name="name" id="name" placeholder="Name of the page"
-                           [(ngModel)]="page.name"  #name="ngModel" required>
+                           [(ngModel)]="page.name" #name="ngModel" required>
                     <div [hidden]="name.valid || name.pristine"
                          class="alert alert-danger">
                         Name is required
                     </div>
 
                 </div>
+                <div class="input-group">
+                    <label for="exampleInputPassword1">Name of page</label>
+                    <select class="form-control" name="name" id="name" placeholder="Name of the page"
+                            [(ngModel)]="menuName" #name="ngModel">
+                        <option *ngFor="let menu of menus" value="{{menu}}">
+                            {{menu}}
+                        </option>
+
+                    </select>
+                </div>
                 <div class="modal-footer">
+                    <label for="exampleInputPassword1">Select a menu *optional</label>
                     <button type="button" class="btn btn-secondary pull-left" (click)="showModal = false">Cancel</button>
-                    <button type="button" class="btn btn-success pull-right" 
-                            (click)="add()" 
-                            [disabled]="!page.name || page.name.length < 3" >Add</button>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-    </div>
+                    <button type="button" class="btn btn-success pull-right"
+                            (click)="add()"
+                            [disabled]="!page.name || page.name.length < 3">
+                        Add
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 </div>
