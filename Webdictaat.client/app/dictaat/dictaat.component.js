@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var dictaat_service_1 = require('./dictaat.service');
+var dictaat_service_1 = require('../services/dictaat.service');
 var file_preview_service_1 = require('../services/file-preview.service');
 var router_1 = require('@angular/router');
 var DictaatComponent = (function () {

@@ -16,26 +16,25 @@ export class NavMenuService {
         private http: Http,
         private router: Router) { }
 
-    private routes: NavMenu; 
+    private menu: NavMenu; 
 
-    public getNavMenu() {
-        if (this.routes != null) {
-            return Promise.resolve(this.routes);
+    public getNavMenu() : Promise<NavMenu>{
+        if (this.menu != null) {
+            return Promise.resolve(this.menu);
         }
         else{
-            return this.http.get('/app/nav-menu.json')
+            return this.http.get('/nav-menu.json')
                 .toPromise()
-                .then((response) => {
-                    this.routes = this.deserialize(response.json());
-                    return this.routes;
-                }).catch(this.handleError);
+                .then((response) => 
+                    this.menu = response.json() as NavMenu
+                ).catch(this.handleError);
         }
     }
 
 
     private deserialize(json, title = null): NavMenu {
         let navMenu: NavMenu = new NavMenu();
-        navMenu.title = title;
+        navMenu.name = name;
 
         for (var key in json) {
             if (json[key].constructor === Array) {
@@ -48,7 +47,7 @@ export class NavMenuService {
                 //Kijken of het menu al open moet staan, kan netteer
                 if (("/" + item.url) == this.router.url)
                     navMenu.show = true;
-                navMenu.items.push(item);
+                navMenu.menuItems.push(item);
             }
         }
 

@@ -22,21 +22,22 @@ var NavMenuService = (function () {
     }
     NavMenuService.prototype.getNavMenu = function () {
         var _this = this;
-        if (this.menu != null) {
-            return Promise.resolve(this.menu);
+        if (this.routes != null) {
+            return Promise.resolve(this.routes);
         }
         else {
-            return this.http.get('/nav-menu.json')
+            return this.http.get('/app/nav-menu.json')
                 .toPromise()
                 .then(function (response) {
-                return _this.menu = response.json();
+                _this.routes = _this.deserialize(response.json());
+                return _this.routes;
             }).catch(this.handleError);
         }
     };
     NavMenuService.prototype.deserialize = function (json, title) {
         if (title === void 0) { title = null; }
         var navMenu = new nav_menu_1.NavMenu();
-        navMenu.name = name;
+        navMenu.title = title;
         for (var key in json) {
             if (json[key].constructor === Array) {
                 navMenu.subMenus.push(this.deserialize(json[key][0], key));
@@ -48,7 +49,7 @@ var NavMenuService = (function () {
                 //Kijken of het menu al open moet staan, kan netteer
                 if (("/" + item.url) == this.router.url)
                     navMenu.show = true;
-                navMenu.menuItems.push(item);
+                navMenu.items.push(item);
             }
         }
         return navMenu;

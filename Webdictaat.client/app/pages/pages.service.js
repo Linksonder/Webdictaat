@@ -25,9 +25,13 @@ var PagesService = (function () {
             return response.json();
         }).catch(this.handleError);
     };
-    PagesService.prototype.addPage = function (dictaatName, page) {
+    PagesService.prototype.addPage = function (dictaatName, page, menuName) {
+        var data = {
+            page: page,
+            subMenu: menuName
+        };
         var url = this.dictatenUrl + dictaatName + '/pages';
-        return this.http.post(url, page)
+        return this.http.post(url, data)
             .toPromise()
             .then(function (response) {
             return response.json();

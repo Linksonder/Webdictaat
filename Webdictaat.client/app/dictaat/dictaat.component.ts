@@ -1,8 +1,9 @@
 import { Component,  OnInit, Input } from '@angular/core';
-import { DictaatService } from './dictaat.service';
 import { Dictaat } from '../models/dictaat';
 
+import { DictaatService } from '../services/dictaat.service';
 import { FilePreviewService } from '../services/file-preview.service';
+
 import { ActivatedRoute, Params } from '@angular/router';
 
 

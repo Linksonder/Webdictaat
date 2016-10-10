@@ -10,13 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var pages_service_1 = require('./pages.service');
+var dictaat_service_1 = require('../services/dictaat.service');
 var page_1 = require('../models/page');
 var router_1 = require('@angular/router');
 var AddPageComponent = (function () {
-    function AddPageComponent(pageService, route) {
+    function AddPageComponent(pageService, dictaatService, route) {
         this.pageService = pageService;
+        this.dictaatService = dictaatService;
         this.route = route;
         this.page = new page_1.Page();
+        this.menus = [];
         this.showModal = false;
         this.pageAdded = new core_1.EventEmitter();
     }
@@ -24,13 +27,16 @@ var AddPageComponent = (function () {
     AddPageComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params.forEach(function (params) {
-            _this.dictaatName = params['dictaatName'];
+            _this.dictaatService.getDictaat(params['dictaatName'])
+                .then(function (dictaat) {
+                _this.dictaat = dictaat;
+            });
         });
     };
     AddPageComponent.prototype.add = function () {
         var _this = this;
         this.showModal = false;
-        this.pageService.addPage(this.dictaatName, this.page)
+        this.pageService.addPage(this.dictaat.name, this.page, this.menuName)
             .then(function (page) {
             _this.page = new page_1.Page();
             _this.pageAdded.emit(page);
@@ -45,9 +51,9 @@ var AddPageComponent = (function () {
             selector: "wd-add-page",
             styleUrls: ['./app/pages/add-page.component.css'],
             templateUrl: "./app/pages/add-page.component.html",
-            providers: [pages_service_1.PagesService]
+            providers: [pages_service_1.PagesService, dictaat_service_1.DictaatService]
         }), 
-        __metadata('design:paramtypes', [pages_service_1.PagesService, router_1.ActivatedRoute])
+        __metadata('design:paramtypes', [pages_service_1.PagesService, dictaat_service_1.DictaatService, router_1.ActivatedRoute])
     ], AddPageComponent);
     return AddPageComponent;
 }());

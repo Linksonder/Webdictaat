@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var nav_menu_service_1 = require('./nav-menu.service');
+var nav_menu_1 = require('../models/nav-menu');
 var NavMenuComponent = (function () {
     function NavMenuComponent(route, navMenuService) {
         this.route = route;
@@ -21,13 +22,13 @@ var NavMenuComponent = (function () {
         if (this.navMenu == null) {
             this.navMenuService.getNavMenu()
                 .then(function (navMenu) {
-                return _this.navMenu = navMenu;
+                _this.navMenu = navMenu;
             });
         }
     };
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', Object)
+        __metadata('design:type', nav_menu_1.NavMenu)
     ], NavMenuComponent.prototype, "navMenu", void 0);
     NavMenuComponent = __decorate([
         core_1.Component({

@@ -9,7 +9,12 @@ namespace Webdictaat.Domain
     {
         public string Name { get; set; }
 
+        public string Location { get; set; }
+
         public IEnumerable<FileSummary> Pages { get; set; }
+
+        public Menu Menu { get; set; }
+        public string PagesDirectory { get; set; }
 
         public Dictaat()
         {

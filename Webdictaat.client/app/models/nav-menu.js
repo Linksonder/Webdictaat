@@ -1,8 +1,8 @@
 "use strict";
 var NavMenu = (function () {
     function NavMenu() {
-        this.subMenus = [];
-        this.items = [];
+        this.SubMenus = [];
+        this.MenuItems = [];
         this.show = false;
     }
     return NavMenu;

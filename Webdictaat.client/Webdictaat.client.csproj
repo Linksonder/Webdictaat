@@ -56,7 +56,7 @@
     <TypeScriptCompile Include="app\nav-menu\nav-menu.service.ts" />
     <TypeScriptCompile Include="app\pages\add-page.component.ts" />
     <TypeScriptCompile Include="app\dictaat\dictaat.component.ts" />
-    <TypeScriptCompile Include="app\dictaat\dictaat.service.ts" />
+    <TypeScriptCompile Include="app\services\dictaat.service.ts" />
     <TypeScriptCompile Include="app\dictaten\dictaten.component.ts" />
     <TypeScriptCompile Include="app\dictaten\dictaten.service.ts" />
     <TypeScriptCompile Include="app\file-preview\file-preview.component.ts" />
