@@ -5,3 +5,12 @@
     display:block;
     background-color: rgba(128, 128, 128, 0.4);
 }
+
+.drop-container{
+   padding:10px;
+      border:1px dashed black;
+}
+.drop-container:hover{
+  
+ 
+}

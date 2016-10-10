@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
-//wysiwyg editor
+//external libraries
 import {CKEditorModule} from 'ng2-ckeditor';
+import {DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
 
 //modules
 import { PagesModule } from '../pages/pages.module';
@@ -26,7 +27,9 @@ import { routing } from './app.routing';
 
 
 @NgModule({
-    imports: [BrowserModule, HttpModule, routing, PagesModule, FormsModule, CKEditorModule],
+    imports: [
+        DragulaModule
+        BrowserModule, HttpModule, routing, PagesModule, FormsModule, CKEditorModule],
     declarations: [
         AppComponent, DictatenComponent, FilePreviewComponent, DictaatComponent, EditPageComponent
     ],
