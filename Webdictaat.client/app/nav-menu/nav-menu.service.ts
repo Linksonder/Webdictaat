@@ -23,7 +23,7 @@ export class NavMenuService {
             return Promise.resolve(this.routes);
         }
         else{
-            return this.http.get('/app/nav-menu.json')
+            return this.http.get('/nav-menu.json')
                 .toPromise()
                 .then((response) => {
                     this.routes = this.deserialize(response.json());

@@ -25,9 +25,16 @@ export class PagesService {
             ).catch(this.handleError);
     }
 
-    public addPage(dictaatName: String, page: Page): Promise<Page> {
+    public addPage(dictaatName: String, page: Page, menuName: string): Promise<Page> {
+
+        var data = {
+            page: page,
+            menuName: menuName
+        };
+
         let url: string = this.dictatenUrl + dictaatName + '/pages';
-        return this.http.post(url, page)
+
+        return this.http.post(url, data)
             .toPromise()
             .then(response =>
                 response.json() as Page

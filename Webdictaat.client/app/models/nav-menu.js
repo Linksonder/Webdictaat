@@ -2,7 +2,7 @@
 var NavMenu = (function () {
     function NavMenu() {
         this.subMenus = [];
-        this.items = [];
+        this.menuItems = [];
         this.show = false;
     }
     return NavMenu;

@@ -10,27 +10,30 @@
             </div>
             <div class="modal-body">
 
-                <div class="input-group">
+                <div class="form-group">
+                    <label for="isInMenu">Name of the page</label>
                     <input type="text" class="form-control" name="name" id="name" placeholder="Name of the page"
-                           [(ngModel)]="page.name" #name="ngModel" required>
+                           [(ngModel)]="page.name"  required>
                     <div [hidden]="name.valid || name.pristine"
                          class="alert alert-danger">
                         Name is required
                     </div>
 
                 </div>
-                <div class="input-group">
-                    <label for="exampleInputPassword1">Name of page</label>
-                    <select class="form-control" name="name" id="name" placeholder="Name of the page"
+
+
+                <div class="form-group">
+                    <label for="menu">Select a menu *optional</label>
+                    <select class="form-control" name="menu" id="menu" placeholder="Name of the page"
                             [(ngModel)]="menuName" #name="ngModel">
-                        <option *ngFor="let menu of menus" value="{{menu}}">
-                            {{menu}}
-                        </option>
+                        <option value="null">None</option>
+                        <option *ngFor="let menu of dictaat.menu.subMenus" value="{{menu.name}}">
+                            {{menu.name}}
+                        </option> 
 
                     </select>
                 </div>
                 <div class="modal-footer">
-                    <label for="exampleInputPassword1">Select a menu *optional</label>
                     <button type="button" class="btn btn-secondary pull-left" (click)="showModal = false">Cancel</button>
                     <button type="button" class="btn btn-success pull-right"
                             (click)="add()"

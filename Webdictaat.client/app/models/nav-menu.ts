@@ -1,9 +1,9 @@
 ﻿import { PageSummary } from './page-summary';
 
 export class NavMenu {
-    title: string;
+    name: string;
     subMenus: NavMenu[] = [];
-    items: NavMenuItem[] = [];
+    menuItems: NavMenuItem[] = [];
     show: boolean = false;
 }
 

@@ -48,10 +48,10 @@ namespace Webdictaat.CMS.Models
 
         public ViewModels.DictaatPage GetDictaatPage(string dictaatName, string fileName)
         {
-            string content = null;
             string path = String.Format("{0}\\{1}\\{2}\\{3}.html", _directoryRoot, dictaatName, _pagesDirectory, fileName);
+            string content = _file.TryReadFile(path);
 
-            if (!_file.TryReadFile(path, out content))
+            if (content == null)
             {
                 //wellicht in de toekomst 404 terug sturen? File not found?
                 throw new System.IO.FileNotFoundException();
@@ -64,7 +64,7 @@ namespace Webdictaat.CMS.Models
             };
         }
 
-        public DictaatPageSummary CreateDictaatPage(string dictaatName, DictaatPageSummary page)
+        public DictaatPageSummary CreateDictaatPage(string dictaatName, ViewModels.DictaatPageSummary page)
         {
             string path = String.Format("{0}\\{1}\\{2}\\{3}.html", 
                 _directoryRoot, dictaatName, _pagesDirectory, page.Name);
@@ -74,6 +74,7 @@ namespace Webdictaat.CMS.Models
                 //wellicht in de toekomst 404 terug sturen? File not found?
                 throw new Exceptions.PageAlreadyExcistsException();
             }
+
 
             return page;
         }

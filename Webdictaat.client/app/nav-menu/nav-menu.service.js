@@ -26,7 +26,7 @@ var NavMenuService = (function () {
             return Promise.resolve(this.routes);
         }
         else {
-            return this.http.get('/app/nav-menu.json')
+            return this.http.get('/nav-menu.json')
                 .toPromise()
                 .then(function (response) {
                 _this.routes = _this.deserialize(response.json());

@@ -14,10 +14,12 @@ namespace Webdictaat.CMS.Controllers
     public class PagesController : Controller
     {
         private IPageRepository _pageRepo;
+        private IMenuRepository _menuRepo;
 
-        public PagesController(IPageRepository pageRepo)
+        public PagesController(IPageRepository pageRepo, IMenuRepository menuRepo)
         {
             _pageRepo = pageRepo;
+            _menuRepo = menuRepo;
         }
 
         [HttpGet("{pageName}")]
@@ -35,9 +37,16 @@ namespace Webdictaat.CMS.Controllers
 
         // POST api/values
         [HttpPost]
-        public ViewModels.DictaatPageSummary Post(string dictaatName, [FromBody]ViewModels.DictaatPageSummary page)
+        public ViewModels.DictaatPageSummary Post(string dictaatName, [FromBody]ViewModels.DictaatPageForm form)
         {
-            return _pageRepo.CreateDictaatPage(dictaatName, page);
+            var MenuItem = new ViewModels.MenuItem()
+            {
+                Name = form.Page.Name,
+                Url = form.Page.Name
+            };
+            
+            _menuRepo.AddMenuItem(dictaatName, form.SubMenu, MenuItem);
+            return _pageRepo.CreateDictaatPage(dictaatName, form.Page);
         }
 
 

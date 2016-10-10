@@ -7,10 +7,10 @@ namespace Webdictaat.Core
 {
     public interface IFile
     {
-        bool TryReadFile(string path, out string content);
+        string TryReadFile(string path);
         bool TryCreateFile(string path);
         bool TryDeleteFile(string path);
-        bool TryEditFile(string path, string source);
+        bool TryEditFile(string path, string content);
     }
 
     public class File : IFile
@@ -39,27 +39,28 @@ namespace Webdictaat.Core
 
         }
 
-        public bool TryEditFile(string path, string source)
+        public bool TryEditFile(string path, string content)
         {
             if (!System.IO.File.Exists(path))
             {
                 return false;
             }
 
-            System.IO.File.WriteAllText(path, source);
+            System.IO.File.WriteAllText(path, content);
             return true;
         }
 
-        public bool TryReadFile(string path, out string content)
+        public string TryReadFile(string path)
         {
+            string source = null;
             if (!System.IO.File.Exists(path))
             {
-                content = null;
-                return false;
+                return source;
             }
 
-            content = System.IO.File.ReadAllText(path);
-            return true;
+            source = System.IO.File.ReadAllText(path);
+            return source;
         }
+
     }
 }

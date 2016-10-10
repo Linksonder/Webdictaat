@@ -31,14 +31,16 @@ namespace Webdictaat.CMS.Models
         /// <param name="dictaatFactory"></param>
         public DictaatRepository(
             IOptions<ConfigVariables> appSettings, 
-            IDirectory directory)
+            IDirectory directory,
+             IFile file)
         {
             _directoryRoot = appSettings.Value.DictaatRoot;
             _pagesDirectory = appSettings.Value.PagesDirectory;
+            var menuConfigName = appSettings.Value.MenuConfigName;
             _directory = directory;
 
             //best place to build the factory
-            _dictaatFactory = new DictaatFactory(_directoryRoot, _pagesDirectory,  directory);
+            _dictaatFactory = new DictaatFactory(_directoryRoot, _pagesDirectory, menuConfigName, directory, file);
 
         }
 
