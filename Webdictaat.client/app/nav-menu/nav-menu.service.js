@@ -37,7 +37,7 @@ var NavMenuService = (function () {
     NavMenuService.prototype.deserialize = function (json, title) {
         if (title === void 0) { title = null; }
         var navMenu = new nav_menu_1.NavMenu();
-        navMenu.title = title;
+        navMenu.name = name;
         for (var key in json) {
             if (json[key].constructor === Array) {
                 navMenu.subMenus.push(this.deserialize(json[key][0], key));
@@ -49,7 +49,7 @@ var NavMenuService = (function () {
                 //Kijken of het menu al open moet staan, kan netteer
                 if (("/" + item.url) == this.router.url)
                     navMenu.show = true;
-                navMenu.items.push(item);
+                navMenu.menuItems.push(item);
             }
         }
         return navMenu;

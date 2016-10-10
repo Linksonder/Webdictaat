@@ -35,7 +35,7 @@ export class NavMenuService {
 
     private deserialize(json, title = null): NavMenu {
         let navMenu: NavMenu = new NavMenu();
-        navMenu.title = title;
+        navMenu.name = name;
 
         for (var key in json) {
             if (json[key].constructor === Array) {
@@ -48,7 +48,7 @@ export class NavMenuService {
                 //Kijken of het menu al open moet staan, kan netteer
                 if (("/" + item.url) == this.router.url)
                     navMenu.show = true;
-                navMenu.items.push(item);
+                navMenu.menuItems.push(item);
             }
         }
 
