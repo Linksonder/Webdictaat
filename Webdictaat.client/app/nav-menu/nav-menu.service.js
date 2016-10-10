@@ -22,15 +22,14 @@ var NavMenuService = (function () {
     }
     NavMenuService.prototype.getNavMenu = function () {
         var _this = this;
-        if (this.routes != null) {
-            return Promise.resolve(this.routes);
+        if (this.menu != null) {
+            return Promise.resolve(this.menu);
         }
         else {
             return this.http.get('/nav-menu.json')
                 .toPromise()
                 .then(function (response) {
-                _this.routes = _this.deserialize(response.json());
-                return _this.routes;
+                return _this.menu = response.json();
             }).catch(this.handleError);
         }
     };

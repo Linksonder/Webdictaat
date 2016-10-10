@@ -1,11 +1,12 @@
-﻿export class NavMenu {
-    name: string;
-    subMenus: NavMenu[] = [];
-    menuItems: NavMenuItem[] = [];
+﻿
+export class NavMenu {
+    Name: string;
+    SubMenus: NavMenu[] = [];
+    MenuItems: NavMenuItem[] = [];
     show: boolean = false;
 }
 
 export class NavMenuItem {
-    public name: string;
-    public url: string;
+    public Name: string;
+    public Url: string;
 }

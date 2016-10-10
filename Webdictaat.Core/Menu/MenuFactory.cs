@@ -46,7 +46,7 @@ namespace Webdictaat.Core
         {
             var path = String.Format("{0}\\{1}\\{2}", _directoryRoot, dictaatName, _menuConfigName);
 
-            var menuString = Newtonsoft.Json.JsonConvert.SerializeObject(menu);
+            var menuString = Newtonsoft.Json.JsonConvert.SerializeObject(menu, Newtonsoft.Json.Formatting.Indented);
             if (_file.TryEditFile(path, menuString))
             {
                 return menu;

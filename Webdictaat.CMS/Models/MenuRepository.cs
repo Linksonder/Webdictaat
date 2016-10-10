@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Webdictaat.CMS.Models.Resources;
-using Webdictaat.CMS.ViewModels;
 using Webdictaat.Core;
 
 namespace Webdictaat.CMS.Models
@@ -67,9 +66,14 @@ namespace Webdictaat.CMS.Models
         }
 
 
-        public ViewModels.Menu EditMenu(string dictaat, ViewModels.Menu item)
+        public ViewModels.Menu EditMenu(string dictaat, ViewModels.Menu menu)
         {
-            throw new NotImplementedException();
+            var newMenu = _menuFactory.EditMenu(dictaat, menu.ToPoco());
+            if(newMenu == null)
+            {
+                throw new System.IO.FileNotFoundException();
+            }
+            return new ViewModels.Menu(newMenu);
         }
     }
 }

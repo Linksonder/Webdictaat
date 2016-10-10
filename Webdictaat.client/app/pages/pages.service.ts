@@ -29,7 +29,7 @@ export class PagesService {
 
         var data = {
             page: page,
-            menuName: menuName
+            subMenu: menuName
         };
 
         let url: string = this.dictatenUrl + dictaatName + '/pages';

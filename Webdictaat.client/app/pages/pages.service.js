@@ -28,7 +28,7 @@ var PagesService = (function () {
     PagesService.prototype.addPage = function (dictaatName, page, menuName) {
         var data = {
             page: page,
-            menuName: menuName
+            subMenu: menuName
         };
         var url = this.dictatenUrl + dictaatName + '/pages';
         return this.http.post(url, data)

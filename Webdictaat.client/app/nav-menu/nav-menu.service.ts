@@ -16,19 +16,18 @@ export class NavMenuService {
         private http: Http,
         private router: Router) { }
 
-    private routes: NavMenu; 
+    private menu: NavMenu; 
 
-    public getNavMenu() {
-        if (this.routes != null) {
-            return Promise.resolve(this.routes);
+    public getNavMenu() : Promise<NavMenu>{
+        if (this.menu != null) {
+            return Promise.resolve(this.menu);
         }
         else{
             return this.http.get('/nav-menu.json')
                 .toPromise()
-                .then((response) => {
-                    this.routes = this.deserialize(response.json());
-                    return this.routes;
-                }).catch(this.handleError);
+                .then((response) => 
+                    this.menu = response.json() as NavMenu
+                ).catch(this.handleError);
         }
     }
 

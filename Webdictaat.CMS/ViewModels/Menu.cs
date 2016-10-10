@@ -22,5 +22,14 @@ namespace Webdictaat.CMS.ViewModels
             this.MenuItems = menu.MenuItems.Select(i => new ViewModels.MenuItem(i)).ToList();
 
         }
+
+        public Domain.Menu ToPoco()
+        {
+            var menu = new Domain.Menu();
+            menu.Name = this.Name;
+            menu.SubMenus = this.SubMenus.Select(sm => sm.ToPoco()).ToList();
+            menu.MenuItems = this.MenuItems.Select(i => i.ToPoco()).ToList();
+            return menu;
+        }
     }
 }

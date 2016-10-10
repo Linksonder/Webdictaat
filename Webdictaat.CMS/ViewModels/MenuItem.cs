@@ -23,5 +23,14 @@ namespace Webdictaat.CMS.ViewModels
         public string Name { get; set; }
 
         public string Url { get; set; }
+
+        internal Domain.MenuItem ToPoco()
+        {
+            return new Domain.MenuItem()
+            {
+                Name = this.Name,
+                Url = this.Url,
+            }; 
+        }
     }
 }

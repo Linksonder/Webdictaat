@@ -45,8 +45,9 @@ namespace Webdictaat.CMS.Controllers
                 Url = form.Page.Name
             };
             
+            var result = _pageRepo.CreateDictaatPage(dictaatName, form.Page); 
             _menuRepo.AddMenuItem(dictaatName, form.SubMenu, MenuItem);
-            return _pageRepo.CreateDictaatPage(dictaatName, form.Page);
+            return result;
         }
 
 
