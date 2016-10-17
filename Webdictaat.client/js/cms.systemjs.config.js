@@ -12,8 +12,10 @@
     map: {
       // our app is within the app folder
         // angular bundles
-      'ng2-ckeditor': 'node_modules/ng2-ckeditor/lib/CKEditor.js',
-      'app': 'app',
+
+      'dragula': 'npm:dragula/dist/dragula.js',
+      'ng2-dragula': 'npm:ng2-dragula',
+      'ng2-ckeditor': 'npm:ng2-ckeditor/lib/CKEditor.js',   
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
       '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
       '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
@@ -28,17 +30,23 @@
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
-      app: {
-        main: './cms/main.js',
-        defaultExtension: 'js'
-      },
-      rxjs: {
-        defaultExtension: 'js'
-      },
-      'angular2-in-memory-web-api': {
-        main: './index.js',
-        defaultExtension: 'js'
-      }
+
+        'ng2-dragula': {
+
+            defaultExtension: 'js'
+        },
+       
+        app: {
+            main: './cms/main.js',
+            defaultExtension: 'js'
+        },
+        rxjs: {
+            defaultExtension: 'js'
+        },
+        'angular2-in-memory-web-api': {
+            main: './index.js',
+            defaultExtension: 'js'
+        }
     }
   });
 })(this);

@@ -3,6 +3,9 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { PagesService } from './pages.service';
 import { Page } from '../models/page';
 
+
+
+
 @Component({
     selector: "wd-edit-page",
     templateUrl: "http://localhost:3000/app/pages/edit-page.component.html",
@@ -10,17 +13,16 @@ import { Page } from '../models/page';
 })
 export class EditPageComponent implements OnInit {
 
+    private pageElement;
     private page: Page;
     private dictaatName: string;
-
-    private ckEditorConfig: Object;
 
 
     constructor(
         private route: ActivatedRoute,
         private pagesService: PagesService
     ) {
-        this.ckEditorConfig = editorConfig;
+
     }
 
     public ngOnInit(): void {
@@ -28,33 +30,27 @@ export class EditPageComponent implements OnInit {
             let name = params['pageName'];
             this.dictaatName = params['dictaatName'];
             this.pagesService.getPage(this.dictaatName, name)
-                .then(page =>
-                    this.page = page);
+                .then(page => {
+                    this.page = page;
+                    this.initJqueryUiDragAndDrop();
+                });
         });
     }
 
     public savePage(): void {
         this.pagesService.editPage(this.dictaatName, this.page)
             .then((page) =>this.page = page );
+    }
 
+    public updateSource(pageSource): void {
+        this.page.source = pageSource;
+        this.savePage();
+    }
+
+    public initJqueryUiDragAndDrop(): void {
+        //$(".tools li").draggable({ helper: "clone", revert: "invalid"});
+        $(".wd-component").sortable().disableSelection();;
+        
+       
     }
 }
-
-
-var editorConfig = {
-    toolbar: [
-        { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source'] },
-        { name: 'clipboard', groups: ['clipboard', 'undo'], items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
-        { name: 'editing', groups: ['find', 'selection', 'spellchecker'], items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt'] },
-        '/',
-        { name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
-        { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language'] },
-        { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
-        { name: 'insert', items: ['Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'] },
-        '/',
-        { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
-        { name: 'colors', items: ['TextColor', 'BGColor'] },
-        { name: 'tools', items: ['Maximize', 'ShowBlocks'] },
-        { name: 'others', items: ['-'] },
-    ]
-};

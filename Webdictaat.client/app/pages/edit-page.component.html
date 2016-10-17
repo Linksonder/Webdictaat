@@ -1,16 +1,35 @@
-﻿<div *ngIf="page">
-    <h2>Edit page - {{page.name}}</h2>
+﻿<div >
+    <div class="row">
+        <div class="col-md-3">
+                
+            <h3>Elements</h3>
 
-    <ckeditor [(ngModel)]="page.source"
-              [config]="ckEditorConfig"
-              debounce="500">
-    </ckeditor>
+            <ul class="tools">
+                <li><wd-header></wd-header></li>
+                <li><wd-text></wd-text></li>
+                <li><wd-column></wd-column></li>
+            </ul>
 
-    <div class="margin-top">
-        <button class="btn btn-default">Cancel</button>
-        <div class="btn-group pull-right">
-            <button class="btn btn-success" (click)="savePage()">Save</button>
         </div>
-    </div>
 
+        <div class='wrapper col-md-9' *ngIf="page">
+
+            <wd-html [innerHTML]="page.source" (pageEdited)="updateSource($event)"></wd-html>
+
+            <hr />
+
+            <div>
+                {{page ? page.source : ''}}
+            </div>
+         
+
+            <div class="btn-group">
+            
+            </div>
+
+        </div>
+
+    </div>
+    
+    
 </div>

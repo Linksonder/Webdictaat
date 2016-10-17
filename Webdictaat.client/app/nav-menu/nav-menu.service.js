@@ -11,8 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 var router_1 = require('@angular/router');
-//Nodig om een object om te toveren in een promise.
-var nav_menu_1 = require('../models/nav-menu');
 require('rxjs/add/operator/toPromise');
 require('rxjs/add/operator/map');
 var NavMenuService = (function () {
@@ -32,26 +30,6 @@ var NavMenuService = (function () {
                 return _this.menu = response.json();
             }).catch(this.handleError);
         }
-    };
-    NavMenuService.prototype.deserialize = function (json, title) {
-        if (title === void 0) { title = null; }
-        var navMenu = new nav_menu_1.NavMenu();
-        navMenu.name = name;
-        for (var key in json) {
-            if (json[key].constructor === Array) {
-                navMenu.subMenus.push(this.deserialize(json[key][0], key));
-            }
-            else {
-                var item = new nav_menu_1.NavMenuItem();
-                item.name = key;
-                item.url = json[key].url ? json[key].url : key;
-                //Kijken of het menu al open moet staan, kan netteer
-                if (("/" + item.url) == this.router.url)
-                    navMenu.show = true;
-                navMenu.menuItems.push(item);
-            }
-        }
-        return navMenu;
     };
     NavMenuService.prototype.handleError = function (error) {
         console.error('An error occurred', error); // for demo purposes only

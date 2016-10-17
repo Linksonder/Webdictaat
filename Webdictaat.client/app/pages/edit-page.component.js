@@ -15,7 +15,6 @@ var EditPageComponent = (function () {
     function EditPageComponent(route, pagesService) {
         this.route = route;
         this.pagesService = pagesService;
-        this.ckEditorConfig = editorConfig;
     }
     EditPageComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -24,7 +23,8 @@ var EditPageComponent = (function () {
             _this.dictaatName = params['dictaatName'];
             _this.pagesService.getPage(_this.dictaatName, name)
                 .then(function (page) {
-                return _this.page = page;
+                _this.page = page;
+                _this.initJqueryUiDragAndDrop();
             });
         });
     };
@@ -32,6 +32,15 @@ var EditPageComponent = (function () {
         var _this = this;
         this.pagesService.editPage(this.dictaatName, this.page)
             .then(function (page) { return _this.page = page; });
+    };
+    EditPageComponent.prototype.updateSource = function (pageSource) {
+        this.page.source = pageSource;
+        this.savePage();
+    };
+    EditPageComponent.prototype.initJqueryUiDragAndDrop = function () {
+        //$(".tools li").draggable({ helper: "clone", revert: "invalid"});
+        $(".wd-component").sortable().disableSelection();
+        ;
     };
     EditPageComponent = __decorate([
         core_1.Component({
@@ -44,21 +53,4 @@ var EditPageComponent = (function () {
     return EditPageComponent;
 }());
 exports.EditPageComponent = EditPageComponent;
-var editorConfig = {
-    toolbar: [
-        { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source'] },
-        { name: 'clipboard', groups: ['clipboard', 'undo'], items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
-        { name: 'editing', groups: ['find', 'selection', 'spellchecker'], items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt'] },
-        '/',
-        { name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
-        { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language'] },
-        { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
-        { name: 'insert', items: ['Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'] },
-        '/',
-        { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
-        { name: 'colors', items: ['TextColor', 'BGColor'] },
-        { name: 'tools', items: ['Maximize', 'ShowBlocks'] },
-        { name: 'others', items: ['-'] },
-    ]
-};
 //# sourceMappingURL=edit-page.component.js.map
