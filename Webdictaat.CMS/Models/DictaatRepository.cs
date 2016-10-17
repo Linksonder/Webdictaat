@@ -59,11 +59,10 @@ namespace Webdictaat.CMS.Models
                 
         }
 
-        public void CreateDictaat(string v1, object name, string v2, object template)
+        public void CreateDictaat(string name, string template)
         {
             string pagesPath = name + _pagesDirectory;
-            Domain.Dictaat dictaat = _dictaatFactory.CreateDictaat(name, string template);
-            return new ViewModels.Dictaat(dictaat);
+            Domain.Dictaat dictaat = _dictaatFactory.CreateDictaat(name, template);
         }
     }
 }

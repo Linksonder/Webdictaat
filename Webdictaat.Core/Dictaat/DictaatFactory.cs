@@ -11,6 +11,7 @@ namespace Webdictaat.Core
     public interface IDictaatFactory
     {
         Domain.Dictaat GetDictaat(string name);
+        Dictaat CreateDictaat(string name, string template);
     }
 
     public class DictaatFactory : IDictaatFactory
@@ -44,6 +45,22 @@ namespace Webdictaat.Core
             return dictaat;
         }
 
+        public Dictaat CreateDictaat(string name, string template = null)
+        {
+         
 
+            //Default value van template is 'default'
+            string pathTemplate = String.Format("{0}\\templates\\{1}", _directoryRoot, template == null ? "default" : template);
+            string pathNew = String.Format("{0}\\{1}", _directoryRoot, name);
+
+            if (_directory.Exists(pathNew)){
+                return null;
+            }
+
+            _directory.CopyDirectory(pathNew, pathTemplate);
+
+            return this.GetDictaat(name);
+              
+        }
     }
 }
