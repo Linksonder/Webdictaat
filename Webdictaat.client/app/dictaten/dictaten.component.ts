@@ -30,6 +30,10 @@ export class DictatenComponent implements OnInit {
             );
     }
 
+    public setDictaten(dictaten: DictaatSummary[]): void {
+        this.dictaten = dictaten;
+    }
+
     public gotoDetail(dictaat: DictaatSummary): void {
         let link = ['/dictaten', dictaat.name];
         this.router.navigate(link);

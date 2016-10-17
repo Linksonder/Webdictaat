@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Webdictaat.CMS.Models.Resources;
 using Webdictaat.Core;
 
 namespace Webdictaat.CMS.Models
@@ -36,7 +35,7 @@ namespace Webdictaat.CMS.Models
             _file = file;
 
             //best place to build the factory
-            _menuFactory = new MenuFactory(_directoryRoot, _menuConfigName, file);
+            _menuFactory = new MenuFactory(appSettings.Value, file);
 
         }
 

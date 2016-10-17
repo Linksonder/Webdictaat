@@ -20,6 +20,7 @@ var pages_module_1 = require('../pages/pages.module');
 var gui_elements_module_1 = require('../gui-elements/gui-elements.module');
 //components
 var app_component_1 = require('./app.component');
+var add_dictaat_component_1 = require('../dictaten/add-dictaat.component');
 var dictaten_component_1 = require('../dictaten/dictaten.component');
 var file_preview_component_1 = require('../file-preview/file-preview.component');
 var dictaat_component_1 = require('../dictaat/dictaat.component');
@@ -36,6 +37,7 @@ var AppModule = (function () {
                 ng2_dragula_1.DragulaModule, gui_elements_module_1.GuiElementsModule,
                 platform_browser_1.BrowserModule, http_1.HttpModule, app_routing_1.routing, pages_module_1.PagesModule, forms_1.FormsModule, ng2_ckeditor_1.CKEditorModule],
             declarations: [
+                add_dictaat_component_1.AddDictaatComponent,
                 app_component_1.AppComponent, dictaten_component_1.DictatenComponent, file_preview_component_1.FilePreviewComponent, dictaat_component_1.DictaatComponent, edit_page_component_1.EditPageComponent
             ],
             providers: [file_preview_service_1.FilePreviewService, { provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }],

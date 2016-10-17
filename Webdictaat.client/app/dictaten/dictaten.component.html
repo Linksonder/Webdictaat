@@ -9,7 +9,10 @@
     </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading">Dictaten</div>
+    <div class="panel-heading">
+        Dictaten
+        <wd-add-dictaat (dictaatAdded)="setDictaten($event)"></wd-add-dictaat>
+    </div>
     <div class="panel-body">
         <table>
             <thead>

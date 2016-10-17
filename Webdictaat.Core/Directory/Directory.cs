@@ -11,10 +11,16 @@ namespace Webdictaat.Core
         IEnumerable<DirectorySummary> GetDirectoriesSummary(string path);
         DirectoryDetails GetDirectoryDetails(string path);
         IEnumerable<FileSummary> GetFilesSummary(string path);
+        void CopyDirectory(string name, string template);
+        bool Exists(string pathNew);
     }
 
     public class Directory : IDirectory
     {
+        public void CopyDirectory(string pathNew, string pathTemplate)
+        {
+            this.DirectoryCopy(pathTemplate, pathNew, true);
+        }
 
         public IEnumerable<DirectorySummary> GetDirectoriesSummary(string directoryRoot)
         {
@@ -56,6 +62,44 @@ namespace Webdictaat.Core
             };
         }
 
+        private void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        {
+            // Get the subdirectories for the specified directory.
+            System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(sourceDirName);
+
+            if (!dir.Exists)
+            {
+                throw new System.IO.DirectoryNotFoundException(
+                    "Source directory does not exist or could not be found: "
+                    + sourceDirName);
+            }
+
+            System.IO.DirectoryInfo[] dirs = dir.GetDirectories();
+            // If the destination directory doesn't exist, create it.
+            if (!System.IO.Directory.Exists(destDirName))
+            {
+                System.IO.Directory.CreateDirectory(destDirName);
+            }
+
+            // Get the files in the directory and copy them to the new location.
+            System.IO.FileInfo[] files = dir.GetFiles();
+            foreach (System.IO.FileInfo file in files)
+            {
+                string temppath = System.IO.Path.Combine(destDirName, file.Name);
+                file.CopyTo(temppath, false);
+            }
+
+            // If copying subdirectories, copy them and their contents to new location.
+            if (copySubDirs)
+            {
+                foreach (System.IO.DirectoryInfo subdir in dirs)
+                {
+                    string temppath = System.IO.Path.Combine(destDirName, subdir.Name);
+                    DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+                }
+            }
+        }
+
         private FileSummary GetFileEntry(string path)
         {
             return new FileSummary()
@@ -63,6 +107,12 @@ namespace Webdictaat.Core
                 Name = path.Split('\\').Last().Split('.').FirstOrDefault(),
                 LastChanged = System.IO.Directory.GetLastWriteTime(path),
             };
+        }
+
+        public bool Exists(string pathNew)
+        {
+            System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(pathNew);
+            return dir.Exists;
         }
     }
 }

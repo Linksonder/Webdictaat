@@ -3,7 +3,6 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using Webdictaat.Core;
-using Webdictaat.CMS.Models.Resources;
 using Microsoft.Extensions.Options;
 using Webdictaat.CMS.ViewModels;
 
@@ -20,6 +19,8 @@ namespace Webdictaat.CMS.Models
     {
         private string _directoryRoot;
         private string _pagesDirectory;
+        private string _templatesDirectory;
+        private string _dictatenDirectory;
         private IDirectory _directory;
         private IDictaatFactory _dictaatFactory;
 
@@ -37,17 +38,19 @@ namespace Webdictaat.CMS.Models
         {
             _directoryRoot = appSettings.Value.DictaatRoot;
             _pagesDirectory = appSettings.Value.PagesDirectory;
+            _dictatenDirectory = appSettings.Value.DictatenDirectory;
+            _templatesDirectory = appSettings.Value.TemplatesDirectory;
             var menuConfigName = appSettings.Value.MenuConfigName;
             _directory = directory;
 
             //best place to build the factory
-            _dictaatFactory = new DictaatFactory(_directoryRoot, _pagesDirectory, menuConfigName, directory, file);
+            _dictaatFactory = new DictaatFactory(appSettings.Value, directory, file);
 
         }
 
         public IEnumerable<ViewModels.DictaatSummary> GetDictaten()
         {
-            return _directory.GetDirectoriesSummary(_directoryRoot)
+            return _dictaatFactory.GetDictaten() 
                 .Select(s => new ViewModels.DictaatSummary(s));
         }
 
@@ -59,11 +62,10 @@ namespace Webdictaat.CMS.Models
                 
         }
 
-        public void CreateDictaat(string v1, object name, string v2, object template)
+        public void CreateDictaat(string name, string template)
         {
             string pagesPath = name + _pagesDirectory;
-            Domain.Dictaat dictaat = _dictaatFactory.CreateDictaat(name, string template);
-            return new ViewModels.Dictaat(dictaat);
+            Domain.Dictaat dictaat = _dictaatFactory.CreateDictaat(name, template);
         }
     }
 }

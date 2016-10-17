@@ -24,7 +24,7 @@ namespace Webdictaat.CMS.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public IEnumerable<ViewModels.DictaatSummary> Create([FromBody]ViewModels.DictaatForm form)
+        public IEnumerable<ViewModels.DictaatSummary> Post([FromBody]ViewModels.DictaatForm form)
         {
             _dictaatRepo.CreateDictaat(form.Name, form.Template);
             return this.Get();

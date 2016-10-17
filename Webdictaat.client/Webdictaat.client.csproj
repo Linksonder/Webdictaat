@@ -31,6 +31,7 @@
     <Content Include="app\cms\app.component.html" />
     <Content Include="app\dictaat\dictaat.component.css" />
     <Content Include="app\dictaat\dictaat.component.html" />
+    <Content Include="app\dictaten\add-dictaat.component.html" />
     <Content Include="app\dictaten\dictaten.component.css" />
     <Content Include="app\dictaten\dictaten.component.html" />
     <Content Include="app\gui-elements\article.js">
@@ -54,6 +55,7 @@
     <TypeScriptCompile Include="app\client\app.routing.ts" />
     <TypeScriptCompile Include="app\context-menu\context-menu.component.ts" />
     <TypeScriptCompile Include="app\context-menu\context-menu.service.ts" />
+    <TypeScriptCompile Include="app\dictaten\add-dictaat.component.ts" />
     <TypeScriptCompile Include="app\gui-elements\article.component.ts" />
     <TypeScriptCompile Include="app\gui-elements\column.component.ts" />
     <TypeScriptCompile Include="app\gui-elements\gui-elements.module.ts" />
