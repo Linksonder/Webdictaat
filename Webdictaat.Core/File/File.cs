@@ -11,10 +11,22 @@ namespace Webdictaat.Core
         bool TryCreateFile(string path);
         bool TryDeleteFile(string path);
         bool TryEditFile(string path, string content);
+        bool TryCopyFile(string path, string templatePath);
     }
 
     public class File : IFile
     {
+        public bool TryCopyFile(string path, string templatePath)
+        {
+            if (System.IO.File.Exists(path))
+            {
+                return false;
+            }
+
+            System.IO.File.Copy(templatePath, path);
+            return true;
+        }
+
         public bool TryCreateFile(string path)
         {
             if (System.IO.File.Exists(path))

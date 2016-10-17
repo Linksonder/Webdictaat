@@ -27,11 +27,18 @@ namespace Webdictaat.Core.Helper
 
         }
 
-        public string TemplatePath(string templateName)
+        public string DirectoryTemplatePath(string templateName)
         {
             return String.Format("{0}\\{1}\\dictaten\\{2}",
                _configVariables.DictaatRoot, _configVariables.TemplatesDirectory, templateName);
         }
+
+        public string PageTemplatePath(string templateName, string extension = ".html")
+        {
+            return String.Format("{0}\\{1}\\pages\\{2}{3}",
+               _configVariables.DictaatRoot, _configVariables.TemplatesDirectory, templateName, extension);
+        }
+
 
         public string PagesPath(string dictaatName)
         {

@@ -46,7 +46,7 @@ namespace Webdictaat.Core
         public Dictaat CreateDictaat(string name, string template = null)
         {
             //Default value van template is 'default'
-            string pathTemplate = _pathHelper.TemplatePath(template == null ? "default" : template);
+            string pathTemplate = _pathHelper.DirectoryTemplatePath(template == null ? "default" : template);
             string pathNew = _pathHelper.DictaatPath(name);
 
             if (_directory.Exists(pathNew)){

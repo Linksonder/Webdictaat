@@ -67,8 +67,9 @@ namespace Webdictaat.CMS.Models
         public DictaatPageSummary CreateDictaatPage(string dictaatName, ViewModels.DictaatPageSummary page)
         {
             string path = _pathHelper.PagePath(dictaatName, page.Name);
+            string pathTemplate = _pathHelper.PageTemplatePath("default");
 
-            if (!_file.TryCreateFile(path))
+            if (!_file.TryCopyFile(path, pathTemplate))
             {
                 //wellicht in de toekomst 404 terug sturen? File not found?
                 throw new Exceptions.PageAlreadyExcistsException();
