@@ -52,8 +52,14 @@ export class HtmlComponent implements OnInit{
     private onDropStop(event, ui): void { }
     private onDropRecieve(event, ui): void { }
 
-    private onDrop = (event, ui) => {
-         $(ui.draggable)
+    private onDrop = (event: any, ui) => {
+
+        var template = $(ui.draggable).data("template");
+
+        if (template)
+            $(ui.draggable).replaceWith($(template));
+
+        $(ui.draggable)
             .removeAttr('style')
             .find(this.editableElements)
             .attr("contenteditable", "true");

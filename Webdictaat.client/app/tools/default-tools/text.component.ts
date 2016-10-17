@@ -3,15 +3,15 @@
 declare var $: JQueryStatic;
 
 @Component({
-    selector: "wd-header",
-    template: "<div class='wd-component'><h1>Header</h1></div>"
+    selector: "wd-text",
+    template: "<div id='wd-text' class='wd-component'><p>Tekst</p></div>"
 })
-export class HeaderComponent {
+export class TextComponent {
 
     private content: string;
 
     public ngOnInit(): void {
-        $('.wd-component').draggable({
+        $('#wd-text').draggable({
             helper: "clone",
             connectToSortable: ".wd-container"
         });

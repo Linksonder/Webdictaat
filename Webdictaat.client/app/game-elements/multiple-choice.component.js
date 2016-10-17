@@ -9,22 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-//components
-var html_component_1 = require('./html.component');
-var header_component_1 = require('./header.component');
-var text_component_1 = require('./text.component');
-var column_component_1 = require('./column.component');
-var GuiElementsModule = (function () {
-    function GuiElementsModule() {
+var MultipleChoiceComponent = (function () {
+    function MultipleChoiceComponent() {
     }
-    GuiElementsModule = __decorate([
-        core_1.NgModule({
-            declarations: [column_component_1.ColumnComponent, text_component_1.TextComponent, header_component_1.HeaderComponent, html_component_1.HtmlComponent],
-            exports: [column_component_1.ColumnComponent, text_component_1.TextComponent, header_component_1.HeaderComponent, html_component_1.HtmlComponent]
+    MultipleChoiceComponent = __decorate([
+        core_1.Component({
+            selector: "wd-multiple-choice",
+            template: "<div class='wd-component'>Multiple Choice is working!</div>"
         }), 
         __metadata('design:paramtypes', [])
-    ], GuiElementsModule);
-    return GuiElementsModule;
+    ], MultipleChoiceComponent);
+    return MultipleChoiceComponent;
 }());
-exports.GuiElementsModule = GuiElementsModule;
-//# sourceMappingURL=gui-elements.module.js.map
+exports.MultipleChoiceComponent = MultipleChoiceComponent;
+//# sourceMappingURL=multiple-choice.component.js.map

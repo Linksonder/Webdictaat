@@ -4,18 +4,18 @@ import { HttpModule }    from '@angular/http';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 //modules
-import { GuiElementsModule } from '../gui-elements/gui-elements.module';
-
+//import { GameElementsModule } from '../game-elements/game-elements.module';
 
 //components
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { PageComponent } from '../page/page.component';
+import { HtmlOutlet } from '../page/html-outlet.directive';
 import { NavMenuComponent } from '../nav-menu/nav-menu.component';
 
 @NgModule({
-    imports: [BrowserModule, HttpModule, routing, GuiElementsModule],
-    declarations: [AppComponent, PageComponent, NavMenuComponent],
+    imports: [BrowserModule, HttpModule, routing],
+    declarations: [HtmlOutlet, AppComponent, PageComponent, NavMenuComponent],
     providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
     bootstrap: [AppComponent]
 })

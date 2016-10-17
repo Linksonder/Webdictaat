@@ -9,17 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var ArticleComponent = (function () {
-    function ArticleComponent() {
+var ColumnComponent = (function () {
+    function ColumnComponent() {
     }
-    ArticleComponent = __decorate([
+    ColumnComponent.prototype.ngOnInit = function () {
+        $('#wd-component')
+            .draggable({
+            cursorAt: { left: 0, top: 0 },
+            helper: "clone",
+            connectToSortable: ".wd-container"
+        });
+    };
+    ColumnComponent = __decorate([
         core_1.Component({
-            selector: "wd-article",
-            template: "<article><ng-content></ng-content></article>"
+            selector: "wd-column",
+            template: "<div  id='wd-columnn' class='wd-component wd-row'><div class='wd-flex-1 wd-container'></div><div class='wd-flex-1 wd-container'></div></div>"
         }), 
         __metadata('design:paramtypes', [])
-    ], ArticleComponent);
-    return ArticleComponent;
+    ], ColumnComponent);
+    return ColumnComponent;
 }());
-exports.ArticleComponent = ArticleComponent;
-//# sourceMappingURL=article.js.map
+exports.ColumnComponent = ColumnComponent;
+//# sourceMappingURL=column.component.js.map

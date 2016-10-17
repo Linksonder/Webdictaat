@@ -16,6 +16,9 @@ var HtmlComponent = (function () {
         this.containerElements = ".wd-container";
         this.pageEdited = new core_1.EventEmitter();
         this.onDrop = function (event, ui) {
+            var template = $(ui.draggable).data("template");
+            if (template)
+                $(ui.draggable).replaceWith($(template));
             $(ui.draggable)
                 .removeAttr('style')
                 .find(_this.editableElements)
