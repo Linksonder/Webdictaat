@@ -14,8 +14,15 @@ namespace Webdictaat.Core.Test
 
         public MenuFactoryTest()
         {
+            var config = new ConfigVariables()
+            {
+                DictaatRoot = "C:\\webdictaat.test",
+                PagesDirectory = "pages",
+                MenuConfigName = "menu-config.json"
+            };
+
             _fileMock = new Mock<IFile>();
-            _menuFactory = new Webdictaat.Core.MenuFactory("1", "2", _fileMock.Object);
+            _menuFactory = new Webdictaat.Core.MenuFactory(config, _fileMock.Object);
         }
 
         [Fact]

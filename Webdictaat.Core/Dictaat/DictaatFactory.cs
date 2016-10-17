@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Webdictaat.Core.Extensions;
+using Webdictaat.Core.Helper;
 using Webdictaat.Domain;
 
 
@@ -12,34 +13,31 @@ namespace Webdictaat.Core
     {
         Domain.Dictaat GetDictaat(string name);
         Dictaat CreateDictaat(string name, string template);
+        IEnumerable<DirectorySummary> GetDictaten();
     }
 
     public class DictaatFactory : IDictaatFactory
     {
-        private string _directoryRoot;
-        private string _pagesDirectory;
+        private PathHelper _pathHelper;
 
         private Core.IDirectory _directory;
         private Core.IFile _file;
         private Core.IMenuFactory _menuFactory;
 
-        public DictaatFactory(string directoryRoot, string pagesDirectory, string menuConfigName,
-            Core.IDirectory directory, Core.IFile file)
+        public DictaatFactory(ConfigVariables configVariables, Core.IDirectory directory, Core.IFile file)
         {
-            _directoryRoot = directoryRoot;
-            _pagesDirectory = pagesDirectory;
             _directory = directory;
             _file = file;
-            _menuFactory = new MenuFactory(directoryRoot, menuConfigName, _file);
+            _pathHelper = new PathHelper(configVariables);
+            _menuFactory = new MenuFactory(configVariables, _file);
         }
 
         public Dictaat GetDictaat(string name)
         {
             Dictaat dictaat = new Dictaat();
-            dictaat.PagesDirectory = _pagesDirectory;
             dictaat.Name = name;
-            dictaat.Location = String.Format("{0}\\{1}", _directoryRoot, name);
-            dictaat.Pages = _directory.GetFilesSummary(dictaat.Location + "\\" + _pagesDirectory);
+            dictaat.Location = _pathHelper.DictaatPath(name);
+            dictaat.Pages = _directory.GetFilesSummary(_pathHelper.PagesPath(name));
             dictaat.Menu = _menuFactory.GetMenu(name);
 
             return dictaat;
@@ -47,11 +45,9 @@ namespace Webdictaat.Core
 
         public Dictaat CreateDictaat(string name, string template = null)
         {
-         
-
             //Default value van template is 'default'
-            string pathTemplate = String.Format("{0}\\templates\\{1}", _directoryRoot, template == null ? "default" : template);
-            string pathNew = String.Format("{0}\\{1}", _directoryRoot, name);
+            string pathTemplate = _pathHelper.TemplatePath(template == null ? "default" : template);
+            string pathNew = _pathHelper.DictaatPath(name);
 
             if (_directory.Exists(pathNew)){
                 return null;
@@ -61,6 +57,16 @@ namespace Webdictaat.Core
 
             return this.GetDictaat(name);
               
+        }
+
+        /// <summary>
+        /// returneed nu nog een lijst van Directory Summary.
+        /// Dit kunnen we in de toekomst wellicht vervangen door een lijst van Dictaat voor meer info.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<DirectorySummary> GetDictaten()
+        {
+            return _directory.GetDirectoriesSummary(_pathHelper.DictatenPath());
         }
     }
 }

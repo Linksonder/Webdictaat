@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Webdictaat.CMS.Models;
-using Webdictaat.CMS.Models.Resources;
 using Webdictaat.CMS.ViewModels;
 using Webdictaat.Core;
 using Xunit;
@@ -15,12 +14,18 @@ namespace Webdictaat.CMS.Test
     public class DictaatFactoryTest
     {
         DictaatFactory _fac;
+        ConfigVariables _config;
 
         public DictaatFactoryTest()
         {
-            _fac = new DictaatFactory("C:\\webdictaat.test", "pages", "menu-config.json", new Directory(), new File());
+            _config = new ConfigVariables()
+            {
+                DictaatRoot = "C:\\webdictaat.test",
+                PagesDirectory = "pages",
+                MenuConfigName = "menu-config.json"
+            };
 
-
+            _fac = new DictaatFactory(_config, new Directory(), new File());
         }
 
         [Fact]

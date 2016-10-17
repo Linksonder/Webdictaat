@@ -14,6 +14,8 @@ import { GuiElementsModule } from '../gui-elements/gui-elements.module';
 //components
 import { AppComponent } from './app.component';
 
+import { AddDictaatComponent } from '../dictaten/add-dictaat.component';
+
 import { DictatenComponent } from '../dictaten/dictaten.component';
 import { FilePreviewComponent } from '../file-preview/file-preview.component';
 import { DictaatComponent } from '../dictaat/dictaat.component';
@@ -32,6 +34,7 @@ import { routing } from './app.routing';
         DragulaModule, GuiElementsModule,
         BrowserModule, HttpModule, routing, PagesModule, FormsModule, CKEditorModule],
     declarations: [
+        AddDictaatComponent,
         AppComponent, DictatenComponent, FilePreviewComponent, DictaatComponent, EditPageComponent
     ],
     providers: [FilePreviewService, { provide: LocationStrategy, useClass: HashLocationStrategy }],

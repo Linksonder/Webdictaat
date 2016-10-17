@@ -10,38 +10,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var dictaten_service_1 = require('./dictaten.service');
-var http_1 = require('@angular/http');
 var router_1 = require('@angular/router');
-var DictatenComponent = (function () {
-    function DictatenComponent(dictatenService, httpService, router) {
+var AddDictaatComponent = (function () {
+    function AddDictaatComponent(dictatenService, route) {
         this.dictatenService = dictatenService;
-        this.httpService = httpService;
-        this.router = router;
+        this.route = route;
+        this.showModal = false;
+        this.dictaatName = "";
+        this.dictaatAdded = new core_1.EventEmitter();
     }
-    DictatenComponent.prototype.ngOnInit = function () {
+    //event
+    AddDictaatComponent.prototype.ngOnInit = function () {
+    };
+    AddDictaatComponent.prototype.add = function () {
         var _this = this;
-        this.dictatenService.getDictaten()
+        this.showModal = false;
+        this.dictatenService.addDictaat(this.dictaatName)
             .then(function (dictaten) {
-            return _this.dictaten = dictaten;
+            _this.dictaatName = null;
+            _this.dictaatAdded.emit(dictaten);
         });
     };
-    DictatenComponent.prototype.setDictaten = function (dictaten) {
-        this.dictaten = dictaten;
-    };
-    DictatenComponent.prototype.gotoDetail = function (dictaat) {
-        var link = ['/dictaten', dictaat.name];
-        this.router.navigate(link);
-    };
-    DictatenComponent = __decorate([
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], AddDictaatComponent.prototype, "dictaatAdded", void 0);
+    AddDictaatComponent = __decorate([
         core_1.Component({
-            selector: "wd-dictaten",
-            templateUrl: "./app/dictaten/dictaten.component.html",
-            styleUrls: ["./app/dictaten/dictaten.component.css"],
+            selector: "wd-add-dictaat",
+            templateUrl: "./app/dictaten/add-dictaat.component.html",
             providers: [dictaten_service_1.DictatenService]
         }), 
-        __metadata('design:paramtypes', [dictaten_service_1.DictatenService, http_1.Http, router_1.Router])
-    ], DictatenComponent);
-    return DictatenComponent;
+        __metadata('design:paramtypes', [dictaten_service_1.DictatenService, router_1.ActivatedRoute])
+    ], AddDictaatComponent);
+    return AddDictaatComponent;
 }());
-exports.DictatenComponent = DictatenComponent;
-//# sourceMappingURL=dictaten.component.js.map
+exports.AddDictaatComponent = AddDictaatComponent;
+//# sourceMappingURL=add-dictaat.component.js.map

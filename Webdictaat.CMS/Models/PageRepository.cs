@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Webdictaat.CMS.Models.Resources;
 using Webdictaat.CMS.ViewModels;
+using Webdictaat.Core;
+using Webdictaat.Core.Helper;
 
 namespace Webdictaat.CMS.Models
 {
@@ -23,8 +24,8 @@ namespace Webdictaat.CMS.Models
         private Core.IFile _file;
         private Core.IDirectory _directory;
 
-        private string _directoryRoot;
-        private string _pagesDirectory;
+
+        private PathHelper _pathHelper;
 
         public PageRepository(
             IOptions<ConfigVariables> appSettings, 
@@ -33,14 +34,13 @@ namespace Webdictaat.CMS.Models
         {
             _file = file;
             _directory = directory;
-            _directoryRoot = appSettings.Value.DictaatRoot;
-            _pagesDirectory = appSettings.Value.PagesDirectory;
+            _pathHelper = new PathHelper(appSettings.Value);
         }
 
 
         public IEnumerable<ViewModels.DictaatPageSummary> GetDictaatPages(string dictaatName)
         {
-            string path = String.Format("{0}\\{1}\\{2}", _directoryRoot, dictaatName, _pagesDirectory);
+            string path = _pathHelper.PagesPath(dictaatName);
             return _directory.GetFilesSummary(path)
                 .Select(f => new ViewModels.DictaatPageSummary(f));
                 
@@ -48,7 +48,7 @@ namespace Webdictaat.CMS.Models
 
         public ViewModels.DictaatPage GetDictaatPage(string dictaatName, string fileName)
         {
-            string path = String.Format("{0}\\{1}\\{2}\\{3}.html", _directoryRoot, dictaatName, _pagesDirectory, fileName);
+            string path = _pathHelper.PagePath(dictaatName, fileName);
             string content = _file.TryReadFile(path);
 
             if (content == null)
@@ -66,8 +66,7 @@ namespace Webdictaat.CMS.Models
 
         public DictaatPageSummary CreateDictaatPage(string dictaatName, ViewModels.DictaatPageSummary page)
         {
-            string path = String.Format("{0}\\{1}\\{2}\\{3}.html", 
-                _directoryRoot, dictaatName, _pagesDirectory, page.Name);
+            string path = _pathHelper.PagePath(dictaatName, page.Name);
 
             if (!_file.TryCreateFile(path))
             {
@@ -81,8 +80,7 @@ namespace Webdictaat.CMS.Models
 
         public void DeleteDictaatPage(string dictaatName, string pageName)
         {
-            string path = String.Format("{0}\\{1}\\{2}\\{3}.html",
-              _directoryRoot, dictaatName, _pagesDirectory, pageName);
+            string path = _pathHelper.PagePath(dictaatName, pageName);
 
             if (!_file.TryDeleteFile(path))
             {
@@ -93,8 +91,7 @@ namespace Webdictaat.CMS.Models
 
         public DictaatPage EditDictaatPage(string dictaatName, DictaatPage page)
         {
-            string path = String.Format("{0}\\{1}\\{2}\\{3}.html",
-               _directoryRoot, dictaatName, _pagesDirectory, page.Name);
+            string path = _pathHelper.PagePath(dictaatName, page.Name);
 
             if (!_file.TryEditFile(path, page.Source))
             {
