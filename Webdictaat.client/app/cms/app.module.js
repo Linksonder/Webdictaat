@@ -17,6 +17,7 @@ var ng2_ckeditor_1 = require('ng2-ckeditor');
 var ng2_dragula_1 = require('ng2-dragula/ng2-dragula');
 //modules
 var pages_module_1 = require('../pages/pages.module');
+var gui_elements_module_1 = require('../gui-elements/gui-elements.module');
 //components
 var app_component_1 = require('./app.component');
 var dictaten_component_1 = require('../dictaten/dictaten.component');
@@ -32,7 +33,7 @@ var AppModule = (function () {
     AppModule = __decorate([
         core_1.NgModule({
             imports: [
-                ng2_dragula_1.DragulaModule,
+                ng2_dragula_1.DragulaModule, gui_elements_module_1.GuiElementsModule,
                 platform_browser_1.BrowserModule, http_1.HttpModule, app_routing_1.routing, pages_module_1.PagesModule, forms_1.FormsModule, ng2_ckeditor_1.CKEditorModule],
             declarations: [
                 app_component_1.AppComponent, dictaten_component_1.DictatenComponent, file_preview_component_1.FilePreviewComponent, dictaat_component_1.DictaatComponent, edit_page_component_1.EditPageComponent

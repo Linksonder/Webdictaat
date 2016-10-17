@@ -9,22 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-//components
-var html_component_1 = require('./html.component');
-var header_component_1 = require('./header.component');
-var text_component_1 = require('./text.component');
-var column_component_1 = require('./column.component');
-var GuiElementsModule = (function () {
-    function GuiElementsModule() {
+var ColumnComponent = (function () {
+    function ColumnComponent() {
     }
-    GuiElementsModule = __decorate([
-        core_1.NgModule({
-            declarations: [column_component_1.ColumnComponent, text_component_1.TextComponent, header_component_1.HeaderComponent, html_component_1.HtmlComponent],
-            exports: [column_component_1.ColumnComponent, text_component_1.TextComponent, header_component_1.HeaderComponent, html_component_1.HtmlComponent]
+    ColumnComponent.prototype.ngOnInit = function () {
+        $('.wd-component')
+            .draggable({
+            cursorAt: { left: 0, top: 0 },
+            helper: "clone",
+            connectToSortable: ".wd-container"
+        });
+    };
+    ColumnComponent = __decorate([
+        core_1.Component({
+            selector: "wd-column",
+            template: "<div class='wd-component wd-row'><div class='wd-flex-1 wd-container'></div><div class='wd-flex-1 wd-container'></div></div>"
         }), 
         __metadata('design:paramtypes', [])
-    ], GuiElementsModule);
-    return GuiElementsModule;
+    ], ColumnComponent);
+    return ColumnComponent;
 }());
-exports.GuiElementsModule = GuiElementsModule;
-//# sourceMappingURL=gui-elements.module.js.map
+exports.ColumnComponent = ColumnComponent;
+//# sourceMappingURL=column.component.js.map

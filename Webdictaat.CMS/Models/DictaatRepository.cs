@@ -13,6 +13,7 @@ namespace Webdictaat.CMS.Models
     {
         IEnumerable<ViewModels.DictaatSummary> GetDictaten();
         ViewModels.Dictaat getDictaat(string name);
+        void CreateDictaat(string name, string template);
     }
 
     public class DictaatRepository : IDictaatRepository
@@ -56,6 +57,13 @@ namespace Webdictaat.CMS.Models
             Domain.Dictaat dictaat = _dictaatFactory.GetDictaat(name);
             return new ViewModels.Dictaat(dictaat);
                 
+        }
+
+        public void CreateDictaat(string v1, object name, string v2, object template)
+        {
+            string pagesPath = name + _pagesDirectory;
+            Domain.Dictaat dictaat = _dictaatFactory.CreateDictaat(name, string template);
+            return new ViewModels.Dictaat(dictaat);
         }
     }
 }

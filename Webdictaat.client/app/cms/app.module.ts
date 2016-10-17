@@ -9,6 +9,7 @@ import {DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
 
 //modules
 import { PagesModule } from '../pages/pages.module';
+import { GuiElementsModule } from '../gui-elements/gui-elements.module';
 
 //components
 import { AppComponent } from './app.component';
@@ -28,7 +29,7 @@ import { routing } from './app.routing';
 
 @NgModule({
     imports: [
-        DragulaModule
+        DragulaModule, GuiElementsModule,
         BrowserModule, HttpModule, routing, PagesModule, FormsModule, CKEditorModule],
     declarations: [
         AppComponent, DictatenComponent, FilePreviewComponent, DictaatComponent, EditPageComponent
