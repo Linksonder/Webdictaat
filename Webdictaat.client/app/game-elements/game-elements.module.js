@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var platform_browser_1 = require('@angular/platform-browser');
 //components
 var multiple_choice_component_1 = require('./multiple-choice.component');
 var GameElementsModule = (function () {
@@ -16,6 +17,7 @@ var GameElementsModule = (function () {
     }
     GameElementsModule = __decorate([
         core_1.NgModule({
+            imports: [platform_browser_1.BrowserModule],
             declarations: [multiple_choice_component_1.MultipleChoiceComponent],
             exports: [multiple_choice_component_1.MultipleChoiceComponent]
         }), 

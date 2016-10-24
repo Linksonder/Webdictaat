@@ -4,7 +4,7 @@ import { HttpModule }    from '@angular/http';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 //modules
-//import { GameElementsModule } from '../game-elements/game-elements.module';
+import { GameElementsModule } from '../game-elements/game-elements.module';
 
 //components
 import { AppComponent } from './app.component';

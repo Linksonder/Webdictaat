@@ -11,7 +11,7 @@ export class ColumnComponent {
     private content: string;
 
     public ngOnInit(): void {
-        $('#wd-component')
+        $('#wd-columnn')
             .draggable({
                 cursorAt: { left: 0, top: 0 },
                 helper: "clone",

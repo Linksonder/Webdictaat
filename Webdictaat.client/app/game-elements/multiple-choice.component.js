@@ -9,13 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var Answer = (function () {
+    function Answer() {
+    }
+    return Answer;
+}());
 var MultipleChoiceComponent = (function () {
     function MultipleChoiceComponent() {
+        this.question = "What is 1 + 1?";
+        this.answers = [];
+        this.correctAnswer = { text: "2", isCorrect: true };
+        this.answers.push({ text: "1", isCorrect: false });
+        this.answers.push(this.correctAnswer);
+        this.answers.push({ text: "3", isCorrect: false });
+        this.answers.push({ text: "4", isCorrect: false });
     }
+    MultipleChoiceComponent.prototype.giveAnswer = function (answer) {
+        this.selectedAnswer = answer;
+    };
     MultipleChoiceComponent = __decorate([
         core_1.Component({
             selector: "wd-multiple-choice",
-            template: "<div class='wd-component'>Multiple Choice is working!</div>"
+            template: "\n        <div class='wd-component'>\n            {{question}}\n\n            <div *ngIf=\"selectedAnswer && selectedAnswer.isCorrect\">\n                {{selectedAnswer.text}} is correct!\n            </div>\n\n                <div *ngIf=\"selectedAnswer && !selectedAnswer.isCorrect\">\n                {{selectedAnswer.text}} is not correct.\n                Feel free to try again!\n            </div>\n\n            <ul>\n                <li *ngFor='let answer of answers' (click)=\"giveAnswer(answer)\">\n                    {{answer.text}}\n                </li>\n            </ul>\n        </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], MultipleChoiceComponent);

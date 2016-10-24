@@ -12,8 +12,6 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var http_1 = require('@angular/http');
 var common_1 = require('@angular/common');
-//modules
-//import { GameElementsModule } from '../game-elements/game-elements.module';
 //components
 var app_component_1 = require('./app.component');
 var app_routing_1 = require('./app.routing');

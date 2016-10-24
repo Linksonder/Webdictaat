@@ -20,7 +20,10 @@ export function createComponentFactory(compiler: Compiler, metadata: Component):
     const cmpClass = class DynamicComponent { };
     const decoratedCmp = Component(metadata)(cmpClass);
 
-    @NgModule({ imports: [CommonModule, RouterModule, GameElementsModule], declarations: [decoratedCmp] })
+    @NgModule({
+        imports: [CommonModule, RouterModule, GameElementsModule],
+        declarations: [decoratedCmp]
+    })
     class DynamicHtmlModule { }
 
     return compiler.compileModuleAndAllComponentsAsync(DynamicHtmlModule)

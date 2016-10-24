@@ -24,7 +24,10 @@ function createComponentFactory(compiler, metadata) {
         function DynamicHtmlModule() {
         }
         DynamicHtmlModule = __decorate([
-            core_1.NgModule({ imports: [common_1.CommonModule, router_1.RouterModule, game_elements_module_1.GameElementsModule], declarations: [decoratedCmp] }), 
+            core_1.NgModule({
+                imports: [common_1.CommonModule, router_1.RouterModule, game_elements_module_1.GameElementsModule],
+                declarations: [decoratedCmp]
+            }), 
             __metadata('design:paramtypes', [])
         ], DynamicHtmlModule);
         return DynamicHtmlModule;

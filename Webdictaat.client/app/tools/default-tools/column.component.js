@@ -13,7 +13,7 @@ var ColumnComponent = (function () {
     function ColumnComponent() {
     }
     ColumnComponent.prototype.ngOnInit = function () {
-        $('#wd-component')
+        $('#wd-columnn')
             .draggable({
             cursorAt: { left: 0, top: 0 },
             helper: "clone",

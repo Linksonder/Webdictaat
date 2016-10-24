@@ -81,3 +81,12 @@
     border:1px dashed #ccc;
 }
 
+/** tools */
+wd-multiple-choice{
+    width:100%;
+    padding:15px;
+    border:1px solid black;
+    background-color:gray;
+    display:block;
+    margin-bottom:5px;
+}
