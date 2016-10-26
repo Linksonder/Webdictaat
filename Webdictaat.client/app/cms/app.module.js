@@ -23,11 +23,14 @@ var app_component_1 = require('./app.component');
 var add_dictaat_component_1 = require('../dictaten/add-dictaat.component');
 var dictaten_component_1 = require('../dictaten/dictaten.component');
 var file_preview_component_1 = require('../file-preview/file-preview.component');
+var dialog_component_1 = require('../dialog/dialog.component');
 var dictaat_component_1 = require('../dictaat/dictaat.component');
 var common_1 = require('@angular/common');
-var file_preview_service_1 = require('../services/file-preview.service');
 var edit_page_component_1 = require('../pages/edit-page.component');
+//services
 var app_routing_1 = require('./app.routing');
+var dialog_service_1 = require('../services/dialog.service');
+var file_preview_service_1 = require('../services/file-preview.service');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -37,10 +40,11 @@ var AppModule = (function () {
                 ng2_dragula_1.DragulaModule, tools_module_1.ToolsModule,
                 platform_browser_1.BrowserModule, http_1.HttpModule, app_routing_1.routing, pages_module_1.PagesModule, forms_1.FormsModule, ng2_ckeditor_1.CKEditorModule],
             declarations: [
-                add_dictaat_component_1.AddDictaatComponent,
+                add_dictaat_component_1.AddDictaatComponent, dialog_component_1.DialogComponent,
                 app_component_1.AppComponent, dictaten_component_1.DictatenComponent, file_preview_component_1.FilePreviewComponent, dictaat_component_1.DictaatComponent, edit_page_component_1.EditPageComponent
             ],
-            providers: [file_preview_service_1.FilePreviewService, { provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }],
+            providers: [file_preview_service_1.FilePreviewService, dialog_service_1.DialogService,
+                { provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy },],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

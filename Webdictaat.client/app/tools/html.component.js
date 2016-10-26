@@ -9,45 +9,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var dialog_service_1 = require('../services/dialog.service');
 var HtmlComponent = (function () {
-    function HtmlComponent() {
+    function HtmlComponent(dialogService) {
         var _this = this;
+        this.dialogService = dialogService;
         this.editableElements = "p, span, h1, h2, h3, h4, h5";
         this.containerElements = ".wd-container";
         this.pageEdited = new core_1.EventEmitter();
         this.onDrop = function (event, ui) {
-            var template = $(ui.draggable).data("template");
-            if (template)
-                $(ui.draggable).replaceWith($(template));
-            $(ui.draggable)
+            var data = ui.item.data("data");
+            if (data) {
+                _this.dialogService.showDialog("mooi");
+                ui.item.replaceWith($(data.template));
+            }
+            ui.item
                 .removeAttr('style')
                 .find(_this.editableElements)
                 .attr("contenteditable", "true");
-            _this.enableContainers($(ui.draggable));
+            _this.enableContainers(ui.item);
         };
     }
-    HtmlComponent.prototype.enableContainers = function (element) {
-        element.find('.wd-container').sortable({
-            connectWith: '.wd-container',
-            cancel: this.editableElements
-        });
-        element.droppable({
-            hoverClass: "ui-state-hover",
-            start: this.onDropStart,
-            stop: this.onDropStop,
-            receive: this.onDropRecieve,
-            drop: this.onDrop
-        });
-    };
     HtmlComponent.prototype.ngOnInit = function () {
         this.pageElement = $('#page').html(this.innerHTML);
         this.enableContainers(this.pageElement);
         this.pageElement.find('.wd-container').find(this.editableElements)
             .attr("contenteditable", "true");
     };
-    HtmlComponent.prototype.onDropStart = function (event, ui) { };
-    HtmlComponent.prototype.onDropStop = function (event, ui) { };
-    HtmlComponent.prototype.onDropRecieve = function (event, ui) { };
+    HtmlComponent.prototype.enableContainers = function (element) {
+        element.find('.wd-container').sortable({
+            connectWith: '.wd-container',
+            cancel: this.editableElements,
+            hoverClass: "ui-state-hover",
+            beforeStop: this.onDrop
+        });
+    };
     HtmlComponent.prototype.savePage = function () {
         var htmlClone = this.pageElement.clone();
         htmlClone.find(this.editableElements).removeAttr("contenteditable");
@@ -64,9 +60,9 @@ var HtmlComponent = (function () {
     HtmlComponent = __decorate([
         core_1.Component({
             selector: "wd-html",
-            template: "<div id='page'></div><button class='btn btn-default' (click)='savePage()'>Save</button>"
+            template: "<div id='page'></div><button class='btn btn-default' (click)='savePage()'>Save</button>",
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [dialog_service_1.DialogService])
     ], HtmlComponent);
     return HtmlComponent;
 }());

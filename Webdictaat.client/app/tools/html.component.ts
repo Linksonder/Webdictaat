@@ -1,10 +1,11 @@
 ﻿import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { DialogService } from '../services/dialog.service';
 
 declare var $: JQueryStatic;
 
 @Component({
     selector: "wd-html",
-    template: "<div id='page'></div><button class='btn btn-default' (click)='savePage()'>Save</button>"
+    template: "<div id='page'></div><button class='btn btn-default' (click)='savePage()'>Save</button>",
 })
 export class HtmlComponent implements OnInit{
 
@@ -19,23 +20,10 @@ export class HtmlComponent implements OnInit{
 
     private pageElement;
 
-    private enableContainers(element): void {
-
-        element.find('.wd-container').sortable({
-            connectWith: '.wd-container',
-            cancel: this.editableElements
-        });
-
-        element.droppable({
-            hoverClass: "ui-state-hover",
-            start: this.onDropStart,
-            stop: this.onDropStop,
-            receive: this.onDropRecieve,
-            drop: this.onDrop
-        });
-
+    constructor(private dialogService: DialogService) {
+      
     }
-     
+
 
     public ngOnInit(): void{
 
@@ -47,24 +35,34 @@ export class HtmlComponent implements OnInit{
             .attr("contenteditable", "true");
     }
 
+    private enableContainers(element): void {
 
-    private onDropStart(event, ui): void { }
-    private onDropStop(event, ui): void { }
-    private onDropRecieve(event, ui): void { }
+        element.find('.wd-container').sortable({
+            connectWith: '.wd-container',
+            cancel: this.editableElements,
+            hoverClass: "ui-state-hover",
+            beforeStop: this.onDrop
+        });
+
+    }
 
     private onDrop = (event: any, ui) => {
 
-        var template = $(ui.draggable).data("template");
+        var data = ui.item.data("data");
 
-        if (template)
-            $(ui.draggable).replaceWith($(template));
+        if (data) {
+            this.dialogService.showDialog("mooi");
+            ui.item.replaceWith($(data.template));
+        }
 
-        $(ui.draggable)
+            
+
+        ui.item
             .removeAttr('style')
             .find(this.editableElements)
             .attr("contenteditable", "true");
 
-         this.enableContainers($(ui.draggable));
+        this.enableContainers(ui.item);
 
     }
 

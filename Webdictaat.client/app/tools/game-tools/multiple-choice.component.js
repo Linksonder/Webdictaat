@@ -11,21 +11,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var MultipleChoiceToolComponent = (function () {
     function MultipleChoiceToolComponent() {
+        this.template = "<wd-multiple-choice>";
     }
     MultipleChoiceToolComponent.prototype.ngOnInit = function () {
-        var template = "<wd-multiple-choice>";
+        var data = {
+            template: this.template,
+            onDrop: function () {
+                this.onDrop();
+            }
+        };
         $('#wd-multiple-choice-tool').draggable({
             helper: "clone",
             connectToSortable: ".wd-container",
             start: function (e, ui) {
-                ui.helper.data("template", template);
+                ui.helper.data("data", data);
             }
         });
     };
     MultipleChoiceToolComponent = __decorate([
         core_1.Component({
             selector: "wd-multiple-choice-tool",
-            template: "<div id='wd-multiple-choice-tool' class='wd-component'>Multiple choice</div>"
+            template: "<div id='wd-multiple-choice-tool' class='wd-component'>Multiple choice</div>",
         }), 
         __metadata('design:paramtypes', [])
     ], MultipleChoiceToolComponent);

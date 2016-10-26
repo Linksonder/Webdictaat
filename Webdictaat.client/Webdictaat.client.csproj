@@ -29,6 +29,7 @@
     <TypeScriptCompile Include="app\client\app.component.ts" />
     <Content Include="app\cms\app.component.css" />
     <Content Include="app\cms\app.component.html" />
+    <Content Include="app\dialog\dialog.component.html" />
     <Content Include="app\dictaat\dictaat.component.css" />
     <Content Include="app\dictaat\dictaat.component.html" />
     <Content Include="app\dictaten\add-dictaat.component.html" />
@@ -49,11 +50,14 @@
     <TypeScriptCompile Include="app\client\app.routing.ts" />
     <TypeScriptCompile Include="app\context-menu\context-menu.component.ts" />
     <TypeScriptCompile Include="app\context-menu\context-menu.service.ts" />
+    <TypeScriptCompile Include="app\dialog\dialog.component.ts" />
+    <TypeScriptCompile Include="app\services\dialog.service.ts" />
     <TypeScriptCompile Include="app\dictaten\add-dictaat.component.ts" />
     <TypeScriptCompile Include="app\game-elements\multiple-choice.component.ts" />
     <TypeScriptCompile Include="app\game-elements\game-elements.module.ts" />
     <TypeScriptCompile Include="app\page\html-outlet.directive.ts" />
     <TypeScriptCompile Include="app\tools\default-tools\column.component.ts" />
+    <TypeScriptCompile Include="app\tools\game-tools\game-tools.service.ts" />
     <TypeScriptCompile Include="app\tools\tools.module.ts" />
     <TypeScriptCompile Include="app\tools\default-tools\header.component.ts" />
     <TypeScriptCompile Include="app\tools\html.component.ts" />
