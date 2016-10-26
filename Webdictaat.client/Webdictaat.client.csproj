@@ -54,6 +54,7 @@
     <TypeScriptCompile Include="app\game-elements\game-elements.module.ts" />
     <TypeScriptCompile Include="app\page\html-outlet.directive.ts" />
     <TypeScriptCompile Include="app\tools\default-tools\column.component.ts" />
+    <TypeScriptCompile Include="app\tools\tools.component.ts" />
     <TypeScriptCompile Include="app\tools\tools.module.ts" />
     <TypeScriptCompile Include="app\tools\default-tools\header.component.ts" />
     <TypeScriptCompile Include="app\tools\html.component.ts" />

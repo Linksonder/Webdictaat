@@ -14,7 +14,6 @@ var http_1 = require('@angular/http');
 var forms_1 = require('@angular/forms');
 //external libraries
 var ng2_ckeditor_1 = require('ng2-ckeditor');
-var ng2_dragula_1 = require('ng2-dragula/ng2-dragula');
 //modules
 var pages_module_1 = require('../pages/pages.module');
 var tools_module_1 = require('../tools/tools.module');
@@ -34,7 +33,7 @@ var AppModule = (function () {
     AppModule = __decorate([
         core_1.NgModule({
             imports: [
-                ng2_dragula_1.DragulaModule, tools_module_1.ToolsModule,
+                tools_module_1.ToolsModule,
                 platform_browser_1.BrowserModule, http_1.HttpModule, app_routing_1.routing, pages_module_1.PagesModule, forms_1.FormsModule, ng2_ckeditor_1.CKEditorModule],
             declarations: [
                 add_dictaat_component_1.AddDictaatComponent,

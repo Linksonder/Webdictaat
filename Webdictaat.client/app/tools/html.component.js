@@ -11,43 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var HtmlComponent = (function () {
     function HtmlComponent() {
-        var _this = this;
         this.editableElements = "p, span, h1, h2, h3, h4, h5";
         this.containerElements = ".wd-container";
         this.pageEdited = new core_1.EventEmitter();
-        this.onDrop = function (event, ui) {
-            var template = $(ui.draggable).data("template");
-            if (template)
-                $(ui.draggable).replaceWith($(template));
-            $(ui.draggable)
-                .removeAttr('style')
-                .find(_this.editableElements)
-                .attr("contenteditable", "true");
-            _this.enableContainers($(ui.draggable));
-        };
     }
-    HtmlComponent.prototype.enableContainers = function (element) {
-        element.find('.wd-container').sortable({
-            connectWith: '.wd-container',
-            cancel: this.editableElements
-        });
-        element.droppable({
-            hoverClass: "ui-state-hover",
-            start: this.onDropStart,
-            stop: this.onDropStop,
-            receive: this.onDropRecieve,
-            drop: this.onDrop
-        });
-    };
     HtmlComponent.prototype.ngOnInit = function () {
-        this.pageElement = $('#page').html(this.innerHTML);
-        this.enableContainers(this.pageElement);
-        this.pageElement.find('.wd-container').find(this.editableElements)
-            .attr("contenteditable", "true");
     };
-    HtmlComponent.prototype.onDropStart = function (event, ui) { };
-    HtmlComponent.prototype.onDropStop = function (event, ui) { };
-    HtmlComponent.prototype.onDropRecieve = function (event, ui) { };
+    HtmlComponent.prototype.dropOnPage = function ($event) {
+    };
     HtmlComponent.prototype.savePage = function () {
         var htmlClone = this.pageElement.clone();
         htmlClone.find(this.editableElements).removeAttr("contenteditable");
@@ -64,7 +35,7 @@ var HtmlComponent = (function () {
     HtmlComponent = __decorate([
         core_1.Component({
             selector: "wd-html",
-            template: "<div id='page'></div><button class='btn btn-default' (click)='savePage()'>Save</button>"
+            template: " \n          <div class=\"panel panel-success\">\n            <div class=\"panel-heading\">\n                Page\n            </div>\n            <div class=\"panel-body\" dnd-sortable-container [dropZones]=\"['page-zone']\">\n                <ul class=\"list-group\" >\n                    <li class=\"list-group-item\" dnd-sortable [sortableIndex]=\"6\" >zes</li>\n                    <li class=\"list-group-item\" dnd-sortable [sortableIndex]=\"7\" >zeven</li>\n                </ul>\n            </div>\n        </div>"
         }), 
         __metadata('design:paramtypes', [])
     ], HtmlComponent);

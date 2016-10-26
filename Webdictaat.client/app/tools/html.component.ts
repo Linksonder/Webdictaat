@@ -4,7 +4,20 @@ declare var $: JQueryStatic;
 
 @Component({
     selector: "wd-html",
-    template: "<div id='page'></div><button class='btn btn-default' (click)='savePage()'>Save</button>"
+
+    template: ` 
+          <div class="panel panel-success">
+            <div class="panel-heading">
+                Page
+            </div>
+            <div class="panel-body" dnd-sortable-container [dropZones]="['page-zone']">
+                <ul class="list-group" >
+                    <li class="list-group-item" dnd-sortable [sortableIndex]="6" >zes</li>
+                    <li class="list-group-item" dnd-sortable [sortableIndex]="7" >zeven</li>
+                </ul>
+            </div>
+        </div>`
+    //template: "<div id='page' dnd-droppable ></div><button class='btn btn-default' (click)='savePage()'>Save</button>"
 })
 export class HtmlComponent implements OnInit{
 
@@ -19,54 +32,14 @@ export class HtmlComponent implements OnInit{
 
     private pageElement;
 
-    private enableContainers(element): void {
-
-        element.find('.wd-container').sortable({
-            connectWith: '.wd-container',
-            cancel: this.editableElements
-        });
-
-        element.droppable({
-            hoverClass: "ui-state-hover",
-            start: this.onDropStart,
-            stop: this.onDropStop,
-            receive: this.onDropRecieve,
-            drop: this.onDrop
-        });
-
-    }
-     
-
     public ngOnInit(): void{
 
-        this.pageElement = $('#page').html(this.innerHTML);
-
-        this.enableContainers(this.pageElement);
-
-        this.pageElement.find('.wd-container').find(this.editableElements)
-            .attr("contenteditable", "true");
     }
 
-
-    private onDropStart(event, ui): void { }
-    private onDropStop(event, ui): void { }
-    private onDropRecieve(event, ui): void { }
-
-    private onDrop = (event: any, ui) => {
-
-        var template = $(ui.draggable).data("template");
-
-        if (template)
-            $(ui.draggable).replaceWith($(template));
-
-        $(ui.draggable)
-            .removeAttr('style')
-            .find(this.editableElements)
-            .attr("contenteditable", "true");
-
-         this.enableContainers($(ui.draggable));
-
+    public dropOnPage($event): void {
+        
     }
+    
 
     private savePage(): void {
         var htmlClone = this.pageElement.clone();

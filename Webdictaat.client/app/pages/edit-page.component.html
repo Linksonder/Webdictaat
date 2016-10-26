@@ -1,38 +1,13 @@
 ﻿<div >
     <div class="row">
-        <div class="col-md-3">
-                
-            <h3>Elements</h3>
 
-            <ul class="tools">
-                <li><wd-header></wd-header></li>
-                <li><wd-text></wd-text></li>
-                <li><wd-column></wd-column></li>
-                <li><wd-multiple-choice-tool></wd-multiple-choice-tool></li>
-            </ul>
-
-            
-
+        <div class="col-md-3"> 
+            <wd-tools></wd-tools>
         </div>
 
         <div class='wrapper col-md-9' *ngIf="page">
-
             <wd-html [innerHTML]="page.source" (pageEdited)="updateSource($event)"></wd-html>
-
-            <hr />
-
-            <div>
-                {{page ? page.source : ''}}
-            </div>
-         
-
-            <div class="btn-group">
-            
-            </div>
-
         </div>
 
     </div>
-    
-    
 </div>

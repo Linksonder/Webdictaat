@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 
 //external libraries
 import {CKEditorModule} from 'ng2-ckeditor';
-import {DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
 
 //modules
 import { PagesModule } from '../pages/pages.module';
@@ -31,7 +30,7 @@ import { routing } from './app.routing';
 
 @NgModule({
     imports: [
-        DragulaModule, ToolsModule,
+        ToolsModule,
         BrowserModule, HttpModule, routing, PagesModule, FormsModule, CKEditorModule],
     declarations: [
         AddDictaatComponent,

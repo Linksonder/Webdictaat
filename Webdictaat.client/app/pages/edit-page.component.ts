@@ -32,7 +32,6 @@ export class EditPageComponent implements OnInit {
             this.pagesService.getPage(this.dictaatName, name)
                 .then(page => {
                     this.page = page;
-                    this.initJqueryUiDragAndDrop();
                 });
         });
     }
@@ -47,10 +46,4 @@ export class EditPageComponent implements OnInit {
         this.savePage();
     }
 
-    public initJqueryUiDragAndDrop(): void {
-        //$(".tools li").draggable({ helper: "clone", revert: "invalid"});
-        $(".wd-component").sortable().disableSelection();;
-        
-       
-    }
 }

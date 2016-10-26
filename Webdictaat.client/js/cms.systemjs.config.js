@@ -11,11 +11,12 @@
     // map tells the System loader where to look for things
     map: {
       // our app is within the app folder
-        // angular bundles
-
-      'dragula': 'npm:dragula/dist/dragula.js',
-      'ng2-dragula': 'npm:ng2-dragula',
-      'ng2-ckeditor': 'npm:ng2-ckeditor/lib/CKEditor.js',   
+        
+      //External libraries
+      'ng2-toasty': 'node_modules/ng2-toasty',
+      'ng2-dnd': 'node_modules/ng2-dnd',
+      'ng2-ckeditor': 'npm:ng2-ckeditor/lib/CKEditor.js',
+       // angular bundles
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
       '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
       '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
@@ -31,11 +32,14 @@
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
 
-        'ng2-dragula': {
-
+        'ng2-toasty': {
+            main: './index.js',
             defaultExtension: 'js'
         },
-       
+        'ng2-dnd': {
+            main: './index.js',
+            defaultExtension: 'js'
+        },
         app: {
             main: './cms/main.js',
             defaultExtension: 'js'

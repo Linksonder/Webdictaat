@@ -9,19 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var platform_browser_1 = require('@angular/platform-browser');
 //components
 var html_component_1 = require('./html.component');
+var tools_component_1 = require('./tools.component');
 var header_component_1 = require('./default-tools/header.component');
 var text_component_1 = require('./default-tools/text.component');
 var column_component_1 = require('./default-tools/column.component');
 var multiple_choice_component_1 = require('./game-tools/multiple-choice.component');
+var ng2_toasty_1 = require('ng2-toasty');
+var ng2_dnd_1 = require('ng2-dnd');
 var ToolsModule = (function () {
     function ToolsModule() {
     }
     ToolsModule = __decorate([
         core_1.NgModule({
-            declarations: [column_component_1.ColumnComponent, text_component_1.TextComponent, header_component_1.HeaderComponent, html_component_1.HtmlComponent, multiple_choice_component_1.MultipleChoiceToolComponent],
-            exports: [column_component_1.ColumnComponent, text_component_1.TextComponent, header_component_1.HeaderComponent, html_component_1.HtmlComponent, multiple_choice_component_1.MultipleChoiceToolComponent]
+            imports: [ng2_toasty_1.ToastyModule.forRoot(), ng2_dnd_1.DndModule.forRoot(), platform_browser_1.BrowserModule],
+            declarations: [column_component_1.ColumnComponent, text_component_1.TextComponent, header_component_1.HeaderComponent, html_component_1.HtmlComponent, multiple_choice_component_1.MultipleChoiceToolComponent, tools_component_1.ToolsComponent],
+            exports: [column_component_1.ColumnComponent, text_component_1.TextComponent, header_component_1.HeaderComponent, html_component_1.HtmlComponent, multiple_choice_component_1.MultipleChoiceToolComponent, tools_component_1.ToolsComponent]
         }), 
         __metadata('design:paramtypes', [])
     ], ToolsModule);

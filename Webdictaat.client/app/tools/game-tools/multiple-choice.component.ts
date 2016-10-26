@@ -18,6 +18,7 @@ export class MultipleChoiceToolComponent {
             start: function (e, ui) {
                 ui.helper.data("template", template);
             }
+          
         })
 
 

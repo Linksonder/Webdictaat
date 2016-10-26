@@ -11,17 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var TextComponent = (function () {
     function TextComponent() {
+        this.template = "<p></p>";
     }
     TextComponent.prototype.ngOnInit = function () {
-        $('#wd-text').draggable({
-            helper: "clone",
-            connectToSortable: ".wd-container"
-        });
     };
     TextComponent = __decorate([
         core_1.Component({
             selector: "wd-text",
-            template: "<div id='wd-text' class='wd-component'><p>Tekst</p></div>"
+            template: "<div id='wd-text' dnd-sortable ><p>Tekst</p></div>"
         }), 
         __metadata('design:paramtypes', [])
     ], TextComponent);
