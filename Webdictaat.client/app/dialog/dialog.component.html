@@ -1,3 +1,19 @@
-﻿<div >
-    I am a dialog with content {{content}}
+﻿<div id="myModal" class="modal fade in" role="dialog" *ngIf="isVisible">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" (click)="hideDialog()">&times;</button>
+                <h4 class="modal-title">{{Title}}</h4>
+            </div>
+            <div class="modal-body">
+                <html-outlet [html]="Content"></html-outlet>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="hideDialog()">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
+
+

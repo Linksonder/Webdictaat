@@ -8,6 +8,7 @@ import {CKEditorModule} from 'ng2-ckeditor';
 import {DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
 
 //modules
+import { QuestionsModule } from '../questions/questions.module';
 import { PagesModule } from '../pages/pages.module';
 import { ToolsModule } from '../tools/tools.module';
 
@@ -19,8 +20,9 @@ import { FilePreviewComponent } from '../file-preview/file-preview.component';
 import { DialogComponent } from '../dialog/dialog.component';
 import { DictaatComponent } from '../dictaat/dictaat.component';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
-
+import { HtmlOutlet } from '../core/html-outlet.directive';
 import { EditPageComponent }  from '../pages/edit-page.component';
+
 
 //services
 import { routing } from './app.routing';
@@ -30,15 +32,20 @@ import { FilePreviewService } from '../services/file-preview.service';
 
 @NgModule({
     imports: [
-        DragulaModule, ToolsModule,
-        BrowserModule, HttpModule, routing, PagesModule, FormsModule, CKEditorModule],
+        DragulaModule, ToolsModule, QuestionsModule,
+        BrowserModule, HttpModule, routing, PagesModule, FormsModule, CKEditorModule
+    ],
     declarations: [
-        AddDictaatComponent, DialogComponent,
+        AddDictaatComponent, DialogComponent, HtmlOutlet,
         AppComponent, DictatenComponent, FilePreviewComponent, DictaatComponent, EditPageComponent
     ],
-    providers: [FilePreviewService, DialogService,
-             { provide: LocationStrategy, useClass: HashLocationStrategy },],
-    bootstrap: [AppComponent]
+    providers: [
+        FilePreviewService, DialogService,
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+    ],
+    bootstrap: [
+        AppComponent
+    ]
 })
 export class AppModule {
 

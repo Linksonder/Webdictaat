@@ -14,17 +14,16 @@ var MultipleChoiceToolComponent = (function () {
         this.template = "<wd-multiple-choice>";
     }
     MultipleChoiceToolComponent.prototype.ngOnInit = function () {
-        var data = {
-            template: this.template,
-            onDrop: function () {
-                this.onDrop();
-            }
+        var params = {
+            Title: "Add Question",
+            Template: "<wd-multiple-choice>",
+            TriggeredComponent: "<wd-add-question>"
         };
         $('#wd-multiple-choice-tool').draggable({
             helper: "clone",
             connectToSortable: ".wd-container",
             start: function (e, ui) {
-                ui.helper.data("data", data);
+                ui.helper.data("params", params);
             }
         });
     };

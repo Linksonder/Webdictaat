@@ -10,37 +10,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-//Nodig om een object om te toveren in een promise.
-var Subject_1 = require('rxjs/Subject');
 require('rxjs/add/operator/toPromise');
 require('rxjs/add/operator/map');
-var DialogData = (function () {
-    function DialogData() {
-    }
-    return DialogData;
-}());
-exports.DialogData = DialogData;
-var DialogService = (function () {
-    function DialogService(http) {
+var QuestionService = (function () {
+    function QuestionService(http) {
         this.http = http;
-        this.subject = new Subject_1.Subject();
+        this.dictatenUrl = 'http://localhost:65418/api/dictaten/';
     }
-    DialogService.prototype.showDialog = function (title, content) {
-        this.dialogData = { Title: title, Content: content };
-        this.subject.next(this.dialogData);
+    QuestionService.prototype.addQuestion = function (dictaatName, question) {
+        var url = this.dictatenUrl + dictaatName + '/questions';
+        return this.http.post(url, question)
+            .toPromise()
+            .then(function (response) {
+            return response.json();
+        }).catch(this.handleError);
     };
-    DialogService.prototype.getDialogData = function () {
-        return this.subject.asObservable();
-    };
-    DialogService.prototype.handleError = function (error) {
+    QuestionService.prototype.handleError = function (error) {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
     };
-    DialogService = __decorate([
+    QuestionService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], DialogService);
-    return DialogService;
+    ], QuestionService);
+    return QuestionService;
 }());
-exports.DialogService = DialogService;
-//# sourceMappingURL=dialog.service.js.map
+exports.QuestionService = QuestionService;
+//# sourceMappingURL=question.service.js.map

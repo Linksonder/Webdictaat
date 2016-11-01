@@ -18,10 +18,10 @@ var HtmlComponent = (function () {
         this.containerElements = ".wd-container";
         this.pageEdited = new core_1.EventEmitter();
         this.onDrop = function (event, ui) {
-            var data = ui.item.data("data");
-            if (data) {
-                _this.dialogService.showDialog("mooi");
-                ui.item.replaceWith($(data.template));
+            var params = ui.item.data("params");
+            if (params) {
+                _this.dialogService.showDialog(params.Title, params.TriggeredComponent);
+                ui.item.replaceWith($(params.Template));
             }
             ui.item
                 .removeAttr('style')

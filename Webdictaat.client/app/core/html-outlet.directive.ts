@@ -15,13 +15,15 @@ import {
 import { RouterModule }  from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { GameElementsModule } from '../game-elements/game-elements.module';
+import { QuestionsModule } from '../questions/questions.module';
+
 
 export function createComponentFactory(compiler: Compiler, metadata: Component): Promise<ComponentFactory<any>> {
     const cmpClass = class DynamicComponent { };
     const decoratedCmp = Component(metadata)(cmpClass);
 
     @NgModule({
-        imports: [CommonModule, RouterModule, GameElementsModule],
+        imports: [CommonModule, RouterModule, GameElementsModule, QuestionsModule],
         declarations: [decoratedCmp]
     })
     class DynamicHtmlModule { }

@@ -43,6 +43,7 @@
     <Content Include="app\pages\add-page.component.html" />
     <Content Include="app\pages\pages.component.html" />
     <Content Include="app\page\page.component.html" />
+    <Content Include="app\questions\add-question.component.html" />
     <Content Include="css\style.css" />
     <Content Include="index.html" />
     <Content Include="js\dictaat.systemjs.config.js" />
@@ -51,11 +52,16 @@
     <TypeScriptCompile Include="app\context-menu\context-menu.component.ts" />
     <TypeScriptCompile Include="app\context-menu\context-menu.service.ts" />
     <TypeScriptCompile Include="app\dialog\dialog.component.ts" />
+    <TypeScriptCompile Include="app\models\question.ts" />
+    <TypeScriptCompile Include="app\models\tool-params.ts" />
+    <TypeScriptCompile Include="app\core\html-outlet.directive.ts" />
+    <TypeScriptCompile Include="app\questions\add-question.component.ts" />
+    <TypeScriptCompile Include="app\questions\questions.module.ts" />
+    <TypeScriptCompile Include="app\questions\question.service.ts" />
     <TypeScriptCompile Include="app\services\dialog.service.ts" />
     <TypeScriptCompile Include="app\dictaten\add-dictaat.component.ts" />
     <TypeScriptCompile Include="app\game-elements\multiple-choice.component.ts" />
     <TypeScriptCompile Include="app\game-elements\game-elements.module.ts" />
-    <TypeScriptCompile Include="app\page\html-outlet.directive.ts" />
     <TypeScriptCompile Include="app\tools\default-tools\column.component.ts" />
     <TypeScriptCompile Include="app\tools\game-tools\game-tools.service.ts" />
     <TypeScriptCompile Include="app\tools\tools.module.ts" />

@@ -8,23 +8,27 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
+export class DialogData {
+    public Content: string;
+    public Title: string;
+}
 
 @Injectable()
 export class DialogService {
 
-    private content: string;
-    private subject: Subject<string> = new Subject<string>();
+    private dialogData: DialogData;
+    private subject: Subject<DialogData> = new Subject<DialogData>();
 
     constructor(private http: Http) {
 
     }
 
-    public showDialog(content): void {
-        this.content = content;
-        this.subject.next(content);
+    public showDialog(title: string, content: string): void {
+        this.dialogData = { Title: title, Content: content };
+        this.subject.next(this.dialogData);
     }
 
-    public getContent(): Observable<string> {
+    public getDialogData(): Observable<DialogData> {
         return this.subject.asObservable();
     }
 

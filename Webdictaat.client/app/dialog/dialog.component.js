@@ -17,10 +17,10 @@ var DialogComponent = (function () {
     }
     DialogComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.dialogService.getContent().subscribe(function (content) {
-            debugger;
+        this.dialogService.getDialogData().subscribe(function (dialogData) {
             _this.isVisible = true;
-            _this.content = content;
+            _this.Content = dialogData.Content;
+            _this.Title = dialogData.Title;
             _this.changeDetector.detectChanges();
         });
     };

@@ -10,7 +10,7 @@ import { GameElementsModule } from '../game-elements/game-elements.module';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { PageComponent } from '../page/page.component';
-import { HtmlOutlet } from '../page/html-outlet.directive';
+import { HtmlOutlet } from '../core/html-outlet.directive';
 import { NavMenuComponent } from '../nav-menu/nav-menu.component';
 
 @NgModule({

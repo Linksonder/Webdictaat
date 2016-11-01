@@ -1,5 +1,6 @@
 ﻿import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { DialogService } from '../services/dialog.service';
+import { ToolParams } from '../models/tool-params';
 
 declare var $: JQueryStatic;
 
@@ -48,14 +49,12 @@ export class HtmlComponent implements OnInit{
 
     private onDrop = (event: any, ui) => {
 
-        var data = ui.item.data("data");
+        var params: ToolParams = ui.item.data("params");
 
-        if (data) {
-            this.dialogService.showDialog("mooi");
-            ui.item.replaceWith($(data.template));
+        if (params) {
+            this.dialogService.showDialog(params.Title, params.TriggeredComponent);
+            ui.item.replaceWith($(params.Template));
         }
-
-            
 
         ui.item
             .removeAttr('style')
