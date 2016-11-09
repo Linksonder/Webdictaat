@@ -1,5 +1,8 @@
 ﻿import { NgModule } from '@angular/core';
 
+//custom modules
+import { HtmlOutlet } from '../core/html-outlet.directive';
+
 
 //components
 import { HtmlComponent } from './html.component';
@@ -9,7 +12,7 @@ import { ColumnComponent } from './default-tools/column.component';
 import { MultipleChoiceToolComponent } from './game-tools/multiple-choice.component';
 
 @NgModule({
-    declarations: [ColumnComponent, TextComponent, HeaderComponent, HtmlComponent, MultipleChoiceToolComponent],
+    declarations: [HtmlOutlet, ColumnComponent, TextComponent, HeaderComponent, HtmlComponent, MultipleChoiceToolComponent],
     exports: [ColumnComponent, TextComponent, HeaderComponent, HtmlComponent, MultipleChoiceToolComponent]
 })
 export class ToolsModule {

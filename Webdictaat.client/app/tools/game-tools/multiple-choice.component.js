@@ -25,16 +25,17 @@ var MultipleChoiceToolComponent = (function () {
             helper: "clone",
             connectToSortable: ".wd-container",
             start: function (e, ui) {
-                ui.helper.data("callback", function (ui) {
-                    component.onDrop(ui);
+                ui.helper.data("callback", function (ui, done) {
+                    component.onDrop(ui, done);
                 });
             }
         });
     };
-    MultipleChoiceToolComponent.prototype.onDrop = function (ui) {
+    MultipleChoiceToolComponent.prototype.onDrop = function (ui, done) {
         this.questionsService.ShowAddQuestionModal();
         this.questionsService.getQuestionAdded().subscribe(function (question) {
-            ui.item.replaceWith("<wd-multiple-choice [questionId]='" + question.id + "' />");
+            ui.item.replaceWith("<wd-multiple-choice class='wd-game-component' [qid]='" + question.id + "' />");
+            done();
         });
     };
     MultipleChoiceToolComponent = __decorate([

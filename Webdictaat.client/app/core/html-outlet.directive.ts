@@ -3,7 +3,8 @@ import {
     Component,
     Directive,
     NgModule,
-    Input,
+    Input, Output,
+    EventEmitter,
     ViewContainerRef,
     Compiler,
     ComponentFactory,
@@ -38,9 +39,13 @@ export class HtmlOutlet {
     @Input() html: string;
     cmpRef: ComponentRef<any>;
 
+    @Output()
+    public afterCompile = new EventEmitter();
+
     constructor(private vcRef: ViewContainerRef, private compiler: Compiler) { }
 
     ngOnChanges() {
+
         const html = this.html;
         if (!html) return;
 
@@ -57,6 +62,7 @@ export class HtmlOutlet {
             .then(factory => {
                 const injector = ReflectiveInjector.fromResolvedProviders([], this.vcRef.parentInjector);
                 this.cmpRef = this.vcRef.createComponent(factory, 0, injector, []);
+                this.afterCompile.emit();
             });
     }
 

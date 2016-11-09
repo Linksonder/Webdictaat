@@ -30,8 +30,9 @@ class Answer {
 })
 export class MultipleChoiceComponent {
 
+    //question id
     @Input()
-    public questionId: string;
+    public qid: string; 
 
     public question: string = "What is 1 + 1?";
 

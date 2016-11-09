@@ -11,28 +11,56 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var dialog_service_1 = require('../services/dialog.service');
 var HtmlComponent = (function () {
-    function HtmlComponent(dialogService) {
+    function HtmlComponent(dialogService, changeDetector) {
         var _this = this;
         this.dialogService = dialogService;
+        this.changeDetector = changeDetector;
         this.editableElements = "p, span, h1, h2, h3, h4, h5";
         this.containerElements = ".wd-container";
         this.pageEdited = new core_1.EventEmitter();
         this.onDrop = function (event, ui) {
             var callback = ui.item.data("callback");
+            ui.item = ui.item.clone();
+            var component = _this;
             if (callback)
-                callback(ui);
+                callback(ui, function () {
+                    component.recompile();
+                });
             ui.item
                 .removeAttr('style')
                 .find(_this.editableElements)
                 .attr("contenteditable", "true");
             _this.enableContainers(ui.item);
+            //we need to refresh the things
         };
     }
     HtmlComponent.prototype.ngOnInit = function () {
-        this.pageElement = $('#page').html(this.innerHTML);
+        this.html = this.innerHTML;
+        this.pageElement = $('#page'); //.html(this.innerHTML);
+    };
+    HtmlComponent.prototype.compileHtml = function (html) {
+        this.html = html;
+        this.changeDetector.detectChanges();
+    };
+    HtmlComponent.prototype.afterCompile = function () {
         this.enableContainers(this.pageElement);
         this.pageElement.find('.wd-container').find(this.editableElements)
             .attr("contenteditable", "true");
+    };
+    HtmlComponent.prototype.decompileHtml = function () {
+        var pageObject = this.pageElement.find("dynamic-html");
+        pageObject.find(".wd-game-component").empty();
+        //pageObject.find('.wd-component').empty();
+        //in the future remove more classes
+        return pageObject.html();
+    };
+    HtmlComponent.prototype.recompile = function () {
+        this.compileHtml(this.decompileHtml());
+    };
+    HtmlComponent.prototype.savePage = function () {
+        var htmlClone = this.pageElement.clone();
+        htmlClone.find(this.editableElements).removeAttr("contenteditable");
+        this.pageEdited.emit(htmlClone.html());
     };
     HtmlComponent.prototype.enableContainers = function (element) {
         element.find('.wd-container').sortable({
@@ -41,11 +69,6 @@ var HtmlComponent = (function () {
             hoverClass: "ui-state-hover",
             beforeStop: this.onDrop
         });
-    };
-    HtmlComponent.prototype.savePage = function () {
-        var htmlClone = this.pageElement.clone();
-        htmlClone.find(this.editableElements).removeAttr("contenteditable");
-        this.pageEdited.emit(htmlClone.html());
     };
     __decorate([
         core_1.Input(), 
@@ -58,9 +81,9 @@ var HtmlComponent = (function () {
     HtmlComponent = __decorate([
         core_1.Component({
             selector: "wd-html",
-            template: "<div id='page'></div><button class='btn btn-default' (click)='savePage()'>Save</button>",
+            template: "\n        <div id='page'>\n            <html-outlet [html]=\"html\" (afterCompile)=\"afterCompile()\"></html-outlet>\n        </div>\n        <button class='btn btn-default' (click)='savePage()'>Save</button>\n    ",
         }), 
-        __metadata('design:paramtypes', [dialog_service_1.DialogService])
+        __metadata('design:paramtypes', [dialog_service_1.DialogService, core_1.ChangeDetectorRef])
     ], HtmlComponent);
     return HtmlComponent;
 }());

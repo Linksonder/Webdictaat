@@ -42,6 +42,7 @@ var HtmlOutlet = (function () {
     function HtmlOutlet(vcRef, compiler) {
         this.vcRef = vcRef;
         this.compiler = compiler;
+        this.afterCompile = new core_1.EventEmitter();
     }
     HtmlOutlet.prototype.ngOnChanges = function () {
         var _this = this;
@@ -59,6 +60,7 @@ var HtmlOutlet = (function () {
             .then(function (factory) {
             var injector = core_1.ReflectiveInjector.fromResolvedProviders([], _this.vcRef.parentInjector);
             _this.cmpRef = _this.vcRef.createComponent(factory, 0, injector, []);
+            _this.afterCompile.emit();
         });
     };
     HtmlOutlet.prototype.ngOnDestroy = function () {
@@ -70,6 +72,10 @@ var HtmlOutlet = (function () {
         core_1.Input(), 
         __metadata('design:type', String)
     ], HtmlOutlet.prototype, "html", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], HtmlOutlet.prototype, "afterCompile", void 0);
     HtmlOutlet = __decorate([
         core_1.Directive({ selector: 'html-outlet' }), 
         __metadata('design:paramtypes', [core_1.ViewContainerRef, core_1.Compiler])

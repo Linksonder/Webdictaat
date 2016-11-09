@@ -30,7 +30,7 @@ var MultipleChoiceComponent = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', String)
-    ], MultipleChoiceComponent.prototype, "questionId", void 0);
+    ], MultipleChoiceComponent.prototype, "qid", void 0);
     MultipleChoiceComponent = __decorate([
         core_1.Component({
             selector: "wd-multiple-choice",

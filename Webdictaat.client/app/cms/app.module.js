@@ -27,7 +27,6 @@ var file_preview_component_1 = require('../file-preview/file-preview.component')
 var dialog_component_1 = require('../dialog/dialog.component');
 var dictaat_component_1 = require('../dictaat/dictaat.component');
 var common_1 = require('@angular/common');
-var html_outlet_directive_1 = require('../core/html-outlet.directive');
 var edit_page_component_1 = require('../pages/edit-page.component');
 //services
 var app_routing_1 = require('./app.routing');
@@ -44,7 +43,7 @@ var AppModule = (function () {
                 platform_browser_1.BrowserModule, http_1.HttpModule, app_routing_1.routing, pages_module_1.PagesModule, forms_1.FormsModule, ng2_ckeditor_1.CKEditorModule
             ],
             declarations: [
-                add_dictaat_component_1.AddDictaatComponent, dialog_component_1.DialogComponent, html_outlet_directive_1.HtmlOutlet,
+                add_dictaat_component_1.AddDictaatComponent, dialog_component_1.DialogComponent,
                 app_component_1.AppComponent, dictaten_component_1.DictatenComponent, file_preview_component_1.FilePreviewComponent, dictaat_component_1.DictaatComponent, edit_page_component_1.EditPageComponent
             ],
             providers: [
