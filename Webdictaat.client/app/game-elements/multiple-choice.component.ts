@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, Input } from '@angular/core';
 
 class Answer {
     public text: string;
@@ -9,7 +9,7 @@ class Answer {
     selector: "wd-multiple-choice",
     template: `
         <div class='wd-component'>
-            {{question}}
+            <p>Question with id {{questionId}}</p>
 
             <div *ngIf="selectedAnswer && selectedAnswer.isCorrect">
                 {{selectedAnswer.text}} is correct!
@@ -30,7 +30,8 @@ class Answer {
 })
 export class MultipleChoiceComponent {
 
-
+    @Input()
+    public questionId: string;
 
     public question: string = "What is 1 + 1?";
 

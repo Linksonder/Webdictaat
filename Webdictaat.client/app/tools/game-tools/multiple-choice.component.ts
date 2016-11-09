@@ -35,10 +35,8 @@ export class MultipleChoiceToolComponent {
     private onDrop(ui): void {
         this.questionsService.ShowAddQuestionModal();
         this.questionsService.getQuestionAdded().subscribe(question => {
-            ui.item.replaceWith("<wd-multiple-choice id='" + question.id + "' />");
+            ui.item.replaceWith("<wd-multiple-choice [questionId]='" + question.id + "' />");
         });
-       
-
     }
 }
 

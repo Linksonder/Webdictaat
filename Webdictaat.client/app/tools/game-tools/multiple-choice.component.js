@@ -34,7 +34,7 @@ var MultipleChoiceToolComponent = (function () {
     MultipleChoiceToolComponent.prototype.onDrop = function (ui) {
         this.questionsService.ShowAddQuestionModal();
         this.questionsService.getQuestionAdded().subscribe(function (question) {
-            ui.item.replaceWith("<wd-multiple-choice id='" + question.id + "' />");
+            ui.item.replaceWith("<wd-multiple-choice [questionId]='" + question.id + "' />");
         });
     };
     MultipleChoiceToolComponent = __decorate([
