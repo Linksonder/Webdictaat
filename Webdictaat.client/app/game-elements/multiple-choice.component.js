@@ -34,7 +34,7 @@ var MultipleChoiceComponent = (function () {
     MultipleChoiceComponent = __decorate([
         core_1.Component({
             selector: "wd-multiple-choice",
-            template: "\n        <div class='wd-component'>\n            <p>Question with id {{questionId}}</p>\n\n            <div *ngIf=\"selectedAnswer && selectedAnswer.isCorrect\">\n                {{selectedAnswer.text}} is correct!\n            </div>\n\n                <div *ngIf=\"selectedAnswer && !selectedAnswer.isCorrect\">\n                {{selectedAnswer.text}} is not correct.\n                Feel free to try again!\n            </div>\n\n            <ul>\n                <li *ngFor='let answer of answers' (click)=\"giveAnswer(answer)\">\n                    {{answer.text}}\n                </li>\n            </ul>\n        </div>\n    "
+            template: "\n        <div class='wd-component'>\n            <p>Question with id {{qid}}</p>\n\n            <div *ngIf=\"selectedAnswer && selectedAnswer.isCorrect\">\n                {{selectedAnswer.text}} is correct!\n            </div>\n\n                <div *ngIf=\"selectedAnswer && !selectedAnswer.isCorrect\">\n                {{selectedAnswer.text}} is not correct.\n                Feel free to try again!\n            </div>\n\n            <ul>\n                <li *ngFor='let answer of answers' (click)=\"giveAnswer(answer)\">\n                    {{answer.text}}\n                </li>\n            </ul>\n        </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], MultipleChoiceComponent);

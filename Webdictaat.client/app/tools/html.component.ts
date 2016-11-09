@@ -8,7 +8,7 @@ declare var $: JQueryStatic;
     selector: "wd-html",
     template: `
         <div id='page'>
-            <html-outlet [html]="html" (afterCompile)="afterCompile()"></html-outlet>
+            <html-outlet [html]="innerHTML" (afterCompile)="afterCompile()"></html-outlet>
         </div>
         <button class='btn btn-default' (click)='savePage()'>Save</button>
     `,
@@ -20,7 +20,6 @@ export class HtmlComponent implements OnInit{
 
     @Input()
     public innerHTML: string;
-    public html;
 
     @Output()
     public pageEdited = new EventEmitter();
@@ -30,16 +29,15 @@ export class HtmlComponent implements OnInit{
     constructor(private dialogService: DialogService, private changeDetector: ChangeDetectorRef) {}
 
     public ngOnInit(): void{
-        this.html = this.innerHTML;
         this.pageElement = $('#page'); //.html(this.innerHTML);
-     
+    }
+
+    public ngOnChanges() : void{
     }
 
     private onDrop = (event: any, ui) => {
 
-        
         var callback = ui.item.data("callback");
-        ui.item = ui.item.clone();
         var component = this;
 
         if (callback) 
@@ -59,7 +57,7 @@ export class HtmlComponent implements OnInit{
     }
 
     private compileHtml(html : string): void {
-        this.html = html;
+        this.innerHTML = html;
         this.changeDetector.detectChanges();
     }
 
@@ -71,10 +69,12 @@ export class HtmlComponent implements OnInit{
 
     private decompileHtml(): string {
         var pageObject: JQuery = this.pageElement.find("dynamic-html");
-        pageObject.find(".wd-game-component").empty();
-        //pageObject.find('.wd-component').empty();
-        //in the future remove more classes
-        return pageObject.html();
+        var lin = $(this).attr('href'); //verwijderen van ng-reflect voor id's
+        pageObject.find(".wd-game-component").empty(); //leeg maken van gecompileerde componenten
+        pageObject.find(this.editableElements).removeAttr("contenteditable");
+        var htmlString = pageObject.html();
+        htmlString = htmlString.replace(/ng-reflect-(.+?)=/g, '[$1]=')
+        return htmlString;
     }
 
     private recompile(): void {
@@ -83,9 +83,7 @@ export class HtmlComponent implements OnInit{
 
 
     private savePage(): void {
-        var htmlClone = this.pageElement.clone();
-        htmlClone.find(this.editableElements).removeAttr("contenteditable");
-        this.pageEdited.emit(htmlClone.html());
+        this.pageEdited.emit(this.decompileHtml());
     }
 
     private enableContainers(element): void {

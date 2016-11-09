@@ -9,7 +9,7 @@ class Answer {
     selector: "wd-multiple-choice",
     template: `
         <div class='wd-component'>
-            <p>Question with id {{questionId}}</p>
+            <p>Question with id {{qid}}</p>
 
             <div *ngIf="selectedAnswer && selectedAnswer.isCorrect">
                 {{selectedAnswer.text}} is correct!

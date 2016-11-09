@@ -20,7 +20,6 @@ var HtmlComponent = (function () {
         this.pageEdited = new core_1.EventEmitter();
         this.onDrop = function (event, ui) {
             var callback = ui.item.data("callback");
-            ui.item = ui.item.clone();
             var component = _this;
             if (callback)
                 callback(ui, function () {
@@ -35,11 +34,12 @@ var HtmlComponent = (function () {
         };
     }
     HtmlComponent.prototype.ngOnInit = function () {
-        this.html = this.innerHTML;
         this.pageElement = $('#page'); //.html(this.innerHTML);
     };
+    HtmlComponent.prototype.ngOnChanges = function () {
+    };
     HtmlComponent.prototype.compileHtml = function (html) {
-        this.html = html;
+        this.innerHTML = html;
         this.changeDetector.detectChanges();
     };
     HtmlComponent.prototype.afterCompile = function () {
@@ -49,18 +49,18 @@ var HtmlComponent = (function () {
     };
     HtmlComponent.prototype.decompileHtml = function () {
         var pageObject = this.pageElement.find("dynamic-html");
-        pageObject.find(".wd-game-component").empty();
-        //pageObject.find('.wd-component').empty();
-        //in the future remove more classes
-        return pageObject.html();
+        var lin = $(this).attr('href'); //verwijderen van ng-reflect voor id's
+        pageObject.find(".wd-game-component").empty(); //leeg maken van gecompileerde componenten
+        pageObject.find(this.editableElements).removeAttr("contenteditable");
+        var htmlString = pageObject.html();
+        htmlString = htmlString.replace(/ng-reflect-(.+?)=/g, '[$1]=');
+        return htmlString;
     };
     HtmlComponent.prototype.recompile = function () {
         this.compileHtml(this.decompileHtml());
     };
     HtmlComponent.prototype.savePage = function () {
-        var htmlClone = this.pageElement.clone();
-        htmlClone.find(this.editableElements).removeAttr("contenteditable");
-        this.pageEdited.emit(htmlClone.html());
+        this.pageEdited.emit(this.decompileHtml());
     };
     HtmlComponent.prototype.enableContainers = function (element) {
         element.find('.wd-container').sortable({
@@ -81,7 +81,7 @@ var HtmlComponent = (function () {
     HtmlComponent = __decorate([
         core_1.Component({
             selector: "wd-html",
-            template: "\n        <div id='page'>\n            <html-outlet [html]=\"html\" (afterCompile)=\"afterCompile()\"></html-outlet>\n        </div>\n        <button class='btn btn-default' (click)='savePage()'>Save</button>\n    ",
+            template: "\n        <div id='page'>\n            <html-outlet [html]=\"innerHTML\" (afterCompile)=\"afterCompile()\"></html-outlet>\n        </div>\n        <button class='btn btn-default' (click)='savePage()'>Save</button>\n    ",
         }), 
         __metadata('design:paramtypes', [dialog_service_1.DialogService, core_1.ChangeDetectorRef])
     ], HtmlComponent);
