@@ -33,6 +33,7 @@ var edit_page_component_1 = require('../pages/edit-page.component');
 var app_routing_1 = require('./app.routing');
 var dialog_service_1 = require('../services/dialog.service');
 var file_preview_service_1 = require('../services/file-preview.service');
+var question_service_1 = require('../questions/question.service');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -47,7 +48,7 @@ var AppModule = (function () {
                 app_component_1.AppComponent, dictaten_component_1.DictatenComponent, file_preview_component_1.FilePreviewComponent, dictaat_component_1.DictaatComponent, edit_page_component_1.EditPageComponent
             ],
             providers: [
-                file_preview_service_1.FilePreviewService, dialog_service_1.DialogService,
+                file_preview_service_1.FilePreviewService, dialog_service_1.DialogService, question_service_1.QuestionsService,
                 { provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy },
             ],
             bootstrap: [

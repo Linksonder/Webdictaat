@@ -21,17 +21,13 @@ export class HtmlComponent implements OnInit{
 
     private pageElement;
 
-    constructor(private dialogService: DialogService) {
-      
-    }
+    constructor(private dialogService: DialogService) {}
 
 
     public ngOnInit(): void{
 
         this.pageElement = $('#page').html(this.innerHTML);
-
         this.enableContainers(this.pageElement);
-
         this.pageElement.find('.wd-container').find(this.editableElements)
             .attr("contenteditable", "true");
     }
@@ -49,13 +45,11 @@ export class HtmlComponent implements OnInit{
 
     private onDrop = (event: any, ui) => {
 
-        var params: ToolParams = ui.item.data("params");
+        var callback = ui.item.data("callback");
 
-        if (params) {
-            this.dialogService.showDialog(params.Title, params.TriggeredComponent);
-            ui.item.replaceWith($(params.Template));
-        }
-
+        if (callback) 
+            callback(ui);
+        
         ui.item
             .removeAttr('style')
             .find(this.editableElements)

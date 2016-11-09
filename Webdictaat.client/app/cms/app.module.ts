@@ -28,7 +28,7 @@ import { EditPageComponent }  from '../pages/edit-page.component';
 import { routing } from './app.routing';
 import { DialogService } from '../services/dialog.service';
 import { FilePreviewService } from '../services/file-preview.service';
-
+import { QuestionsService } from '../questions/question.service';
 
 @NgModule({
     imports: [
@@ -40,7 +40,7 @@ import { FilePreviewService } from '../services/file-preview.service';
         AppComponent, DictatenComponent, FilePreviewComponent, DictaatComponent, EditPageComponent
     ],
     providers: [
-        FilePreviewService, DialogService,
+        FilePreviewService, DialogService, QuestionsService,
         { provide: LocationStrategy, useClass: HashLocationStrategy },
     ],
     bootstrap: [

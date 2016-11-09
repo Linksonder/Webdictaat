@@ -9,7 +9,13 @@ using Webdictaat.CMS.Models;
 
 namespace Webdictaat.CMS.Controllers
 {
-    [Route("api/[controller]")]
+    public class Question
+    {
+        public int Id { get; set; }
+        public string Text { get; set; }
+    }
+
+    [Route("api/dictaten/{dictaatName}/[controller]")]
     public class QuestionsController : Controller
     {
 
@@ -19,10 +25,12 @@ namespace Webdictaat.CMS.Controllers
         }
 
       
-        [HttpPost]
-        public int Post()
+        [HttpPost] 
+        public Question Post(string dictaatName, [FromBody]Question question)
         {
-            return 1;
+            question.Id = 1;
+            question.Text += ":)";
+            return question;
         }
 
     }

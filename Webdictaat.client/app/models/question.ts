@@ -8,8 +8,8 @@
 
 export class Question {
 
-    Id: number;
-    Question: string;
+    id: number;
+    text: string;
     Answers: QuestionAnswer[] = [];
 
     AddAnswer(): void {

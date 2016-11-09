@@ -18,11 +18,9 @@ var HtmlComponent = (function () {
         this.containerElements = ".wd-container";
         this.pageEdited = new core_1.EventEmitter();
         this.onDrop = function (event, ui) {
-            var params = ui.item.data("params");
-            if (params) {
-                _this.dialogService.showDialog(params.Title, params.TriggeredComponent);
-                ui.item.replaceWith($(params.Template));
-            }
+            var callback = ui.item.data("callback");
+            if (callback)
+                callback(ui);
             ui.item
                 .removeAttr('style')
                 .find(_this.editableElements)

@@ -10,30 +10,52 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+//Nodig om een object om te toveren in een promise.
+var Subject_1 = require('rxjs/Subject');
 require('rxjs/add/operator/toPromise');
 require('rxjs/add/operator/map');
-var QuestionService = (function () {
-    function QuestionService(http) {
+var QuestionsService = (function () {
+    function QuestionsService(http) {
         this.http = http;
         this.dictatenUrl = 'http://localhost:65418/api/dictaten/';
+        this.isModalVisible = false;
+        this.subject = new Subject_1.Subject();
+        this.questionAddedSubject = new Subject_1.Subject();
     }
-    QuestionService.prototype.addQuestion = function (dictaatName, question) {
+    QuestionsService.prototype.getIsModalVisible = function () {
+        return this.subject.asObservable();
+    };
+    QuestionsService.prototype.getQuestionAdded = function () {
+        return this.questionAddedSubject.asObservable();
+    };
+    QuestionsService.prototype.ShowAddQuestionModal = function () {
+        this.isModalVisible = true;
+        this.subject.next(this.isModalVisible);
+    };
+    QuestionsService.prototype.HideAddQuestionModal = function () {
+        this.isModalVisible = false;
+        this.subject.next(this.isModalVisible);
+    };
+    QuestionsService.prototype.addQuestion = function (dictaatName, question) {
+        var _this = this;
         var url = this.dictatenUrl + dictaatName + '/questions';
-        return this.http.post(url, question)
+        return this.http.post(url, { Text: question.text })
             .toPromise()
             .then(function (response) {
-            return response.json();
+            _this.questionAdded = response.json();
+            _this.questionAddedSubject.next(_this.questionAdded);
+            return _this.questionAdded;
         }).catch(this.handleError);
     };
-    QuestionService.prototype.handleError = function (error) {
+    QuestionsService.prototype.handleError = function (error) {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
     };
-    QuestionService = __decorate([
+    QuestionsService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], QuestionService);
-    return QuestionService;
+    ], QuestionsService);
+    return QuestionsService;
 }());
-exports.QuestionService = QuestionService;
+exports.QuestionsService = QuestionsService;
 //# sourceMappingURL=question.service.js.map

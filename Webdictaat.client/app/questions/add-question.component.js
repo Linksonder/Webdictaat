@@ -13,28 +13,35 @@ var question_service_1 = require('./question.service');
 var question_1 = require('../models/question');
 var router_1 = require('@angular/router');
 var AddQuestionComponent = (function () {
-    function AddQuestionComponent(zone, questionService, route) {
-        this.zone = zone;
-        this.questionService = questionService;
+    function AddQuestionComponent(questionsService, route, changeDetector) {
+        this.questionsService = questionsService;
         this.route = route;
+        this.changeDetector = changeDetector;
         this.questionAdded = new core_1.EventEmitter();
-        this.zone.run(function () { });
     }
     //event
     AddQuestionComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.question = new question_1.Question();
         this.route.params.forEach(function (params) {
             _this.dictaatName = params['dictaatName'];
         });
-    };
-    AddQuestionComponent.prototype.add = function () {
-        var _this = this;
-        this.questionService.addQuestion(this.dictaatName, this.question)
-            .then(function (question) {
-            _this.question = question;
-            _this.questionAdded.emit(question);
+        this.questionsService.getIsModalVisible().subscribe(function (isModalVisible) {
+            _this.isModalVisible = isModalVisible;
+            if (isModalVisible) {
+                _this.question = new question_1.Question();
+                _this.changeDetector.detectChanges();
+            }
         });
+    };
+    AddQuestionComponent.prototype.Add = function () {
+        var _this = this;
+        this.questionsService.addQuestion(this.dictaatName, this.question)
+            .then(function (question) {
+            _this.questionsService.HideAddQuestionModal();
+        });
+    };
+    AddQuestionComponent.prototype.Cancel = function () {
+        this.questionsService.HideAddQuestionModal();
     };
     __decorate([
         core_1.Output(), 
@@ -44,9 +51,8 @@ var AddQuestionComponent = (function () {
         core_1.Component({
             selector: "wd-add-question",
             templateUrl: "./app/questions/add-question.component.html",
-            providers: [question_service_1.QuestionService]
         }), 
-        __metadata('design:paramtypes', [core_1.NgZone, question_service_1.QuestionService, router_1.ActivatedRoute])
+        __metadata('design:paramtypes', [question_service_1.QuestionsService, router_1.ActivatedRoute, core_1.ChangeDetectorRef])
     ], AddQuestionComponent);
     return AddQuestionComponent;
 }());

@@ -30,6 +30,8 @@ class Answer {
 })
 export class MultipleChoiceComponent {
 
+
+
     public question: string = "What is 1 + 1?";
 
     public answers: Answer[] = [];
