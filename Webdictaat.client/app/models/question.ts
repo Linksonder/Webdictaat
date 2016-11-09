@@ -1,8 +1,8 @@
 ﻿export class QuestionAnswer {
-    Awnser: string;
-    IsCorrect: Boolean = false;
-    Toggle(): void {
-        this.IsCorrect = !this.IsCorrect;
+    text: string;
+    isCorrect: Boolean = false;
+    toggle(): void {
+        this.isCorrect = !this.isCorrect;
     }
 }
 
@@ -10,14 +10,14 @@ export class Question {
 
     id: number;
     text: string;
-    Answers: QuestionAnswer[] = [];
+    answers: QuestionAnswer[] = [];
 
     AddAnswer(): void {
-        this.Answers.push(new QuestionAnswer());
+        this.answers.push(new QuestionAnswer());
     };
 
     RemoveAnswer(answer: QuestionAnswer): void {
-        var index = this.Answers.indexOf(answer);
-        this.Answers.splice(index, 1) 
+        var index = this.answers.indexOf(answer);
+        this.answers.splice(index, 1) 
     }
 }

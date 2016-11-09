@@ -19,7 +19,7 @@ export class MultipleChoiceToolComponent {
     constructor(private questionsService: QuestionsService) { }
 
     /**
-     * Omslagtige maar nodige manier om terug in de Angular2 context te komen.
+     * Omslachtige maar nodige manier om terug in de Angular2 context te komen.
         Nu kan ik nog wat dingen doen aanpassen voor ik de drop afrond.
      */
     public ngOnInit(): void {

@@ -15,7 +15,7 @@
                                [(ngModel)]="question.text" required>
                     </div>
                     <div class="form-group">
-                        <label for="isInMenu">Possible Answers</label>
+                        <label for="isInMenu">Possible answers</label>
 
                         <button class="btn btn-success btn-sm pull-right" (click)="question.AddAnswer()">
                             <span class="glyphicon glyphicon-plus"></span>
@@ -23,14 +23,14 @@
 
                         <table class="table table-hover table-condensed">
                             <tbody>
-                                <tr *ngIf="question.Answers.length == 0">
+                                <tr *ngIf="question.answers.length == 0">
                                     <td colspan="3" class="text-center">
                                         <p><i>List of possbile answers is empty</i></p>
                                     </td>
                                 </tr>
-                                <tr *ngFor="let answer of question.Answers">
+                                <tr *ngFor="let answer of question.answers">
                                     <td>
-                                        <input [(ngModel)]="answer.Awnser" required />
+                                        <input [(ngModel)]="answer.text" required />
                                     </td>
                                     <td>
                                         <button *ngIf="!answer.isCorrect" class="btn btn-danger" (click)="answer.isCorrect = !answer.isCorrect">

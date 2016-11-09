@@ -39,7 +39,7 @@ var QuestionsService = (function () {
     QuestionsService.prototype.addQuestion = function (dictaatName, question) {
         var _this = this;
         var url = this.dictatenUrl + dictaatName + '/questions';
-        return this.http.post(url, { Text: question.text })
+        return this.http.post(url, question)
             .toPromise()
             .then(function (response) {
             _this.questionAdded = response.json();

@@ -16,7 +16,7 @@ var MultipleChoiceToolComponent = (function () {
         this.template = "<wd-multiple-choice>";
     }
     /**
-     * Omslagtige maar nodige manier om terug in de Angular2 context te komen.
+     * Omslachtige maar nodige manier om terug in de Angular2 context te komen.
         Nu kan ik nog wat dingen doen aanpassen voor ik de drop afrond.
      */
     MultipleChoiceToolComponent.prototype.ngOnInit = function () {

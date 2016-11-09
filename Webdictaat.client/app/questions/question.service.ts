@@ -45,7 +45,7 @@ export class QuestionsService {
 
         let url: string = this.dictatenUrl + dictaatName + '/questions';
 
-        return this.http.post(url, { Text: question.text } )
+        return this.http.post(url, question  )
             .toPromise()
             .then(response => {
                 this.questionAdded = response.json() as Question;
