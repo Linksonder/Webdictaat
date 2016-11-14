@@ -64,10 +64,17 @@ var HtmlComponent = (function () {
     };
     HtmlComponent.prototype.enableContainers = function (element) {
         element.find('.wd-container').sortable({
-            connectWith: '.wd-container',
+            connectWith: '.wd-container, #wd-trash',
             cancel: this.editableElements,
             hoverClass: "ui-state-hover",
-            beforeStop: this.onDrop
+            beforeStop: this.onDrop,
+            placeholder: "highlight",
+            forcePlaceholderSize: true,
+            forceHelperSize: true,
+            start: function (e, ui) {
+                ui.placeholder.height(ui.item.outerHeight());
+                ui.item.css('display', 'inline-block');
+            },
         });
     };
     __decorate([

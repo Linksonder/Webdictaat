@@ -63,6 +63,7 @@
     <TypeScriptCompile Include="app\game-elements\multiple-choice.component.ts" />
     <TypeScriptCompile Include="app\game-elements\game-elements.module.ts" />
     <TypeScriptCompile Include="app\tools\default-tools\column.component.ts" />
+    <TypeScriptCompile Include="app\tools\default-tools\trash.component.ts" />
     <TypeScriptCompile Include="app\tools\game-tools\game-tools.service.ts" />
     <TypeScriptCompile Include="app\tools\tools.module.ts" />
     <TypeScriptCompile Include="app\tools\default-tools\header.component.ts" />

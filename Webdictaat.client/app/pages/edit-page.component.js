@@ -24,7 +24,6 @@ var EditPageComponent = (function () {
             _this.pagesService.getPage(_this.dictaatName, name)
                 .then(function (page) {
                 _this.page = page;
-                _this.initJqueryUiDragAndDrop();
             });
         });
     };
@@ -36,11 +35,6 @@ var EditPageComponent = (function () {
     EditPageComponent.prototype.updateSource = function (pageSource) {
         this.page.source = pageSource;
         this.savePage();
-    };
-    EditPageComponent.prototype.initJqueryUiDragAndDrop = function () {
-        //$(".tools li").draggable({ helper: "clone", revert: "invalid"});
-        $(".wd-component").sortable().disableSelection();
-        ;
     };
     EditPageComponent = __decorate([
         core_1.Component({

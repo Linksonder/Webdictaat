@@ -9,25 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var ColumnComponent = (function () {
-    function ColumnComponent() {
+var TextComponent = (function () {
+    function TextComponent() {
     }
-    ColumnComponent.prototype.ngOnInit = function () {
-        $('#wd-columnn')
-            .draggable({
-            cursorAt: { left: 0, top: 0 },
+    TextComponent.prototype.ngOnInit = function () {
+        $('#wd-text').draggable({
             helper: "clone",
             connectToSortable: ".wd-container"
         });
     };
-    ColumnComponent = __decorate([
+    TextComponent = __decorate([
         core_1.Component({
-            selector: "wd-column",
-            template: "\n        <div  id='wd-columnn' class='wd-component'>\n            <div class='wd-row'>\n                <div class='wd-flex-1 wd-container'></div>\n                <div class='wd-flex-1 wd-container'></div>\n            </div>\n        </div>\n    "
+            selector: "wd-text",
+            template: "<div id='wd-text' class='wd-component'><p>Tekst</p></div>"
         }), 
         __metadata('design:paramtypes', [])
-    ], ColumnComponent);
-    return ColumnComponent;
+    ], TextComponent);
+    return TextComponent;
 }());
-exports.ColumnComponent = ColumnComponent;
-//# sourceMappingURL=column.component.js.map
+exports.TextComponent = TextComponent;
+//# sourceMappingURL=text.component - Copy.js.map
