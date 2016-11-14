@@ -17,13 +17,18 @@ var header_component_1 = require('./default-tools/header.component');
 var text_component_1 = require('./default-tools/text.component');
 var column_component_1 = require('./default-tools/column.component');
 var multiple_choice_component_1 = require('./game-tools/multiple-choice.component');
+var trash_component_1 = require('./default-tools/trash.component');
 var ToolsModule = (function () {
     function ToolsModule() {
     }
     ToolsModule = __decorate([
         core_1.NgModule({
-            declarations: [html_outlet_directive_1.HtmlOutlet, column_component_1.ColumnComponent, text_component_1.TextComponent, header_component_1.HeaderComponent, html_component_1.HtmlComponent, multiple_choice_component_1.MultipleChoiceToolComponent],
-            exports: [column_component_1.ColumnComponent, text_component_1.TextComponent, header_component_1.HeaderComponent, html_component_1.HtmlComponent, multiple_choice_component_1.MultipleChoiceToolComponent]
+            declarations: [
+                html_outlet_directive_1.HtmlOutlet, column_component_1.ColumnComponent, text_component_1.TextComponent, header_component_1.HeaderComponent, html_component_1.HtmlComponent,
+                multiple_choice_component_1.MultipleChoiceToolComponent, trash_component_1.TrashComponent],
+            exports: [column_component_1.ColumnComponent, text_component_1.TextComponent, header_component_1.HeaderComponent, html_component_1.HtmlComponent,
+                multiple_choice_component_1.MultipleChoiceToolComponent, html_outlet_directive_1.HtmlOutlet, trash_component_1.TrashComponent
+            ]
         }), 
         __metadata('design:paramtypes', [])
     ], ToolsModule);

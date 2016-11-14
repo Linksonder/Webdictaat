@@ -11,6 +11,13 @@ namespace Webdictaat.CMS.ViewModels
         public string Text { get; set; }
         public bool IsCorrect { get; set; }
 
+
+        //oeps lege constructor vergeten.
+        public AnswerVM()
+        {
+
+        }
+
         public AnswerVM(Answer answer)
         {
             this.Text = answer.Text;

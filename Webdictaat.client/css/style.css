@@ -16,19 +16,22 @@
    border:1px dashed black;
 }
 
-
 .tools .wd-component{
       text-align:center;
 }
+
  .wd-component {
      border:1px dashed black;
      border-color: transparent;
      padding:10px;
-   
 }
  .wd-component:hover{
     border:1px dashed black;
 }
+
+ .wd-game-component{
+    display:block;
+ }
 
 .wd-row{
     display:flex;
@@ -73,6 +76,10 @@
     margin-left:0px;
 }
 
+.remove{
+    border:1px dashed red;
+}
+
 .ui-state-hover{
     border:1px dashed black;
 }
@@ -81,12 +88,34 @@
     border:1px dashed #ccc;
 }
 
-/** tools */
-wd-multiple-choice{
-    width:100%;
-    padding:15px;
-    border:1px solid black;
-    background-color:gray;
+.highlight{
+    border:1px dashed darkgreen;
     display:block;
-    margin-bottom:5px;
+}
+
+
+
+/** tools */
+
+.trashcan{
+    padding:15px;
+    border:1px dashed #ccc;
+    text-align:center;
+    position:relative;
+    min-height:100px;
+    color:darkred;
+}
+
+.trashcan span{
+    position:absolute;
+    font-size:20px;
+    width:100%;
+    text-align:center;
+    left:0px;
+    line-height:100px;
+}
+
+.trashcan .highlight{
+    border:2px dashed darkred;
+    min-height:100px;
 }

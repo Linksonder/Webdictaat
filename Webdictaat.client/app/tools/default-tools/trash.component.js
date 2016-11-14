@@ -9,25 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var ColumnComponent = (function () {
-    function ColumnComponent() {
+var TrashComponent = (function () {
+    function TrashComponent() {
     }
-    ColumnComponent.prototype.ngOnInit = function () {
-        $('#wd-columnn')
-            .draggable({
-            cursorAt: { left: 0, top: 0 },
-            helper: "clone",
-            connectToSortable: ".wd-container"
+    TrashComponent.prototype.ngOnInit = function () {
+        $('#wd-trash').sortable({
+            receive: this.removeElement
         });
     };
-    ColumnComponent = __decorate([
+    TrashComponent.prototype.removeElement = function (event, ui) {
+        //If ancestor is .tools, dont remove
+        var parentsWithTools = $(ui.item).parents('.tools');
+        if (!parentsWithTools.length)
+            ui.item.remove();
+    };
+    TrashComponent = __decorate([
         core_1.Component({
-            selector: "wd-column",
-            template: "\n        <div  id='wd-columnn' class='wd-component'>\n            <div class='wd-row'>\n                <div class='wd-flex-1 wd-container'></div>\n                <div class='wd-flex-1 wd-container'></div>\n            </div>\n        </div>\n    "
+            selector: "wd-trash",
+            template: "\n        <div id=\"wd-trash\" class='trashcan'>\n            <span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span>\n        </div>",
         }), 
         __metadata('design:paramtypes', [])
-    ], ColumnComponent);
-    return ColumnComponent;
+    ], TrashComponent);
+    return TrashComponent;
 }());
-exports.ColumnComponent = ColumnComponent;
-//# sourceMappingURL=column.component.js.map
+exports.TrashComponent = TrashComponent;
+//# sourceMappingURL=trash.component.js.map
