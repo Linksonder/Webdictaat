@@ -32,7 +32,7 @@ var edit_page_component_1 = require('../pages/edit-page.component');
 var app_routing_1 = require('./app.routing');
 var dialog_service_1 = require('../services/dialog.service');
 var file_preview_service_1 = require('../services/file-preview.service');
-var question_service_1 = require('../questions/question.service');
+var question_service_1 = require('../services/question.service');
 var AppModule = (function () {
     function AppModule() {
     }

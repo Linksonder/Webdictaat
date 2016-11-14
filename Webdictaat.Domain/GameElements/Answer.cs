@@ -12,7 +12,7 @@ namespace Webdictaat.Domain
         public string Text { get; set; }
 
         
-        public bool isCorrect { get; set; }
+        public bool IsCorrect { get; set; }
 
         [Required]
         public int QuestionId { get; set; }

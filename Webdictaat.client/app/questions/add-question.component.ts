@@ -1,6 +1,6 @@
 ﻿import { Component, EventEmitter, Output, OnInit, ChangeDetectorRef  } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-import { QuestionsService } from './question.service';
+import { QuestionsService } from '../services/question.service';
 import { DictaatService } from '../services/dictaat.service';
 
 

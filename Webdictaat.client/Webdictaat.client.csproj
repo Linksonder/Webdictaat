@@ -57,7 +57,7 @@
     <TypeScriptCompile Include="app\core\html-outlet.directive.ts" />
     <TypeScriptCompile Include="app\questions\add-question.component.ts" />
     <TypeScriptCompile Include="app\questions\questions.module.ts" />
-    <TypeScriptCompile Include="app\questions\question.service.ts" />
+    <TypeScriptCompile Include="app\services\question.service.ts" />
     <TypeScriptCompile Include="app\services\dialog.service.ts" />
     <TypeScriptCompile Include="app\dictaten\add-dictaat.component.ts" />
     <TypeScriptCompile Include="app\game-elements\multiple-choice.component.ts" />

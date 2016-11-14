@@ -21,11 +21,17 @@ namespace Webdictaat.CMS.Controllers
             _questionRepo = questionRepo;
         }
 
+        [HttpGet("{questionId}")]
+        public QuestionVM Get(string dictaatName, int questionId)
+        {
+            QuestionVM result = _questionRepo.GetQuestion(questionId);
+            return result;
+        }
       
         [HttpPost] 
         public QuestionVM Post(string dictaatName, [FromBody]QuestionVM question)
         {
-            var result = _questionRepo.CreateQuestion(question);
+            QuestionVM result = _questionRepo.CreateQuestion(question);
             return result;
         }
 

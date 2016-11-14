@@ -12,7 +12,6 @@ namespace Webdictaat.Domain
 
         public DomainContext(DbContextOptions<DomainContext> options) : base(options)
         {
-            
         }
 
     }

@@ -10,10 +10,13 @@ import { PageComponent } from '../page/page.component';
 import { HtmlOutlet } from '../core/html-outlet.directive';
 import { NavMenuComponent } from '../nav-menu/nav-menu.component';
 
+import { QuestionsService } from '../services/question.service';
+
+
 @NgModule({
     imports: [BrowserModule, HttpModule, routing],
     declarations: [HtmlOutlet, AppComponent, PageComponent, NavMenuComponent],
-    providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+    providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, QuestionsService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

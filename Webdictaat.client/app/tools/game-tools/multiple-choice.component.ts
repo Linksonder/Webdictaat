@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { ToolParams } from '../../models/tool-params';
-import { QuestionsService } from '../../questions/question.service';
+import { QuestionsService } from '../../services/question.service';
 
 
 declare var $: JQueryStatic;

@@ -37,16 +37,14 @@ namespace Webdictaat.CMS
             services.AddSingleton<IDictaatRepository, DictaatRepository>();
             services.AddSingleton<IPageRepository, PageRepository>();
             services.AddSingleton<IMenuRepository, MenuRepository>();
-            services.AddSingleton<IQuestionRepository, QuestionRepository>();
-
-            
+            services.AddScoped<IQuestionRepository, QuestionRepository>();
 
             services.AddSingleton<Core.IDirectory, Core.Directory>();
             services.AddSingleton<Core.IFile, Core.File>();
             services.Configure<ConfigVariables>(Configuration.GetSection("ConfigVariables"));
 
-            var connection = @"Server = Stijn; Database = Webdictaat; Trusted_Connection = True; ";
-            services.AddDbContext<DomainContext>(options => options.UseSqlServer(connection));
+            var connection = @"Server = Stijn; Database = Webdictaat; Trusted_Connection = True; MultipleActiveResultSets=True";
+            services.AddDbContext<DomainContext>(options => options.UseSqlServer(connection), ServiceLifetime.Scoped);
 
         }
 

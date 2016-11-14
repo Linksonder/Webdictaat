@@ -27,7 +27,7 @@ import { EditPageComponent }  from '../pages/edit-page.component';
 import { routing } from './app.routing';
 import { DialogService } from '../services/dialog.service';
 import { FilePreviewService } from '../services/file-preview.service';
-import { QuestionsService } from '../questions/question.service';
+import { QuestionsService } from '../services/question.service';
 
 
 @NgModule({

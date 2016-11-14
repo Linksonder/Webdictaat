@@ -25,6 +25,7 @@ export class QuestionsService {
     }
 
     public questionAdded: Question;
+
     private questionAddedSubject: Subject<Question> = new Subject<Question>();
 
     public getQuestionAdded(): Observable<Question> {
@@ -55,6 +56,18 @@ export class QuestionsService {
                 
             ).catch(this.handleError);
     }
+
+    public getQuestion(dictaatName: String, questionId: number): Promise<Question> {
+
+        let url: string = this.dictatenUrl + dictaatName + '/questions/' + questionId;
+
+        return this.http.get(url)
+            .toPromise()
+            .then(response =>
+                response.json() as Question
+            ).catch(this.handleError);
+    }
+
 
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error); // for demo purposes only
