@@ -1,7 +1,10 @@
-﻿import { DictaatSummary } from './dictaat-summary';
+﻿import { PageSummary } from './page-summary';
+import { NavMenu } from './nav-menu';
 
 export class Dictaat {
-    name: String;
-    location: String;
+    name: string;
+    location: string;
     lastChange: Date;
+    pages: PageSummary[];
+    menu: NavMenu;
 }

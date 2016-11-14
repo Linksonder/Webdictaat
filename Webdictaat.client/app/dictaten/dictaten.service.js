@@ -17,6 +17,13 @@ var DictatenService = (function () {
         this.http = http;
         this.dictatenUrl = 'http://localhost:65418/api/dictaten';
     }
+    DictatenService.prototype.addDictaat = function (dictaatName) {
+        return this.http.post(this.dictatenUrl, { name: dictaatName })
+            .toPromise()
+            .then(function (response) {
+            return response.json();
+        }).catch(this.handleError);
+    };
     DictatenService.prototype.getDictaten = function () {
         return this.http.get(this.dictatenUrl)
             .toPromise()

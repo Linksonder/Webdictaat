@@ -9,10 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var file_preview_service_1 = require('../services/file-preview.service');
+var router_1 = require('@angular/router');
 var DictaatEntryComponent = (function () {
-    function DictaatEntryComponent() {
+    function DictaatEntryComponent(filePreviewService, route) {
+        this.filePreviewService = filePreviewService;
+        this.route = route;
         this.showSub = false;
     }
+    DictaatEntryComponent.prototype.select = function (file) {
+        var _this = this;
+        this.route.params.forEach(function (params) {
+            _this.filePreviewService.selectFile(params['dictaatName'], file);
+        });
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
@@ -20,10 +30,10 @@ var DictaatEntryComponent = (function () {
     DictaatEntryComponent = __decorate([
         core_1.Component({
             selector: "wd-dictaat-entry",
-            template: "\n        <div class=\"entry\" (click)=\"showSub = !showSub\">\n            <span class=\"glyphicon glyphicon-folder-open\" aria-hidden=\"true\" *ngIf=\"showSub\"></span>\n            <span class=\"glyphicon glyphicon-folder-close\" aria-hidden=\"true\" *ngIf=\"!showSub\"></span>\n            <span class='title'>{{entry.name}}</span>\n        </div>\n        <ul *ngIf=\"showSub\">\n            <li class=\"directory\" *ngFor=\"let subEntry of entry.entries\">\n                <wd-dictaat-entry [entry]=\"subEntry\" ></wd-dictaat-entry>\n            </li>\n            <li class=\"file\" *ngFor=\"let file of entry.files\">\n                <span class=\"glyphicon glyphicon-file\" aria-hidden=\"true\"></span>\n                <span class='title'>{{file.name}}</span>\n            </li>\n        </ul>\n    ",
-            styles: ["\n        ul{\n            padding-left:20px;\n        }\n\n        li{\n            padding:0px;\n            list-style-type:none;\n        }\n\n        .entry{\n            cursor: pointer;\n        }\n\n        .glyphicon{\n            margin-right:5px;\n        }\n\n\n        "],
+            templateUrl: './app/dictaat/dictaat-entry.component.html',
+            styleUrls: ["./app/dictaat/dictaat-entry.component.css"],
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [file_preview_service_1.FilePreviewService, router_1.ActivatedRoute])
     ], DictaatEntryComponent);
     return DictaatEntryComponent;
 }());

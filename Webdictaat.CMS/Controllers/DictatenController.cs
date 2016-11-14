@@ -23,6 +23,17 @@ namespace Webdictaat.CMS.Controllers
         /// Returns a list of small summaries of webdictaten 
         /// </summary>
         /// <returns></returns>
+        [HttpPost]
+        public IEnumerable<ViewModels.DictaatSummary> Post([FromBody]ViewModels.DictaatForm form)
+        {
+            _dictaatRepo.CreateDictaat(form.Name, form.Template);
+            return this.Get();
+        }
+
+        /// <summary>
+        /// Returns a list of small summaries of webdictaten 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IEnumerable<ViewModels.DictaatSummary> Get()
         {

@@ -9,18 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var dictaat_service_1 = require('./dictaat.service');
+var dictaat_service_1 = require('../services/dictaat.service');
+var file_preview_service_1 = require('../services/file-preview.service');
+var router_1 = require('@angular/router');
 var DictaatComponent = (function () {
-    function DictaatComponent(dictaatService) {
+    function DictaatComponent(dictaatService, route, filePreviewService) {
         this.dictaatService = dictaatService;
-        this.dictaten = [];
+        this.route = route;
+        this.filePreviewService = filePreviewService;
     }
-    DictaatComponent.prototype.ngOnChanges = function () {
+    //event
+    DictaatComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.dictaatService.getDictaat(this.dictaatName)
-            .then(function (dictaat) {
-            return _this.dictaat = dictaat;
+        this.route.params.forEach(function (params) {
+            var name = params['dictaatName'];
+            _this.dictaatService.getDictaat(name)
+                .then(function (dictaat) { return _this.dictaat = dictaat; });
         });
+    };
+    DictaatComponent.prototype.selectPage = function (page) {
+        this.filePreviewService.selectFile(this.dictaat.name, page);
+    };
+    DictaatComponent.prototype.addPage = function () {
+    };
+    DictaatComponent.prototype.goBack = function () {
+        window.history.back();
     };
     __decorate([
         core_1.Input(), 
@@ -33,7 +46,7 @@ var DictaatComponent = (function () {
             styleUrls: ["./app/dictaat/dictaat.component.css"],
             providers: [dictaat_service_1.DictaatService]
         }), 
-        __metadata('design:paramtypes', [dictaat_service_1.DictaatService])
+        __metadata('design:paramtypes', [dictaat_service_1.DictaatService, router_1.ActivatedRoute, file_preview_service_1.FilePreviewService])
     ], DictaatComponent);
     return DictaatComponent;
 }());

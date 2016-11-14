@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Webdictaat.CMS.Models;
 using Webdictaat.Core;
+using Webdictaat.Domain;
 
 namespace Webdictaat.CMS.ViewModels
 {
@@ -11,14 +12,15 @@ namespace Webdictaat.CMS.ViewModels
     {
         public string Name { get; set; }
 
-        public DictaatEntry RootEntry { get; set; }
+        public IEnumerable<FileSummary> Pages { get; set; }
 
-        public Dictaat(DirectoryDetails details)
+        public object Menu { get; set; }
+
+        public Dictaat(Domain.Dictaat dictaat)
         {
-            this.Name = details.Name;
-
-            this.RootEntry = new DictaatDirectory(details.RootEntry);
+            this.Name = dictaat.Name;
+            this.Pages = dictaat.Pages;
+            this.Menu = dictaat.Menu;
         }
-
     }
 }
