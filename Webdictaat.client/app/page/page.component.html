@@ -1,2 +1,3 @@
-﻿<div *ngIf="!showSource" [innerHTML]="page">
+﻿<div *ngIf="page">
+    <html-outlet [html]="page"></html-outlet>
 </div>

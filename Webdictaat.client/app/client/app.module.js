@@ -12,21 +12,21 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var http_1 = require('@angular/http');
 var common_1 = require('@angular/common');
-//modules
-var gui_elements_module_1 = require('../gui-elements/gui-elements.module');
 //components
 var app_component_1 = require('./app.component');
 var app_routing_1 = require('./app.routing');
 var page_component_1 = require('../page/page.component');
+var html_outlet_directive_1 = require('../core/html-outlet.directive');
 var nav_menu_component_1 = require('../nav-menu/nav-menu.component');
+var question_service_1 = require('../services/question.service');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, http_1.HttpModule, app_routing_1.routing, gui_elements_module_1.GuiElementsModule],
-            declarations: [app_component_1.AppComponent, page_component_1.PageComponent, nav_menu_component_1.NavMenuComponent],
-            providers: [{ provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }],
+            imports: [platform_browser_1.BrowserModule, http_1.HttpModule, app_routing_1.routing],
+            declarations: [html_outlet_directive_1.HtmlOutlet, app_component_1.AppComponent, page_component_1.PageComponent, nav_menu_component_1.NavMenuComponent],
+            providers: [{ provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }, question_service_1.QuestionsService],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

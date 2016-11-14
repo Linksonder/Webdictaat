@@ -16,32 +16,43 @@ var forms_1 = require('@angular/forms');
 var ng2_ckeditor_1 = require('ng2-ckeditor');
 var ng2_dragula_1 = require('ng2-dragula/ng2-dragula');
 //modules
+var questions_module_1 = require('../questions/questions.module');
 var pages_module_1 = require('../pages/pages.module');
-var gui_elements_module_1 = require('../gui-elements/gui-elements.module');
+var tools_module_1 = require('../tools/tools.module');
 //components
 var app_component_1 = require('./app.component');
 var add_dictaat_component_1 = require('../dictaten/add-dictaat.component');
 var dictaten_component_1 = require('../dictaten/dictaten.component');
 var file_preview_component_1 = require('../file-preview/file-preview.component');
+var dialog_component_1 = require('../dialog/dialog.component');
 var dictaat_component_1 = require('../dictaat/dictaat.component');
 var common_1 = require('@angular/common');
-var file_preview_service_1 = require('../services/file-preview.service');
 var edit_page_component_1 = require('../pages/edit-page.component');
+//services
 var app_routing_1 = require('./app.routing');
+var dialog_service_1 = require('../services/dialog.service');
+var file_preview_service_1 = require('../services/file-preview.service');
+var question_service_1 = require('../services/question.service');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             imports: [
-                ng2_dragula_1.DragulaModule, gui_elements_module_1.GuiElementsModule,
-                platform_browser_1.BrowserModule, http_1.HttpModule, app_routing_1.routing, pages_module_1.PagesModule, forms_1.FormsModule, ng2_ckeditor_1.CKEditorModule],
+                ng2_dragula_1.DragulaModule, tools_module_1.ToolsModule, questions_module_1.QuestionsModule,
+                platform_browser_1.BrowserModule, http_1.HttpModule, app_routing_1.routing, pages_module_1.PagesModule, forms_1.FormsModule, ng2_ckeditor_1.CKEditorModule
+            ],
             declarations: [
-                add_dictaat_component_1.AddDictaatComponent,
+                add_dictaat_component_1.AddDictaatComponent, dialog_component_1.DialogComponent,
                 app_component_1.AppComponent, dictaten_component_1.DictatenComponent, file_preview_component_1.FilePreviewComponent, dictaat_component_1.DictaatComponent, edit_page_component_1.EditPageComponent
             ],
-            providers: [file_preview_service_1.FilePreviewService, { provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }],
-            bootstrap: [app_component_1.AppComponent]
+            providers: [
+                file_preview_service_1.FilePreviewService, dialog_service_1.DialogService, question_service_1.QuestionsService,
+                { provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy },
+            ],
+            bootstrap: [
+                app_component_1.AppComponent
+            ]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);
