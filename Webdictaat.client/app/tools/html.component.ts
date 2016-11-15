@@ -50,6 +50,9 @@ export class HtmlComponent implements OnInit{
             .find(this.editableElements)
             .attr("contenteditable", "true");
 
+        //Helaas nodig omdat browsers stom doen omtrent content editable
+        this.solveEnterIssue(ui.item);
+
         this.enableContainers(ui.item);
 
         //we need to refresh the things
@@ -61,10 +64,18 @@ export class HtmlComponent implements OnInit{
         this.changeDetector.detectChanges();
     }
 
+    /**
+     * Na het compileren moeten er een aantal klasse worden toegevoegd
+     */
     public afterCompile() {
+
         this.enableContainers(this.pageElement);
+
         this.pageElement.find('.wd-container').find(this.editableElements)
             .attr("contenteditable", "true");
+
+        this.solveEnterIssue(this.pageElement.find(this.editableElements);
+
     }
 
     private decompileHtml(): string {
@@ -86,6 +97,7 @@ export class HtmlComponent implements OnInit{
         this.pageEdited.emit(this.decompileHtml());
     }
 
+
     private enableContainers(element): void {
 
         element.find('.wd-container').sortable({
@@ -101,8 +113,69 @@ export class HtmlComponent implements OnInit{
                 ui.item.css('display', 'inline-block');
             },
         });
-    }
+    }  
 
-     
+    /**
+     * Deze methode is nodig om beter om te gaan met de user input 'enter'.
+     * Origineel zal de browser een div toevoegen. Dit is geen nette valide html.
+     * Deze code snippet vervangt de div door een span.
+     * @param element
+     */
+    private solveEnterIssue(element): void {
+
+        element.on("keypress", function (e) {
+
+            var changedElement = $(this);
+            //if the last character is a zero-width space, remove it
+            var contentEditableHTML = changedElement.html();
+            var lastCharCode = contentEditableHTML.charCodeAt(contentEditableHTML.length - 1);
+            if (lastCharCode == 8203) {
+                changedElement.html(contentEditableHTML.slice(0, -1));
+            }
+            // handle "Enter" keypress
+            if (e.which == 13) {
+                if (window.getSelection) {
+                    var selection = window.getSelection();
+                    var range = selection.getRangeAt(0);
+                    var br = document.createElement("br");
+                    var zwsp = document.createTextNode("\u200B");
+                    var textNodeParent = document.getSelection().anchorNode.parentNode;
+                    var inSpan = textNodeParent.nodeName == "SPAN";
+                    var span = document.createElement("span");
+
+                    // if the carat is inside a <span>, move it out of the <span> tag
+                    if (inSpan) {
+                        range.setStartAfter(textNodeParent);
+                        range.setEndAfter(textNodeParent);
+                    }
+
+                    // insert the <br>
+                    range.deleteContents();
+                    range.insertNode(br);
+                    range.setStartAfter(br);
+                    range.setEndAfter(br);
+
+                    // create a new span on the next line
+                    if (inSpan) {
+                        range.insertNode(span);
+                        range.setStart(span, 0);
+                        range.setEnd(span, 0);
+                    }
+
+                    // add a zero-width character
+                    range.insertNode(zwsp);
+                    range.setStartBefore(zwsp);
+                    range.setEndBefore(zwsp);
+
+                    // insert the new range
+                    selection.removeAllRanges();
+                    selection.addRange(range);
+                    return false;
+                }
+            }
+        });
+    }
 }
+
+
 
